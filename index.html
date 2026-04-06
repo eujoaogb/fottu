@@ -1190,6 +1190,116 @@
     background: rgba(200,113,74,0.18);
     transform: translateY(-1px);
   }
+  .ai-chat-shell {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 0;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(123,45,62,0.08);
+  }
+  .ai-conversations {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: linear-gradient(180deg, rgba(123,45,62,0.03), rgba(255,255,255,0.42));
+    border-right: 1px solid rgba(123,45,62,0.08);
+  }
+  .ai-conversation-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 1rem 1rem 0.95rem;
+    border-bottom: 1px solid rgba(123,45,62,0.08);
+  }
+  .ai-conversation-label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 0.22rem;
+  }
+  .ai-conversation-head strong,
+  .ai-conversation-meta strong {
+    color: var(--deep-wine);
+    font-size: 0.96rem;
+  }
+  .ai-conversation-head p,
+  .ai-conversation-meta span,
+  .ai-conversation-empty {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  .ai-new-chat-btn {
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  .ai-conversation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0.95rem;
+    max-height: 620px;
+    overflow: auto;
+  }
+  .ai-conversation-item {
+    width: 100%;
+    border: 1px solid rgba(123,45,62,0.10);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.7);
+    padding: 0.85rem 0.9rem;
+    text-align: left;
+    cursor: pointer;
+    display: grid;
+    gap: 0.3rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .ai-conversation-item:hover {
+    transform: translateY(-1px);
+    border-color: rgba(200,113,74,0.22);
+    box-shadow: 0 12px 26px rgba(74,21,37,0.08);
+  }
+  .ai-conversation-item.is-active {
+    background: linear-gradient(135deg, rgba(123,45,62,0.10), rgba(200,113,74,0.12));
+    border-color: rgba(123,45,62,0.18);
+    box-shadow: 0 16px 28px rgba(74,21,37,0.10);
+  }
+  .ai-conversation-item-title {
+    font-size: 0.87rem;
+    font-weight: 700;
+    color: var(--deep-wine);
+    line-height: 1.35;
+  }
+  .ai-conversation-item-preview {
+    font-size: 0.76rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+  }
+  .ai-conversation-item-time {
+    font-size: 0.72rem;
+    color: rgba(74,21,37,0.62);
+  }
+  .ai-chat-stage {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-conversation-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 1rem 1.35rem 0;
+  }
+  .ai-conversation-meta strong {
+    display: block;
+  }
+  .ai-conversation-meta span:last-child {
+    white-space: nowrap;
+  }
   .ai-messages {
     padding: 1.25rem 1.35rem;
     display: flex;
@@ -1613,6 +1723,19 @@
     font-size: 0.76rem;
     border: 1px solid rgba(123,45,62,0.10);
   }
+  .ai-fab-history {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0.9rem 1rem 0;
+    align-items: center;
+  }
+  .ai-select-compact {
+    min-width: 0;
+    padding: 0.68rem 0.82rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    flex: 1;
+  }
   .ai-engine-strip,
   .ai-runtime-note,
   .ai-note,
@@ -1659,6 +1782,14 @@
 
   @media (max-width: 900px) {
     .ai-hub-grid { grid-template-columns: 1fr; }
+    .ai-chat-shell { grid-template-columns: 1fr; }
+    .ai-conversations {
+      border-right: 0;
+      border-bottom: 1px solid rgba(123,45,62,0.08);
+    }
+    .ai-conversation-list {
+      max-height: none;
+    }
   }
   @media (max-width: 768px) {
     .ai-composer {
@@ -2426,19 +2557,43 @@
           </div>
         </div>
 
-        <div class="ai-runtime-note" id="aiRuntimeNote" hidden></div>
-        <div class="ai-messages" id="aiMessages"></div>
-
-        <div class="ai-composer">
-          <div class="ai-composer-main">
-            <textarea id="aiInput" placeholder="Ex.: Quais informações eu preciso pedir do cliente? Ou: adicione um campo para nome do pet."></textarea>
-            <div class="ai-attachment-bar">
-              <button class="ai-chip ai-attach-btn" id="aiAttachBtn" type="button">Anexar imagem, áudio ou texto</button>
-              <button class="ai-chip ai-attachment-clear" id="aiClearAttachmentsBtn" type="button">Limpar anexos</button>
+        <div class="ai-chat-shell">
+          <aside class="ai-conversations">
+            <div class="ai-conversation-head">
+              <div>
+                <span class="ai-conversation-label">Conversas</span>
+                <strong>Histórico salvo</strong>
+                <p>Crie uma conversa nova ou retome uma anterior.</p>
+              </div>
+              <button class="ai-chip ai-new-chat-btn" id="aiNewChatBtn" type="button">Nova conversa</button>
             </div>
-            <div class="ai-attachment-list" id="aiAttachmentList"></div>
+            <div class="ai-conversation-list" id="aiConversationList"></div>
+          </aside>
+
+          <div class="ai-chat-stage">
+            <div class="ai-conversation-meta">
+              <div>
+                <span class="ai-conversation-label">Conversa ativa</span>
+                <strong id="aiConversationTitle">Nova conversa</strong>
+              </div>
+              <span id="aiConversationStamp">Agora</span>
+            </div>
+
+            <div class="ai-runtime-note" id="aiRuntimeNote" hidden></div>
+            <div class="ai-messages" id="aiMessages"></div>
+
+            <div class="ai-composer">
+              <div class="ai-composer-main">
+                <textarea id="aiInput" placeholder="Ex.: Quais informações eu preciso pedir do cliente? Ou: adicione um campo para nome do pet."></textarea>
+                <div class="ai-attachment-bar">
+                  <button class="ai-chip ai-attach-btn" id="aiAttachBtn" type="button">Anexar imagem, áudio ou texto</button>
+                  <button class="ai-chip ai-attachment-clear" id="aiClearAttachmentsBtn" type="button">Limpar anexos</button>
+                </div>
+                <div class="ai-attachment-list" id="aiAttachmentList"></div>
+              </div>
+              <button class="ai-send-btn" id="aiSendBtn" type="button">Perguntar</button>
+            </div>
           </div>
-          <button class="ai-send-btn" id="aiSendBtn" type="button">Perguntar</button>
         </div>
       </div>
 
@@ -2481,6 +2636,10 @@
       <a href="#assistente" class="ai-fab-link">Abrir central</a>
       <a href="#inicio" class="ai-fab-link">Plano de início</a>
       <a href="#manual" class="ai-fab-link">Manual da marca</a>
+    </div>
+    <div class="ai-fab-history">
+      <button class="ai-chip ai-new-chat-btn" id="aiNewChatBtnFloating" type="button">Nova conversa</button>
+      <select class="ai-select ai-select-compact" id="aiConversationSelectFloating" aria-label="Selecionar conversa"></select>
     </div>
     <div class="ai-engine-strip ai-engine-strip-compact">
       <div class="ai-engine-copy">
@@ -3099,6 +3258,8 @@
   const AI_STORAGE_KEY = 'fottu_ai_chat_v1';
   const BRIEFING_STORAGE_KEY = 'fottu_ai_briefing_fields_v1';
   const AI_SETTINGS_STORAGE_KEY = 'fottu_ai_settings_v2';
+  const AI_CONVERSATIONS_KEY = 'fottu_ai_conversations_v1';
+  const AI_ACTIVE_CONVERSATION_KEY = 'fottu_ai_active_conversation_v1';
 
   // IA real via backend local/servidor.
   // A chave da OpenAI fica no backend, nunca neste HTML.
@@ -3177,15 +3338,14 @@
   ];
 
   const aiState = {
-    messages: [],
-    fields: [],
+    conversations: [],
+    activeConversationId: null,
     attachments: [],
     capabilities: { ...DEFAULT_AI_CAPABILITIES },
     settings: {
       model: DEFAULT_AI_CAPABILITIES.defaultModel,
       tools: []
     },
-    lastMeta: null,
     busy: false
   };
 
@@ -3193,6 +3353,10 @@
   const messagesFloating = document.getElementById('aiMessagesFloating');
   const runtimeNoteMain = document.getElementById('aiRuntimeNote');
   const runtimeNoteFloating = document.getElementById('aiRuntimeNoteFloating');
+  const conversationListMain = document.getElementById('aiConversationList');
+  const conversationTitleMain = document.getElementById('aiConversationTitle');
+  const conversationStampMain = document.getElementById('aiConversationStamp');
+  const conversationSelectFloating = document.getElementById('aiConversationSelectFloating');
   const formContainer = document.getElementById('dynamicBriefingForm');
   const emptyState = document.getElementById('aiEmptyState');
 
@@ -3208,6 +3372,8 @@
   const toolRowFloating = document.getElementById('aiToolRowFloating');
   const attachBtnMain = document.getElementById('aiAttachBtn');
   const attachBtnFloating = document.getElementById('aiAttachBtnFloating');
+  const newChatBtnMain = document.getElementById('aiNewChatBtn');
+  const newChatBtnFloating = document.getElementById('aiNewChatBtnFloating');
   const clearAttachmentsBtnMain = document.getElementById('aiClearAttachmentsBtn');
   const clearAttachmentsBtnFloating = document.getElementById('aiClearAttachmentsBtnFloating');
   const attachmentInput = document.getElementById('aiAttachmentInput');
@@ -3217,6 +3383,33 @@
   const toggleBtn = document.getElementById('aiToggleBtn');
   const floatingPanel = document.getElementById('aiFloatingPanel');
   const closeBtn = document.getElementById('aiCloseBtn');
+
+  Object.defineProperties(aiState, {
+    messages: {
+      get() {
+        return getActiveConversation().messages;
+      },
+      set(value) {
+        getActiveConversation().messages = normalizeStoredMessages(value);
+      }
+    },
+    fields: {
+      get() {
+        return getActiveConversation().fields;
+      },
+      set(value) {
+        getActiveConversation().fields = normalizeIncomingFields(value);
+      }
+    },
+    lastMeta: {
+      get() {
+        return getActiveConversation().lastMeta;
+      },
+      set(value) {
+        getActiveConversation().lastMeta = value && typeof value === 'object' ? value : null;
+      }
+    }
+  });
 
   function normalizeText(value = '') {
     return value
@@ -3241,6 +3434,125 @@
       .map(tool => tool.id);
   }
 
+  function buildWelcomeMessage() {
+    return {
+      role: 'bot',
+      text: 'Oi! Eu sou o assistente da fottu.br.\n\nPosso responder dúvidas sobre o guia e também criar novos campos no briefing. Exemplos:\n• “Como conseguir os primeiros clientes?”\n• “Adicione um campo para nome do pet.”\n• “Quais dados eu preciso pedir do cliente?”'
+    };
+  }
+
+  function normalizeStoredMessages(messages = []) {
+    return (Array.isArray(messages) ? messages : [])
+      .filter(message => message && (message.text || Array.isArray(message.images)))
+      .map(message => ({
+        role: message.role === 'user' ? 'user' : 'bot',
+        text: String(message.text || ''),
+        images: Array.isArray(message.images)
+          ? message.images
+              .filter(image => image && image.url)
+              .map(image => ({
+                url: String(image.url),
+                alt: image.alt ? String(image.alt) : '',
+                mimeType: image.mimeType ? String(image.mimeType) : '',
+                revisedPrompt: image.revisedPrompt ? String(image.revisedPrompt) : ''
+              }))
+          : []
+      }));
+  }
+
+  function summarizeConversationText(text = '', maxLength = 42) {
+    const normalized = String(text)
+      .replace(/\[Anexos enviados\]/g, 'Anexos')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (!normalized) return '';
+    return normalized.length > maxLength ? `${normalized.slice(0, maxLength - 1)}…` : normalized;
+  }
+
+  function deriveConversationTitle(conversation) {
+    const firstUserMessage = (conversation?.messages || []).find(message => message.role === 'user' && message.text);
+    return summarizeConversationText(firstUserMessage?.text || '', 36) || 'Nova conversa';
+  }
+
+  function getConversationPreview(conversation) {
+    const messages = Array.isArray(conversation?.messages) ? conversation.messages : [];
+    const lastMessage = [...messages].reverse().find(message => message.text);
+
+    if (!lastMessage) return 'Sem mensagens ainda.';
+
+    const baseText = summarizeConversationText(lastMessage.text, 72);
+    return lastMessage.role === 'user' ? `Você: ${baseText}` : baseText;
+  }
+
+  function createConversation(seed = {}) {
+    const conversation = {
+      id: seed.id || `conv_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      title: seed.title ? String(seed.title) : 'Nova conversa',
+      messages: normalizeStoredMessages(seed.messages),
+      fields: normalizeIncomingFields(seed.fields),
+      lastMeta: seed.lastMeta && typeof seed.lastMeta === 'object' ? seed.lastMeta : null,
+      createdAt: seed.createdAt || new Date().toISOString(),
+      updatedAt: seed.updatedAt || new Date().toISOString()
+    };
+
+    if (!conversation.messages.length) {
+      conversation.messages = [buildWelcomeMessage()];
+    }
+
+    conversation.title = deriveConversationTitle(conversation);
+    return conversation;
+  }
+
+  function sortConversations() {
+    aiState.conversations.sort(
+      (left, right) => new Date(right.updatedAt || 0).getTime() - new Date(left.updatedAt || 0).getTime()
+    );
+  }
+
+  function ensureActiveConversation() {
+    if (!aiState.conversations.length) {
+      const conversation = createConversation();
+      aiState.conversations = [conversation];
+      aiState.activeConversationId = conversation.id;
+      return conversation;
+    }
+
+    const activeConversation =
+      aiState.conversations.find(conversation => conversation.id === aiState.activeConversationId) ||
+      aiState.conversations[0];
+
+    aiState.activeConversationId = activeConversation.id;
+    return activeConversation;
+  }
+
+  function getActiveConversation() {
+    return ensureActiveConversation();
+  }
+
+  function touchActiveConversation() {
+    const conversation = getActiveConversation();
+    conversation.title = deriveConversationTitle(conversation);
+    conversation.updatedAt = new Date().toISOString();
+    sortConversations();
+  }
+
+  function formatConversationStamp(isoString) {
+    if (!isoString) return 'Agora';
+
+    const value = new Date(isoString);
+    const now = new Date();
+    const isToday =
+      value.getDate() === now.getDate() &&
+      value.getMonth() === now.getMonth() &&
+      value.getFullYear() === now.getFullYear();
+
+    return new Intl.DateTimeFormat(
+      'pt-BR',
+      isToday ? { hour: '2-digit', minute: '2-digit' } : { day: '2-digit', month: 'short' }
+    ).format(value);
+  }
+
   function sanitizeSettings() {
     const modelIds = aiState.capabilities.models.map(model => model.id);
 
@@ -3258,11 +3570,16 @@
   }
 
   function saveState() {
+    touchActiveConversation();
+
     const persistedMessages = aiState.messages.map(message => ({
       role: message.role,
-      text: message.text
+      text: message.text,
+      images: Array.isArray(message.images) ? message.images : []
     }));
 
+    localStorage.setItem(AI_CONVERSATIONS_KEY, JSON.stringify(aiState.conversations));
+    localStorage.setItem(AI_ACTIVE_CONVERSATION_KEY, aiState.activeConversationId || '');
     localStorage.setItem(AI_STORAGE_KEY, JSON.stringify(persistedMessages));
     localStorage.setItem(BRIEFING_STORAGE_KEY, JSON.stringify(aiState.fields));
     localStorage.setItem(AI_SETTINGS_STORAGE_KEY, JSON.stringify(aiState.settings));
@@ -3270,15 +3587,29 @@
 
   function loadState() {
     try {
-      aiState.messages = JSON.parse(localStorage.getItem(AI_STORAGE_KEY)) || [];
-      aiState.fields = normalizeIncomingFields(JSON.parse(localStorage.getItem(BRIEFING_STORAGE_KEY)) || []);
+      const storedConversations = JSON.parse(localStorage.getItem(AI_CONVERSATIONS_KEY));
+      const legacyMessages = JSON.parse(localStorage.getItem(AI_STORAGE_KEY)) || [];
+      const legacyFields = JSON.parse(localStorage.getItem(BRIEFING_STORAGE_KEY)) || [];
+
+      if (Array.isArray(storedConversations) && storedConversations.length) {
+        aiState.conversations = storedConversations.map(conversation => createConversation(conversation));
+      } else {
+        aiState.conversations = [
+          createConversation({
+            messages: legacyMessages,
+            fields: legacyFields
+          })
+        ];
+      }
+
+      aiState.activeConversationId = localStorage.getItem(AI_ACTIVE_CONVERSATION_KEY);
       aiState.settings = {
         ...aiState.settings,
         ...(JSON.parse(localStorage.getItem(AI_SETTINGS_STORAGE_KEY)) || {})
       };
     } catch (error) {
-      aiState.messages = [];
-      aiState.fields = [];
+      aiState.conversations = [createConversation()];
+      aiState.activeConversationId = aiState.conversations[0].id;
       aiState.settings = {
         model: DEFAULT_AI_CAPABILITIES.defaultModel,
         tools: []
@@ -3286,15 +3617,8 @@
     }
 
     sanitizeSettings();
-
-    if (!aiState.messages.length) {
-      aiState.messages = [
-        {
-          role: 'bot',
-          text: 'Oi! Eu sou o assistente da fottu.br.\n\nPosso responder dúvidas sobre o guia e também criar novos campos no briefing. Exemplos:\n• “Como conseguir os primeiros clientes?”\n• “Adicione um campo para nome do pet.”\n• “Quais dados eu preciso pedir do cliente?”'
-        }
-      ];
-    }
+    sortConversations();
+    ensureActiveConversation();
   }
 
   function getImageExtension(mimeType = '') {
@@ -3542,6 +3866,97 @@
     });
   }
 
+  function renderConversationMeta() {
+    const conversation = getActiveConversation();
+
+    if (conversationTitleMain) {
+      conversationTitleMain.textContent = conversation.title || 'Nova conversa';
+    }
+
+    if (conversationStampMain) {
+      conversationStampMain.textContent = formatConversationStamp(conversation.updatedAt);
+    }
+  }
+
+  function renderConversationList() {
+    const orderedConversations = [...aiState.conversations].sort(
+      (left, right) => new Date(right.updatedAt || 0).getTime() - new Date(left.updatedAt || 0).getTime()
+    );
+
+    if (conversationListMain) {
+      conversationListMain.innerHTML = '';
+
+      if (!orderedConversations.length) {
+        const empty = document.createElement('div');
+        empty.className = 'ai-conversation-empty';
+        empty.textContent = 'Sua primeira conversa vai aparecer aqui.';
+        conversationListMain.appendChild(empty);
+      } else {
+        orderedConversations.forEach(conversation => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `ai-conversation-item${conversation.id === aiState.activeConversationId ? ' is-active' : ''}`;
+          button.dataset.conversationId = conversation.id;
+
+          const title = document.createElement('span');
+          title.className = 'ai-conversation-item-title';
+          title.textContent = conversation.title || 'Nova conversa';
+
+          const preview = document.createElement('span');
+          preview.className = 'ai-conversation-item-preview';
+          preview.textContent = getConversationPreview(conversation);
+
+          const time = document.createElement('span');
+          time.className = 'ai-conversation-item-time';
+          time.textContent = formatConversationStamp(conversation.updatedAt);
+
+          button.append(title, preview, time);
+          conversationListMain.appendChild(button);
+        });
+      }
+    }
+
+    if (conversationSelectFloating) {
+      conversationSelectFloating.innerHTML = '';
+
+      orderedConversations.forEach(conversation => {
+        const option = document.createElement('option');
+        option.value = conversation.id;
+        option.textContent = conversation.title || 'Nova conversa';
+        conversationSelectFloating.appendChild(option);
+      });
+
+      conversationSelectFloating.value = aiState.activeConversationId || '';
+    }
+  }
+
+  function setActiveConversation(conversationId) {
+    const conversation = aiState.conversations.find(item => item.id === conversationId);
+    if (!conversation) return;
+
+    aiState.activeConversationId = conversation.id;
+    clearAttachments();
+    renderConversationMeta();
+    renderConversationList();
+    renderMessages();
+    renderFields();
+    renderRuntimeNote();
+    saveState();
+  }
+
+  function startNewConversation() {
+    const conversation = createConversation();
+    aiState.conversations.unshift(conversation);
+    aiState.activeConversationId = conversation.id;
+    clearAttachments();
+    renderConversationMeta();
+    renderConversationList();
+    renderMessages();
+    renderFields();
+    renderRuntimeNote();
+    saveState();
+  }
+
   function createFieldElement(field) {
     const wrapper = document.createElement('div');
     wrapper.className = 'ai-field';
@@ -3606,6 +4021,8 @@
       images: Array.isArray(extra.images) ? extra.images : []
     });
     saveState();
+    renderConversationMeta();
+    renderConversationList();
     renderMessages();
   }
 
@@ -3793,6 +4210,8 @@
   });
 
   loadState();
+  renderConversationList();
+  renderConversationMeta();
   renderMessages();
   renderFields();
 
@@ -4160,6 +4579,24 @@
     });
   });
 
+  conversationListMain?.addEventListener('click', event => {
+    const button = event.target.closest('[data-conversation-id]');
+    if (!button) return;
+    setActiveConversation(button.dataset.conversationId);
+  });
+
+  conversationSelectFloating?.addEventListener('change', event => {
+    setActiveConversation(event.target.value);
+  });
+
+  [newChatBtnMain, newChatBtnFloating].forEach(button => {
+    button?.addEventListener('click', () => {
+      startNewConversation();
+      const targetInput = button === newChatBtnFloating ? inputFloating : inputMain;
+      window.setTimeout(() => targetInput?.focus(), 40);
+    });
+  });
+
   bindSend(inputMain, sendMain);
   bindSend(inputFloating, sendFloating);
 
@@ -4167,6 +4604,8 @@
     button.addEventListener('click', () => handleQuestion(button.dataset.aiPrompt));
   });
 
+  renderConversationList();
+  renderConversationMeta();
   renderModelOptions();
   renderToolRows();
   renderAttachments();
