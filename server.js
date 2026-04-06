@@ -7,7 +7,11 @@ import OpenAI from 'openai';
 const app = express();
 const port = process.env.PORT || 3001;
 const landingPage = process.env.LANDING_PAGE || 'index.html';
-const isNetlifyRuntime = Boolean(process.env.NETLIFY);
+const isNetlifyRuntime = Boolean(
+  process.env.NETLIFY ||
+  process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  process.env.LAMBDA_TASK_ROOT
+);
 const projectRoot = process.cwd();
 const chatApiKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY;
 const chatBaseURL =
