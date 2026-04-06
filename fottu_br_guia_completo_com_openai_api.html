@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fottu.br — Guia Completo de Negócio & Marca</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --warm-white: #FFF9F3;
+    --sand: #E8DDD0;
+    --blush: #E8C4B0;
+    --terracotta: #C8714A;
+    --wine: #7B2D3E;
+    --deep-wine: #4A1525;
+    --gold: #C4962A;
+    --gold-light: #E8C96A;
+    --dark: #1A0E10;
+    --mid: #3D1F28;
+    --text: #2C1A1F;
+    --text-muted: #8A6B72;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,14,16,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+    border-bottom: 1px solid rgba(196,150,42,0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep-wine);
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 8rem 2rem 5rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(200,113,74,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(123,45,62,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 70%, rgba(196,150,42,0.12) 0%, transparent 50%);
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .hero-tag {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+    border: 1px solid rgba(196,150,42,0.4);
+    padding: 0.35rem 1.2rem; border-radius: 20px;
+    margin-bottom: 2rem; position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.0;
+    position: relative;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-light), var(--terracotta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: rgba(232,221,208,0.8);
+    font-style: italic;
+    max-width: 640px;
+    position: relative;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 2.5rem auto;
+    position: relative;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;
+    position: relative;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .hero-pill {
+    padding: 0.5rem 1.4rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 30px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.3); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+  .container-wide { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 600; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before {
+    content: ''; width: 30px; height: 1px; background: var(--terracotta);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--deep-wine);
+    margin-bottom: 1rem;
+  }
+  .section-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-style: italic;
+    max-width: 620px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── ALTERNATING BG ── */
+  .bg-dark { background: var(--deep-wine); color: var(--cream); }
+  .bg-dark .section-title { color: var(--cream); }
+  .bg-dark .section-intro { color: rgba(232,221,208,0.7); }
+  .bg-dark .section-label { color: var(--gold-light); }
+  .bg-dark .section-label::before { background: var(--gold-light); }
+
+  .bg-sand { background: var(--sand); }
+  .bg-wine { background: var(--wine); color: var(--cream); }
+  .bg-wine .section-title { color: var(--cream); }
+  .bg-wine .section-intro { color: rgba(255,255,255,0.7); }
+  .bg-wine .section-label { color: var(--gold-light); }
+  .bg-wine .section-label::before { background: var(--gold-light); }
+
+  /* ── CARDS ── */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(74,21,37,0.07);
+    border: 1px solid rgba(200,113,74,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(74,21,37,0.12); }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--terracotta), var(--wine));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--deep-wine);
+    margin-bottom: 0.7rem;
+  }
+  .card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* dark card */
+  .card-dark {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+  }
+  .card-dark h3 { color: var(--cream); }
+  .card-dark p { color: rgba(232,221,208,0.75); }
+  .card-dark:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.3); }
+
+  /* ── STEPS / TIMELINE ── */
+  .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute; left: 28px; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, var(--terracotta), var(--wine), transparent);
+  }
+  .step {
+    display: flex; gap: 2rem; padding: 0 0 2.5rem;
+    position: relative;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 58px; height: 58px;
+    background: var(--deep-wine);
+    border: 2px solid var(--terracotta);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    font-style: italic;
+    position: relative; z-index: 2;
+  }
+  .step-content { padding-top: 0.5rem; }
+  .step-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--deep-wine);
+    margin-bottom: 0.5rem;
+  }
+  .step-content p { font-size: 0.9rem; color: var(--text-muted); }
+  .step-content ul { margin-top: 0.7rem; padding-left: 1.2rem; }
+  .step-content li { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--wine), var(--deep-wine));
+    color: var(--cream);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    margin: 3rem 0;
+  }
+  .highlight-box::before {
+    content: '"';
+    position: absolute; top: -0.5rem; left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem; font-style: italic;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+  .highlight-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.5;
+    position: relative;
+    max-width: 700px;
+  }
+  .highlight-box span { color: var(--gold-light); }
+
+  /* ── STAT STRIP ── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px;
+    background: var(--terracotta);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 3rem 0;
+  }
+  .stat {
+    background: var(--deep-wine);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    color: var(--gold-light);
+    display: block;
+  }
+  .stat-label { font-size: 0.78rem; color: rgba(232,221,208,0.65); letter-spacing: 0.06em; }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; margin: 2rem 0; border-radius: 14px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: var(--deep-wine); color: var(--cream); }
+  thead th {
+    padding: 1rem 1.2rem;
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: 600; text-align: left;
+  }
+  tbody tr { border-bottom: 1px solid var(--sand); }
+  tbody tr:nth-child(even) { background: rgba(232,221,208,0.25); }
+  tbody td { padding: 0.9rem 1.2rem; font-size: 0.88rem; color: var(--text); }
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+  }
+  .badge-high { background: rgba(200,113,74,0.15); color: var(--terracotta); }
+  .badge-med { background: rgba(196,150,42,0.15); color: var(--gold); }
+
+  /* ── BRAND SECTION ── */
+  .brand-hero {
+    background: var(--dark);
+    padding: 7rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(196,150,42,0.08) 0%, transparent 70%);
+  }
+
+  /* LOGO PREVIEW */
+  .logo-preview {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 3rem 4rem;
+    background: var(--deep-wine);
+    border-radius: 20px;
+    border: 1px solid rgba(196,150,42,0.2);
+    margin: 2rem auto;
+  }
+  .logo-wordmark {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    position: relative;
+  }
+  .logo-wordmark span {
+    background: linear-gradient(135deg, var(--gold-light), var(--terracotta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .logo-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    vertical-align: super;
+    margin-left: 2px;
+  }
+  .logo-tagline {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(232,221,208,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+
+  /* COLOR PALETTE */
+  .palette {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin: 2.5rem 0;
+  }
+  .swatch {
+    flex: 1; min-width: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  .swatch-color { height: 80px; }
+  .swatch-info {
+    padding: 0.8rem;
+    background: #fff;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  .swatch-info strong { display: block; font-weight: 600; color: var(--text); }
+  .swatch-info span { color: var(--text-muted); font-family: monospace; }
+
+  /* TYPOGRAPHY SPECIMEN */
+  .typo-specimen {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--terracotta);
+  }
+  .typo-specimen .font-name {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.5rem;
+  }
+
+  /* ── CHANNELS ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .channel-card {
+    border-radius: 16px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .channel-card:hover { transform: translateY(-4px); }
+  .channel-card .priority {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    padding: 0.2rem 0.7rem; border-radius: 20px;
+  }
+  .channel-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin: 0.8rem 0 0.5rem;
+  }
+  .channel-card p { font-size: 0.83rem; line-height: 1.6; }
+
+  .ch-insta { background: linear-gradient(135deg, #F5E6DC, #FAD5C0); color: var(--dark); }
+  .ch-tiktok { background: linear-gradient(135deg, #1A1A2E, #16213E); color: #fff; }
+  .ch-whats { background: linear-gradient(135deg, #1B4332, #2D6A4F); color: #fff; }
+  .ch-meli { background: linear-gradient(135deg, #FFF176, #FFD600); color: var(--dark); }
+  .ch-elo7 { background: linear-gradient(135deg, #4A148C, #7B1FA2); color: #fff; }
+  .ch-fair { background: linear-gradient(135deg, #37474F, #546E7A); color: #fff; }
+
+  /* ── BRAND VOICE ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 600px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-card {
+    padding: 1.8rem;
+    border-radius: 14px;
+  }
+  .voice-yes { background: rgba(200,113,74,0.1); border: 1px solid rgba(200,113,74,0.25); }
+  .voice-no { background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.1); }
+  .voice-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .voice-card ul { padding-left: 1.2rem; }
+  .voice-card li { font-size: 0.87rem; margin-bottom: 0.4rem; color: var(--text-muted); }
+
+  /* ── PITCH ── */
+  .pitch-box {
+    background: linear-gradient(135deg, var(--terracotta), var(--wine));
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .pitch-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-style: italic;
+    line-height: 1.55;
+    position: relative;
+    z-index: 1;
+  }
+  .pitch-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  footer strong { color: var(--gold-light); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hero { padding: 5rem 1.5rem 4rem; }
+    .voice-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* tag accent */
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    background: rgba(200,113,74,0.12);
+    color: var(--terracotta);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 0.2rem;
+  }
+
+  /* ── ASSISTENTE IA ── */
+  .ai-hub {
+    background: linear-gradient(135deg, rgba(232,196,176,0.16), rgba(196,150,42,0.08));
+    border-top: 1px solid rgba(196,150,42,0.18);
+  }
+  .ai-hub-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .ai-panel,
+  .ai-form-panel {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(123,45,62,0.10);
+    border-radius: 18px;
+    box-shadow: 0 10px 36px rgba(74,21,37,0.08);
+    overflow: hidden;
+  }
+  .ai-panel-header,
+  .ai-form-header {
+    padding: 1.2rem 1.4rem;
+    background: var(--deep-wine);
+    color: var(--cream);
+  }
+  .ai-panel-header h3,
+  .ai-form-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+  }
+  .ai-panel-header p,
+  .ai-form-header p {
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.72);
+  }
+  .ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1rem 1.2rem 0;
+  }
+  .ai-chip {
+    border: 1px solid rgba(123,45,62,0.14);
+    background: rgba(232,196,176,0.16);
+    color: var(--wine);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .ai-chip:hover {
+    background: rgba(200,113,74,0.18);
+    transform: translateY(-1px);
+  }
+  .ai-messages {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-height: 420px;
+    overflow: auto;
+  }
+  .ai-msg {
+    max-width: 92%;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+  .ai-msg.bot {
+    background: #fff;
+    border: 1px solid rgba(123,45,62,0.10);
+    color: var(--text);
+    border-top-left-radius: 6px;
+  }
+  .ai-msg.user {
+    background: linear-gradient(135deg, var(--terracotta), var(--wine));
+    color: #fff;
+    margin-left: auto;
+    border-top-right-radius: 6px;
+  }
+  .ai-composer {
+    display: flex;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem 1.2rem;
+    border-top: 1px solid rgba(123,45,62,0.08);
+    background: rgba(250,246,240,0.72);
+  }
+  .ai-composer textarea {
+    flex: 1;
+    min-height: 58px;
+    max-height: 160px;
+    resize: vertical;
+    border: 1px solid rgba(123,45,62,0.16);
+    border-radius: 14px;
+    padding: 0.95rem 1rem;
+    font: inherit;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+  }
+  .ai-composer textarea:focus,
+  .ai-field input:focus,
+  .ai-field select:focus,
+  .ai-field textarea:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(200,113,74,0.10);
+  }
+  .ai-send-btn,
+  .ai-toggle-btn,
+  .ai-clear-btn {
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .ai-send-btn:hover,
+  .ai-toggle-btn:hover,
+  .ai-clear-btn:hover { transform: translateY(-1px); }
+  .ai-send-btn {
+    align-self: flex-end;
+    background: linear-gradient(135deg, var(--terracotta), var(--wine));
+    color: #fff;
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    font-weight: 600;
+    min-width: 110px;
+  }
+  .ai-form-body {
+    padding: 1.2rem 1.3rem 1.4rem;
+  }
+  .ai-form-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .ai-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.42rem;
+  }
+  .ai-field label {
+    font-size: 0.82rem;
+    color: var(--mid);
+    font-weight: 600;
+  }
+  .ai-field input,
+  .ai-field select,
+  .ai-field textarea {
+    width: 100%;
+    border: 1px solid rgba(123,45,62,0.14);
+    border-radius: 12px;
+    padding: 0.82rem 0.95rem;
+    font: inherit;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+  }
+  .ai-field textarea {
+    min-height: 96px;
+    resize: vertical;
+  }
+  .ai-form-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .ai-note {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: rgba(232,221,208,0.38);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  .ai-empty-state {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    padding: 0.2rem 0 0.6rem;
+  }
+  .ai-floating {
+    position: fixed;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.85rem;
+  }
+  .ai-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: linear-gradient(135deg, var(--terracotta), var(--wine));
+    color: #fff;
+    box-shadow: 0 16px 40px rgba(74,21,37,0.28);
+    border-radius: 999px;
+    padding: 0.95rem 1.15rem;
+    font-weight: 600;
+  }
+  .ai-toggle-btn span:last-child {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    opacity: 0.92;
+  }
+  .ai-fab-panel {
+    width: min(390px, calc(100vw - 2rem));
+    max-height: min(78vh, 680px);
+    background: var(--warm-white);
+    border: 1px solid rgba(123,45,62,0.10);
+    border-radius: 22px;
+    box-shadow: 0 22px 60px rgba(26,14,16,0.24);
+    overflow: hidden;
+    display: none;
+  }
+  .ai-fab-panel.open { display: block; }
+  .ai-fab-top {
+    padding: 1rem 1.1rem;
+    background: var(--deep-wine);
+    color: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ai-fab-top strong { font-family: 'Playfair Display', serif; font-size: 1.08rem; }
+  .ai-fab-top small { color: rgba(255,255,255,0.72); display: block; margin-top: 0.18rem; }
+  .ai-close-btn {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 10px;
+    padding: 0.45rem 0.75rem;
+    cursor: pointer;
+  }
+  .ai-fab-links {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0.9rem 1rem 0;
+    flex-wrap: wrap;
+  }
+  .ai-fab-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.7rem;
+    background: rgba(232,196,176,0.16);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--wine);
+    font-size: 0.76rem;
+    border: 1px solid rgba(123,45,62,0.10);
+  }
+
+  @media (max-width: 900px) {
+    .ai-hub-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .ai-floating { right: 1rem; bottom: 1rem; }
+    .ai-toggle-btn span:last-child { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">fottu.br</div>
+  <ul class="nav-links">
+    <li><a href="#mercado">Mercado</a></li>
+    <li><a href="#inicio">Como Começar</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#canais">Onde Vender</a></li>
+    <li><a href="#marca">Marca</a></li>
+    <li><a href="#manual">Manual</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-tag">Guia Completo de Negócio & Marca</div>
+  <h1><em>fottu</em>.br</h1>
+  <p class="hero-sub">Transformando momentos guardados no celular em memórias físicas que ficam para sempre.</p>
+  <div class="hero-divider"></div>
+  <div class="hero-pills">
+    <span class="hero-pill">📊 Pesquisa de Mercado</span>
+    <span class="hero-pill">🚀 Plano de Início</span>
+    <span class="hero-pill">🎯 Estratégia de Clientes</span>
+    <span class="hero-pill">🏪 Onde Vender</span>
+    <span class="hero-pill">🎨 Identidade Visual</span>
+    <span class="hero-pill">📖 Manual de Marca</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     1. PESQUISA DE MERCADO
+════════════════════════════════════════ -->
+<section id="mercado">
+  <div class="container">
+    <div class="section-label">01 — Pesquisa de Mercado</div>
+    <h2 class="section-title">O mercado está aquecido<br>e crescendo rápido.</h2>
+    <p class="section-intro">O segmento de presentes personalizados com foto é um dos mais promissores do Brasil hoje.</p>
+
+    <div class="stats-strip fade-in">
+      <div class="stat">
+        <span class="stat-num">US$54bi</span>
+        <span class="stat-label">mercado global até 2033</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6,7%</span>
+        <span class="stat-label">crescimento anual (CAGR)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">R$7,4bi</span>
+        <span class="stat-label">brindes personalizados/ano no Brasil</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">15–20%</span>
+        <span class="stat-label">crescimento anual do setor no Brasil</span>
+      </div>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p>O maior diferencial dos ímãs personalizados é que eles existem <span>na geladeira — o objeto mais acessado da casa</span> — criando exposição diária e afeto constante. Não é decoração de gaveta. É memória viva.</p>
+    </div>
+
+    <div class="cards-grid fade-in">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Comportamento do consumidor</h3>
+        <p>As pessoas tiram centenas de fotos e deixam 99% delas no celular. Há um desejo reprimido enorme de materializar essas memórias de forma bonita e cotidiana.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💝</div>
+        <h3>Compra por emoção</h3>
+        <p>O público-alvo (mulheres 25–45) compra fortemente por emoção, significado e afeto — não por utilidade. Isso eleva muito o ticket médio percebido.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>Sazonalidade favorável</h3>
+        <p>Dia das Mães, Namorados, Pais, Natal e aniversários geram picos de demanda. Você tem pelo menos 6 momentos de alto faturamento no ano.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔁</div>
+        <h3>Recompra natural</h3>
+        <p>Quem compra uma vez tende a repetir: novos pets, novos bebês, novas viagens, novas lembranças. A base de clientes cresce junto com a vida deles.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Baixa concorrência premium</h3>
+        <p>Há muitos vendedores genéricos, mas poucas marcas com posicionamento emocional forte e acabamento premium no nicho de ímãs. Há espaço para se destacar.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📲</div>
+        <h3>Viral nas redes</h3>
+        <p>Vídeos de "unboxing" e fotos na geladeira performam muito bem no TikTok e Instagram — o produto se vende sozinho quando bem apresentado.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--deep-wine); margin:3rem 0 1.5rem;">Análise de Concorrência</h3>
+    <div class="table-wrap fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Concorrente Tipo</th>
+            <th>Ponto Fraco</th>
+            <th>Sua Vantagem</th>
+            <th>Ameaça</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vendedores Elo7 / ML genéricos</strong></td>
+            <td>Sem marca, sem história, sem emoção</td>
+            <td>Branding emocional forte, experiência premium</td>
+            <td><span class="badge badge-med">Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>Canecas / almofadas personalizadas</strong></td>
+            <td>Produto diferente, menos cotidiano</td>
+            <td>Ímã está na geladeira — mais visibilidade diária</td>
+            <td><span class="badge badge-med">Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gráficas locais</strong></td>
+            <td>Sem foco em consumidor final, sem marketing</td>
+            <td>Atendimento próximo, identidade, comunidade</td>
+            <td><span class="badge badge-med">Baixa</span></td>
+          </tr>
+          <tr>
+            <td><strong>Grandes plataformas (Shutterfly, etc.)</strong></td>
+            <td>Impessoal, sem toque afetivo brasileiro</td>
+            <td>Proximidade, personalização real, carinho</td>
+            <td><span class="badge badge-high">Alta</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     2. COMO COMEÇAR
+════════════════════════════════════════ -->
+<section id="inicio" class="bg-sand">
+  <div class="container">
+    <div class="section-label">02 — Plano de Início</div>
+    <h2 class="section-title">Passo a passo para<br>sair do zero ao primeiro pedido.</h2>
+    <p class="section-intro">Siga esta sequência. Não pule etapas — cada uma prepara a próxima.</p>
+
+    <div class="steps fade-in">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Monte sua estrutura mínima</h3>
+          <p>Antes de vender, você precisa conseguir produzir com qualidade e constância.</p>
+          <ul>
+            <li>✅ Compre a máquina de impressão (sublimação ou UV, conforme o produto que viu)</li>
+            <li>✅ Garanta estoque de insumos: blanks (ímãs metálicos), película protetora, papel de sublimação</li>
+            <li>✅ Defina um espaço de trabalho limpo e organizado</li>
+            <li>✅ Faça de 10 a 15 testes antes de vender — qualidade é a base de tudo</li>
+            <li>✅ Fotografe os testes como se fossem produto final (use boa luz natural)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Crie sua presença digital básica</h3>
+          <p>Com o produto pronto, sua vitrine digital precisa estar no ar antes de qualquer divulgação.</p>
+          <ul>
+            <li>✅ Perfil no Instagram: @fottu.br — bio clara, foto de perfil com logo, link de pedido</li>
+            <li>✅ Conta no TikTok: @fottu.br</li>
+            <li>✅ Número de WhatsApp Business (com catálogo de produtos)</li>
+            <li>✅ Conta no Elo7 (marketplace de presentes artesanais/personalizados)</li>
+            <li>✅ Loja no Mercado Livre (para alcance mais amplo)</li>
+            <li>✅ Poste entre 6 e 9 fotos/vídeos antes de divulgar — feed não pode parecer vazio</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Defina sua tabela de preços</h3>
+          <p>Precifique com margem real, não por achismo.</p>
+          <ul>
+            <li>Custo do blank + insumos: calcule por unidade</li>
+            <li>Tempo de produção: coloque valor no seu tempo</li>
+            <li>Margem sugerida: mínimo 2,5x o custo total</li>
+            <li><strong>Sugestão de preço:</strong> ímã 5x5cm → R$ 18–29 | Kit com 4 → R$ 59–89 | Kit com 8 → R$ 99–139</li>
+            <li>Ofereça kits — aumentam o ticket médio e facilitam a decisão de compra</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Crie seu processo de pedido</h3>
+          <p>Defina como o cliente vai te enviar a foto e como você confirma o pedido. Clareza evita retrabalho.</p>
+          <ul>
+            <li>Pedido via WhatsApp ou Instagram DM</li>
+            <li>Cliente envia foto(s) em boa resolução (mínimo 1MB)</li>
+            <li>Você confirma o layout (se possível, envia prévia digital)</li>
+            <li>Pagamento antes de produzir (use Pix — simples e rápido)</li>
+            <li>Prazo de entrega: defina claramente (ex: 3 a 5 dias úteis)</li>
+            <li>Embalagem cuidadosa com recado personalizado — isso gera UGC (conteúdo gerado pelo usuário)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>Lance com os primeiros clientes âncora</h3>
+          <p>Antes de divulgar para o público geral, prove sua qualidade com pessoas próximas.</p>
+          <ul>
+            <li>Selecione 3 a 5 pessoas da sua rede (família, amigas, colegas) com perfil do público-alvo</li>
+            <li>Ofereça o produto a preço de custo ou grátis em troca de fotos do produto em uso e depoimento honesto</li>
+            <li>Esse conteúdo vai gerar prova social imediata para seu feed</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box fade-in" style="background: linear-gradient(135deg, var(--terracotta), var(--wine));">
+      <p>Regra de ouro: <span>nunca venda o que ainda não consegue produzir bem.</span> Qualidade russa no começo mata a reputação que leva meses para construir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     3. PRIMEIROS CLIENTES
+════════════════════════════════════════ -->
+<section id="clientes" class="bg-dark">
+  <div class="container">
+    <div class="section-label">03 — Estratégia de Clientes</div>
+    <h2 class="section-title">Como conseguir os<br>primeiros clientes — e mais.</h2>
+    <p class="section-intro">A maioria desiste antes de ter consistência. O segredo está nos primeiros 90 dias.</p>
+
+    <div class="cards-grid fade-in">
+
+      <div class="card card-dark">
+        <div class="card-icon">🌱</div>
+        <h3>Fase 1 — Rede quente (Semanas 1–3)</h3>
+        <p>Avise sua rede pessoal. Mande mensagem individual (não broadcast!) para 30–50 pessoas: "Iniciei um negócio de ímãs personalizados com foto. Você teria interesse ou conhece alguém que teria?" — Não peça para compartilhar. Pergunte se conhece alguém. Isso gera indicação ativa.</p>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-icon">📸</div>
+        <h3>Fase 2 — Conteúdo emocional no Instagram (Semanas 2–8)</h3>
+        <p>Poste Reels mostrando o processo: foto no celular → produto na mão → ímã na geladeira com família em volta. Esse tipo de conteúdo gera compartilhamento orgânico e conexão emocional instantânea. Use músicas sentimentais, mostre rostos reais.</p>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-icon">🎵</div>
+        <h3>Fase 3 — TikTok (Semanas 3–12)</h3>
+        <p>Crie vídeos curtos de 15–30s mostrando o "antes e depois": foto esquecida no celular → ímã na geladeira. Frases como "eu não sabia que sentia falta disso" performam muito bem. Não precisa de muito equipamento — celular e boa luz natural já bastam.</p>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-icon">💬</div>
+        <h3>Grupos e comunidades</h3>
+        <p>Entre em grupos do WhatsApp e Facebook de mães, noivas, tutores de pets, grupos locais da sua cidade. Não faça spam — participe, ofereça valor e mencione seu produto quando for natural. Um post bem colocado num grupo de mães pode gerar 5–10 pedidos.</p>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-icon">🎁</div>
+        <h3>Datas comemorativas — sua melhor amiga</h3>
+        <p>Monte uma campanha específica para cada data: Dia das Mães (maior potencial do ano), Dia dos Namorados, Dia dos Pais, Natal. Comece a divulgar com 3–4 semanas de antecedência. Crie urgência: "últimas vagas" ou "pedidos até dia X".</p>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-icon">🤝</div>
+        <h3>Parcerias estratégicas</h3>
+        <p>Fotógrafos de bebê/casamento, papelarias, lojas de presentes, floriculturas. Proponha comissão de 10–15% por indicação fechada. Um único fotógrafo de bebê pode te mandar 3–5 clientes por mês.</p>
+      </div>
+
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); font-size:1.5rem; margin:3rem 0 1.5rem;">Ideias de conteúdo que convertem</h3>
+    <div class="table-wrap fade-in">
+      <table>
+        <thead>
+          <tr><th>Tipo de Conteúdo</th><th>Plataforma</th><th>Objetivo</th><th>Frequência</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Processo de produção em Reel</td><td>Instagram / TikTok</td><td>Curiosidade + confiança</td><td>2x por semana</td></tr>
+          <tr><td>Foto do produto na geladeira do cliente</td><td>Instagram (stories + feed)</td><td>Prova social</td><td>Sempre que receber</td></tr>
+          <tr><td>"Que presente dar?" — vídeo de dica</td><td>TikTok</td><td>Atração de novo público</td><td>1x por semana</td></tr>
+          <tr><td>Depoimento de cliente (texto ou vídeo)</td><td>Instagram Stories</td><td>Confiança / conversão</td><td>Sempre que receber</td></tr>
+          <tr><td>Campanha de data comemorativa</td><td>Todos</td><td>Pico de vendas</td><td>Mensal</td></tr>
+          <tr><td>Bastidores / dia a dia da marca</td><td>Instagram Stories</td><td>Humanização da marca</td><td>3–4x por semana</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p><span>A estratégia mais eficiente nos primeiros 6 meses é o boca a boca ativo.</span> Cada cliente satisfeito é um vendedor em potencial. Pergunte sempre: "Conhece alguém que ia adorar ganhar isso de presente?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. ONDE VENDER
+════════════════════════════════════════ -->
+<section id="canais">
+  <div class="container">
+    <div class="section-label">04 — Canais de Venda</div>
+    <h2 class="section-title">Os melhores lugares para<br>vender seus ímãs.</h2>
+    <p class="section-intro">Use múltiplos canais — mas domine um antes de expandir para o próximo.</p>
+
+    <div class="channel-grid fade-in">
+
+      <div class="channel-card ch-insta">
+        <div class="priority" style="background:rgba(200,113,74,0.2);color:var(--terracotta);">⭐ Prioridade 1</div>
+        <div style="font-size:2rem;">📸</div>
+        <h3>Instagram</h3>
+        <p>Seu canal principal. Feed bonito + Stories diários + Reels emocionais = máquina de pedidos. Ative o Instagram Shopping para que pessoas comprem diretamente.</p>
+      </div>
+
+      <div class="channel-card ch-whats">
+        <div class="priority" style="background:rgba(255,255,255,0.15);color:#fff;">⭐ Prioridade 1</div>
+        <div style="font-size:2rem;">💬</div>
+        <h3>WhatsApp Business</h3>
+        <p>Seu canal de fechamento. Liste no catálogo, use respostas rápidas, crie listas de transmissão por segmento (mães, noivas, etc.). É onde a venda de fato acontece.</p>
+      </div>
+
+      <div class="channel-card ch-tiktok">
+        <div class="priority" style="background:rgba(255,255,255,0.15);color:#fff;">🔥 Alto potencial</div>
+        <div style="font-size:2rem;">🎵</div>
+        <h3>TikTok</h3>
+        <p>Motor de descoberta orgânica. Um único vídeo viral pode gerar centenas de pedidos em dias. Mostre o processo, mostre emoção, mostre resultado.</p>
+      </div>
+
+      <div class="channel-card ch-meli">
+        <div class="priority" style="background:rgba(0,0,0,0.1);color:var(--dark);">📦 Volume</div>
+        <div style="font-size:2rem;">🛒</div>
+        <h3>Mercado Livre</h3>
+        <p>Pessoas já chegam com intenção de compra. Crie anúncios com fotos profissionais e bom título (ex: "Kit ímã de geladeira personalizado com foto 5x5cm – 4 unidades").</p>
+      </div>
+
+      <div class="channel-card ch-elo7">
+        <div class="priority" style="background:rgba(255,255,255,0.2);color:#fff;">💜 Nicho perfeito</div>
+        <div style="font-size:2rem;">🎀</div>
+        <h3>Elo7</h3>
+        <p>O maior marketplace de presentes artesanais/personalizados do Brasil. Seu público-alvo ESTÁ aqui. Configure a loja bem, use palavras-chave e ofereça personalização clara.</p>
+      </div>
+
+      <div class="channel-card ch-fair">
+        <div class="priority" style="background:rgba(255,255,255,0.15);color:#fff;">🏪 Presencial</div>
+        <div style="font-size:2rem;">🎪</div>
+        <h3>Feiras & Bazares</h3>
+        <p>Feiras de artesanato, bazares de escola, feiras de bairro. Permitem demonstração ao vivo — o produto encanta quem vê. Ótimos para datas especiais e networking.</p>
+      </div>
+
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--deep-wine); margin:3rem 0 1.5rem;">Outros canais a considerar</h3>
+    <div class="cards-grid fade-in" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="card" style="padding:1.4rem;">
+        <h3 style="font-size:1rem;">🏥 Clínicas e estúdios</h3>
+        <p>Deixe catálogos em clínicas de estética, estúdios de yoga, pet shops. Público alinhado.</p>
+      </div>
+      <div class="card" style="padding:1.4rem;">
+        <h3 style="font-size:1rem;">👩‍⚕️ Fotógrafos parceiros</h3>
+        <p>Fotógrafo faz o ensaio, você faz os ímãs. Combo perfeito para maternidades e casamentos.</p>
+      </div>
+      <div class="card" style="padding:1.4rem;">
+        <h3 style="font-size:1rem;">🎓 Escolas e colégios</h3>
+        <p>Ímãs de formatura, festa junina, eventos. Grandes volumes com decisão centralizada.</p>
+      </div>
+      <div class="card" style="padding:1.4rem;">
+        <h3 style="font-size:1rem;">💼 Empresas (B2B)</h3>
+        <p>Brindes corporativos personalizados para RH e marketing. Ticket médio muito maior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. BRANDING & MARCA
+════════════════════════════════════════ -->
+<section id="marca" class="bg-wine">
+  <div class="container">
+    <div class="section-label">05 — Branding & Identidade</div>
+    <h2 class="section-title">A marca fottu.br —<br>construída com afeto.</h2>
+    <p class="section-intro">Branding não é só logo. É o que as pessoas sentem quando pensam em você.</p>
+
+    <div class="pitch-box fade-in">
+      <p>"Transformamos fotos e momentos especiais em ímãs de geladeira personalizados, para que lembranças importantes deixem de ficar esquecidas no celular e passem a fazer parte da rotina com <em>afeto, beleza e significado.</em>"</p>
+    </div>
+
+    <div class="cards-grid fade-in" style="margin-top:3rem;">
+      <div class="card" style="background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:#fff;">
+        <div class="card-icon">🌟</div>
+        <h3 style="color:#fff;">Posicionamento</h3>
+        <p style="color:rgba(232,221,208,0.8);">Marca de decoração afetiva personalizada. Não vende ímãs — vende memórias físicas. Não vende produto — vende conexão emocional.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:#fff;">
+        <div class="card-icon">💡</div>
+        <h3 style="color:#fff;">Personalidade da Marca</h3>
+        <p style="color:rgba(232,221,208,0.8);">Calorosa, próxima, feminina sem ser frágil. Como uma amiga que sabe escolher o presente perfeito. Com cuidado, atenção e gosto refinado.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:#fff;">
+        <div class="card-icon">🎯</div>
+        <h3 style="color:#fff;">Promessa da Marca</h3>
+        <p style="color:rgba(232,221,208,0.8);">Toda lembrança merece existir fora do celular. Nós fazemos isso acontecer — com qualidade, cuidado e um toque de amor em cada detalhe.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:#fff;">
+        <div class="card-icon">🔑</div>
+        <h3 style="color:#fff;">Valores</h3>
+        <p style="color:rgba(232,221,208,0.8);">Afeto genuíno. Qualidade sem compromisso. Atenção aos detalhes. Presença no cotidiano. Memória como forma de amor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. IDENTIDADE VISUAL & LOGO
+════════════════════════════════════════ -->
+<section id="manual" style="background: var(--dark); padding: 6rem 2rem;">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold-light);">
+      <span style="background:var(--gold-light); width:30px; height:1px; display:inline-block;"></span>
+      06 — Manual de Marca & Identidade Visual
+    </div>
+    <h2 class="section-title" style="color:var(--cream);">Manual de Marca<br>fottu.br</h2>
+    <p class="section-intro">Tudo que você precisa para manter a marca consistente em qualquer ponto de contato.</p>
+
+    <!-- LOGO -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin-bottom:1.5rem; font-size:1.4rem;">6.1 — Logo</h3>
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start; margin-bottom:3rem;">
+      <div class="logo-preview">
+        <div class="logo-wordmark"><span>fottu</span>.br</div>
+        <div class="logo-tagline">lembranças que ficam para sempre</div>
+      </div>
+      <div style="flex:1; min-width:260px;">
+        <div style="color:rgba(232,221,208,0.8); font-size:0.9rem; line-height:1.8;">
+          <p style="margin-bottom:1rem;"><strong style="color:var(--gold-light);">Conceito do logo:</strong> A palavra "fottu" usa a grafia dupla do "tt" para criar um ritmo visual que lembra dois ímãs se unindo — ou dois momentos que se encontram. O ".br" ancora a marca no Brasil e cria familiaridade digital.</p>
+          <p style="margin-bottom:1rem;"><strong style="color:var(--gold-light);">Fonte sugerida:</strong> Playfair Display Italic Bold — serifada, elegante, feminina mas com autoridade.</p>
+          <p style="margin-bottom:1rem;"><strong style="color:var(--gold-light);">Variação de cor:</strong> Versão clara (fundo escuro) e versão escura (fundo claro). Nunca use sobre fundos com baixo contraste.</p>
+          <p><strong style="color:var(--gold-light);">Espaço de proteção:</strong> Sempre mantenha ao redor do logo um espaço mínimo equivalente à altura da letra "f" do logotipo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGO VARIAÇÕES -->
+    <div style="display:flex; flex-wrap:wrap; gap:1.5rem; margin-bottom:4rem;">
+      <div style="background:var(--cream); border-radius:12px; padding:2rem 3rem; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-style:italic; font-weight:700; color:var(--deep-wine);">
+          fottu<span style="color:var(--terracotta);">.br</span>
+        </div>
+        <div style="font-size:0.65rem; color:var(--text-muted); margin-top:0.5rem; letter-spacing:0.15em; text-transform:uppercase;">versão clara</div>
+      </div>
+      <div style="background:var(--terracotta); border-radius:12px; padding:2rem 3rem; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-style:italic; font-weight:700; color:#fff;">
+          fottu.br
+        </div>
+        <div style="font-size:0.65rem; color:rgba(255,255,255,0.6); margin-top:0.5rem; letter-spacing:0.15em; text-transform:uppercase;">versão terracota</div>
+      </div>
+      <div style="background:var(--gold); border-radius:12px; padding:2rem 3rem; text-align:center;">
+        <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-style:italic; font-weight:700; color:var(--deep-wine);">
+          fottu.br
+        </div>
+        <div style="font-size:0.65rem; color:rgba(74,21,37,0.6); margin-top:0.5rem; letter-spacing:0.15em; text-transform:uppercase;">versão dourada</div>
+      </div>
+    </div>
+
+    <!-- PALETA -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin-bottom:1.5rem; font-size:1.4rem;">6.2 — Paleta de Cores</h3>
+    <div class="palette fade-in">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FAF6F0;"></div>
+        <div class="swatch-info"><strong>Creme</strong><span>#FAF6F0</span><br><span style="font-size:0.7rem;color:#999;">Fundo principal</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C8714A;"></div>
+        <div class="swatch-info"><strong>Terracota</strong><span>#C8714A</span><br><span style="font-size:0.7rem;color:#999;">Cor primária / CTA</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#7B2D3E;"></div>
+        <div class="swatch-info"><strong>Vinho</strong><span>#7B2D3E</span><br><span style="font-size:0.7rem;color:#999;">Cor secundária</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4A1525;"></div>
+        <div class="swatch-info"><strong>Vinho Profundo</strong><span>#4A1525</span><br><span style="font-size:0.7rem;color:#999;">Fundos escuros</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C4962A;"></div>
+        <div class="swatch-info"><strong>Dourado</strong><span>#C4962A</span><br><span style="font-size:0.7rem;color:#999;">Destaque premium</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8DDD0;"></div>
+        <div class="swatch-info"><strong>Areia</strong><span>#E8DDD0</span><br><span style="font-size:0.7rem;color:#999;">Fundo alternativo</span></div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:2rem; margin:2rem 0;">
+      <p style="color:rgba(232,221,208,0.8); font-size:0.9rem; line-height:1.8;">
+        <strong style="color:var(--gold-light);">Como usar as cores:</strong> O Creme é o fundo padrão de materiais impressos e digitais. A Terracota é usada em botões, destaques e CTAs — é a cor que pede ação. O Vinho aparece em títulos e elementos de peso. O Dourado é reservado para momentos premium: embalagem, etiquetas especiais, campanhas de datas festivas. Nunca use mais de 3 cores ao mesmo tempo em uma peça.
+      </p>
+    </div>
+
+    <!-- TIPOGRAFIA -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin:3rem 0 1.5rem; font-size:1.4rem;">6.3 — Tipografia</h3>
+
+    <div class="typo-specimen fade-in">
+      <div class="font-name">Fonte de Títulos — Playfair Display</div>
+      <div style="font-family:'Playfair Display',serif; font-size:2.5rem; font-style:italic; color:var(--deep-wine); line-height:1.1;">Lembranças que<br>ficam para sempre.</div>
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem;">Use em: títulos, nome da marca, frases de impacto, cabeçalhos. Sempre que quiser emoção e elegância.</div>
+    </div>
+
+    <div class="typo-specimen fade-in">
+      <div class="font-name">Fonte Secundária — Cormorant Garamond Italic</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-style:italic; color:var(--text-muted); line-height:1.3;">Cada foto tem uma história.<br>Você merece tê-la sempre por perto.</div>
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem;">Use em: subtítulos, frases de apoio, citações emocionais, legendas especiais.</div>
+    </div>
+
+    <div class="typo-specimen fade-in">
+      <div class="font-name">Fonte de Corpo — DM Sans</div>
+      <div style="font-family:'DM Sans',sans-serif; font-size:1rem; color:var(--text); line-height:1.7;">Pedido simples: você nos envia a foto, escolhe o tamanho, e nós cuidamos do resto. Em poucos dias, sua memória favorita estará na geladeira — todo dia, com carinho.</div>
+      <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem;">Use em: textos de produto, descrições, legendas de redes sociais, WhatsApp.</div>
+    </div>
+
+    <!-- TOM DE VOZ -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin:3rem 0 1.5rem; font-size:1.4rem;">6.4 — Tom de Voz</h3>
+    <div class="voice-grid fade-in" style="--bg:transparent;">
+      <div class="voice-card voice-yes">
+        <h4 style="color:var(--terracotta);">✅ A fottu.br fala assim</h4>
+        <ul>
+          <li>Próximo e caloroso, como uma amiga</li>
+          <li>"Esse momento merece existir fora do celular"</li>
+          <li>"Presente que ela vai guardar para sempre"</li>
+          <li>"Sua história, em cada detalhe"</li>
+          <li>Usa emoji com moderação (💛🏠📸)</li>
+          <li>Chama pelo nome quando possível</li>
+          <li>Celebra momentos pequenos como grandes</li>
+        </ul>
+      </div>
+      <div class="voice-card voice-no">
+        <h4>❌ A fottu.br não fala assim</h4>
+        <ul>
+          <li>Linguagem fria e técnica ("produto de alta qualidade")</li>
+          <li>Gritaria de promoção ("SUPER DESCONTO!!!!")</li>
+          <li>Distância corporativa</li>
+          <li>Gírias forçadas ou linguagem jovem demais</li>
+          <li>Autopromoção excessiva ("somos os melhores")</li>
+          <li>Descrever o produto — sentimento vende, especificação não</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- EMBALAGEM -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin:3rem 0 1.5rem; font-size:1.4rem;">6.5 — Embalagem & Experiência</h3>
+    <div class="cards-grid fade-in">
+      <div class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <div class="card-icon">📦</div>
+        <h3 style="color:var(--cream);">Embalagem mínima</h3>
+        <p style="color:rgba(232,221,208,0.7);">Caixinha kraft ou envelope resistente, papel seda (cor creme ou terracota), adesivo com logo, cartão escrito à mão. Custo baixo, impacto emocional enorme.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <div class="card-icon">💌</div>
+        <h3 style="color:var(--cream);">Cartão personalizado</h3>
+        <p style="color:rgba(232,221,208,0.7);">Sempre inclua um cartão escrito à mão com o nome do cliente e uma frase afetuosa. Isso diferencia e gera UGC (cliente posta o unboxing). Exemplos: "Essa memória é sua para sempre. 💛"</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <div class="card-icon">📲</div>
+        <h3 style="color:var(--cream);">Pedido de conteúdo</h3>
+        <p style="color:rgba(232,221,208,0.7);">Inclua um cartão pedindo ao cliente que tire uma foto do produto na geladeira e te marque. Ofereça desconto na próxima compra em troca. Essa é sua máquina de marketing gratuito.</p>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+        <div class="card-icon">⭐</div>
+        <h3 style="color:var(--cream);">Pós-venda</h3>
+        <p style="color:rgba(232,221,208,0.7);">2–3 dias após a entrega, mande uma mensagem no WhatsApp perguntando se chegou bem e pedindo uma foto. Esse toque final cria clientes fiéis e gera recomendações espontâneas.</p>
+      </div>
+    </div>
+
+    <!-- IDENTIDADE EM REDES SOCIAIS -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin:3rem 0 1.5rem; font-size:1.4rem;">6.6 — Identidade nas Redes Sociais</h3>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:2.5rem; margin-bottom:2rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem;">
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.5rem;">Instagram Bio</div>
+          <div style="font-size:0.88rem; color:rgba(232,221,208,0.8); line-height:1.8; font-family:monospace; background:rgba(0,0,0,0.2); padding:1rem; border-radius:8px;">
+            📸 Ímãs personalizados com suas fotos<br>
+            💛 Memórias que ficam na geladeira — todo dia<br>
+            🎁 Presente perfeito para quem você ama<br>
+            📲 Peça pelo link abaixo ↓
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.5rem;">Hashtags principais</div>
+          <div style="font-size:0.82rem; color:rgba(232,221,208,0.7); line-height:2;">
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#fottubr</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#imãpersonalizado</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#presentepersonalizado</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#decoracaopersonalizada</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#memoriaafetiva</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#imadegerladeira</span>
+            <span class="tag" style="background:rgba(196,150,42,0.15);color:var(--gold-light);">#presentedediasdasmaes</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.5rem;">Estética do Feed</div>
+          <div style="font-size:0.88rem; color:rgba(232,221,208,0.7); line-height:1.8;">
+            Tons quentes e claros. Fundo branco ou creme. Produto em mãos ou em uso real. Geladeiras coloridas e cheias de vida. Nunca fundo preto puro. Luz natural sempre que possível.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- O QUE NÃO FAZER -->
+    <h3 style="font-family:'Playfair Display',serif; color:var(--cream); margin:3rem 0 1.5rem; font-size:1.4rem;">6.7 — O que nunca fazer com a marca</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem;" class="fade-in">
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Distorcer ou rotacionar o logo</div>
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Usar fontes diferentes das definidas</div>
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Aplicar o logo em fundo de baixo contraste</div>
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Usar cores fora da paleta</div>
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Fotos escuras ou de baixa qualidade</div>
+      <div style="background:rgba(255,0,0,0.06); border:1px solid rgba(255,80,80,0.2); border-radius:12px; padding:1.2rem; font-size:0.85rem; color:rgba(232,221,208,0.8);">❌ Comunicação agressiva ou impessoal</div>
+    </div>
+  </div>
+</section>
+
+<!-- FECHAMENTO -->
+<section style="background: linear-gradient(135deg, var(--deep-wine), var(--dark)); padding: 6rem 2rem; text-align:center;">
+  <div class="container" style="max-width:700px;">
+    <div style="font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem;">Resumo Executivo</div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.5rem); color:var(--cream); font-style:italic; line-height:1.15; margin-bottom:1.5rem;">
+      Você tem um produto<br>que vende emoção.
+    </h2>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:rgba(232,221,208,0.75); font-style:italic; margin-bottom:3rem;">
+      Mercado em crescimento, público bem definido, produto com apelo emocional alto e barreira de entrada acessível. A fottu.br tem todos os ingredientes para crescer com consistência.
+    </p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:1rem; text-align:left; margin-bottom:3rem;">
+      <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:1.2rem; border-left:3px solid var(--terracotta);">
+        <div style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.4rem;">Semana 1</div>
+        <div style="color:var(--cream); font-size:0.88rem;">Produção + testes + fotos</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:1.2rem; border-left:3px solid var(--terracotta);">
+        <div style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.4rem;">Semana 2</div>
+        <div style="color:var(--cream); font-size:0.88rem;">Perfis online criados + preços definidos</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:1.2rem; border-left:3px solid var(--terracotta);">
+        <div style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.4rem;">Semana 3</div>
+        <div style="color:var(--cream); font-size:0.88rem;">Primeiros clientes âncora + conteúdo</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:1.2rem; border-left:3px solid var(--gold);">
+        <div style="font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;">Mês 2+</div>
+        <div style="color:var(--cream); font-size:0.88rem;">Escalar com conteúdo + parcerias</div>
+      </div>
+    </div>
+    <p style="color:rgba(232,221,208,0.5); font-size:0.85rem;">
+      A diferença entre quem cresce e quem desiste é <strong style="color:var(--gold-light);">consistência nos primeiros 90 dias.</strong><br>
+      Poste todo dia. Atenda com carinho. Peça indicações. Entregue mais do que prometeu.
+    </p>
+  </div>
+</section>
+
+
+<!-- ASSISTENTE IA -->
+<section id="assistente" class="ai-hub">
+  <div class="container-wide">
+    <div class="section-label">07 — Assistente IA & Briefing Dinâmico</div>
+    <h2 class="section-title">Tire dúvidas em tempo real<br>e monte um formulário inteligente.</h2>
+    <p class="section-intro">Sempre que surgir uma dúvida, o assistente responde com base neste guia e ainda pode criar novos campos no briefing para complementar as informações do pedido.</p>
+
+    <div class="ai-hub-grid fade-in">
+      <div class="ai-panel">
+        <div class="ai-panel-header">
+          <h3>Chatbot com IA</h3>
+          <p>Pronto para responder dúvidas sobre mercado, canais, marca, embalagem, produção e atendimento.</p>
+        </div>
+
+        <div class="ai-suggestions">
+          <button class="ai-chip" type="button" data-ai-prompt="Como conseguir os primeiros clientes?">Primeiros clientes</button>
+          <button class="ai-chip" type="button" data-ai-prompt="Quais canais devo priorizar para vender?">Onde vender</button>
+          <button class="ai-chip" type="button" data-ai-prompt="Quais dados eu preciso pedir para fechar um pedido?">Dados do pedido</button>
+          <button class="ai-chip" type="button" data-ai-prompt="Adicione um campo para nome do pet e outro para data especial.">Adicionar campos</button>
+        </div>
+
+        <div class="ai-messages" id="aiMessages"></div>
+
+        <div class="ai-composer">
+          <textarea id="aiInput" placeholder="Ex.: Quais informações eu preciso pedir do cliente? Ou: adicione um campo para nome do pet."></textarea>
+          <button class="ai-send-btn" id="aiSendBtn" type="button">Perguntar</button>
+        </div>
+      </div>
+
+      <div class="ai-form-panel">
+        <div class="ai-form-header">
+          <h3>Briefing Inteligente</h3>
+          <p>Os campos abaixo podem ser criados automaticamente pelo assistente conforme suas dúvidas.</p>
+        </div>
+
+        <div class="ai-form-body">
+          <div class="ai-empty-state" id="aiEmptyState">Ainda não há campos dinâmicos. Peça no chat algo como “adicione um campo para nome do pet”.</div>
+          <form id="dynamicBriefingForm" class="ai-form-list"></form>
+
+          <div class="ai-form-actions">
+            <button class="ai-send-btn" id="copyBriefingBtn" type="button">Copiar briefing</button>
+            <button class="ai-clear-btn ai-chip" id="clearBriefingBtn" type="button">Limpar campos</button>
+          </div>
+
+          <div class="ai-note">
+            Este motor já funciona no front-end com inteligência contextual local. Se você quiser IA generativa real, basta ligar o endpoint no JavaScript e integrar com sua API.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ai-floating">
+  <div class="ai-fab-panel" id="aiFloatingPanel">
+    <div class="ai-fab-top">
+      <div>
+        <strong>Assistente IA</strong>
+        <small>Resposta rápida + criação de campos</small>
+      </div>
+      <button class="ai-close-btn" id="aiCloseBtn" type="button">Fechar</button>
+    </div>
+    <div class="ai-fab-links">
+      <a href="#assistente" class="ai-fab-link">Abrir central</a>
+      <a href="#inicio" class="ai-fab-link">Plano de início</a>
+      <a href="#manual" class="ai-fab-link">Manual da marca</a>
+    </div>
+    <div class="ai-messages" id="aiMessagesFloating"></div>
+    <div class="ai-composer">
+      <textarea id="aiInputFloating" placeholder="Pergunte aqui..."></textarea>
+      <button class="ai-send-btn" id="aiSendBtnFloating" type="button">Enviar</button>
+    </div>
+  </div>
+
+  <button class="ai-toggle-btn" id="aiToggleBtn" type="button">
+    <span>✨</span>
+    <span>Assistente IA</span>
+  </button>
+</div>
+
+
+<footer>
+  <strong>fottu.br</strong> &nbsp;·&nbsp; Guia Completo de Negócio & Identidade de Marca &nbsp;·&nbsp; 2025<br>
+  <span style="margin-top:0.5rem; display:block; font-style:italic;">"Lembranças que ficam para sempre."</span>
+</footer>
+
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── ASSISTENTE IA ──
+  const AI_STORAGE_KEY = 'fottu_ai_chat_v1';
+  const BRIEFING_STORAGE_KEY = 'fottu_ai_briefing_fields_v1';
+
+  // IA real via backend local/servidor.
+  // A chave da OpenAI fica no backend, nunca neste HTML.
+  const AI_ENDPOINT = '/api/chat';
+
+  const aiContext = [
+    {
+      key: 'mercado',
+      title: 'Pesquisa de Mercado',
+      keywords: ['mercado', 'crescimento', 'setor', 'concorrência', 'concorrente', 'oportunidade', 'demanda', 'cagr'],
+      answer: 'O mercado de presentes personalizados com foto está aquecido, com forte apelo emocional, recompra natural e boa performance em datas sazonais. A vantagem competitiva da fottu.br está em posicionar o produto como memória afetiva premium, e não como item genérico.'
+    },
+    {
+      key: 'inicio',
+      title: 'Plano de Início',
+      keywords: ['começar', 'inicio', 'início', 'primeiro passo', 'estrutura', 'teste', 'produção', 'precificação', 'preço'],
+      answer: 'Para começar bem, a ordem sugerida é: montar a estrutura mínima de produção, testar qualidade, criar presença digital básica, definir preços com margem real, organizar o fluxo de pedido e validar tudo com clientes âncora antes de escalar.'
+    },
+    {
+      key: 'clientes',
+      title: 'Primeiros Clientes',
+      keywords: ['cliente', 'clientes', 'venda', 'vender', 'indicação', 'instagram', 'tiktok', 'conteúdo', 'rede quente'],
+      answer: 'Nos primeiros 90 dias, a melhor estratégia é combinar rede quente, conteúdo emocional e prova social. Avise sua rede, poste bastidores e resultados, use depoimentos reais e sempre peça indicação após uma boa entrega.'
+    },
+    {
+      key: 'canais',
+      title: 'Canais de Venda',
+      keywords: ['canal', 'canais', 'onde vender', 'whatsapp', 'elo7', 'mercado livre', 'feira', 'bazaar', 'instagram shopping'],
+      answer: 'Os canais prioritários são Instagram para atração, WhatsApp Business para fechamento e TikTok para descoberta orgânica. Elo7 e Mercado Livre ajudam com volume e intenção de compra, enquanto feiras e parcerias criam presença local.'
+    },
+    {
+      key: 'marca',
+      title: 'Marca e Posicionamento',
+      keywords: ['marca', 'branding', 'posicionamento', 'tom de voz', 'promessa', 'valor', 'valores', 'personalidade'],
+      answer: 'A fottu.br deve se posicionar como marca de memória afetiva personalizada. O tom ideal é caloroso, próximo e refinado. O foco não é vender um ímã, e sim transformar fotos esquecidas em lembranças vivas no cotidiano.'
+    },
+    {
+      key: 'manual',
+      title: 'Manual e Experiência',
+      keywords: ['manual', 'logo', 'cores', 'tipografia', 'embalagem', 'feed', 'bio', 'hashtag', 'pós-venda'],
+      answer: 'Para manter consistência, use a paleta creme, terracota, vinho e dourado; priorize Playfair Display nos títulos e DM Sans no corpo; cuide da embalagem com toque pessoal; e mantenha o pós-venda como parte da experiência da marca.'
+    }
+  ];
+
+  const fieldCatalog = [
+    { id: 'customerName', label: 'Nome do cliente', type: 'text', placeholder: 'Digite o nome do cliente', keywords: ['nome do cliente', 'cliente', 'contato'] },
+    { id: 'customerPhone', label: 'WhatsApp do cliente', type: 'tel', placeholder: '(00) 00000-0000', keywords: ['telefone', 'whatsapp', 'contato'] },
+    { id: 'customerEmail', label: 'E-mail do cliente', type: 'email', placeholder: 'cliente@email.com', keywords: ['email', 'e-mail'] },
+    { id: 'petName', label: 'Nome do pet', type: 'text', placeholder: 'Ex.: Luna', keywords: ['pet', 'nome do pet', 'cachorro', 'gato'] },
+    { id: 'babyName', label: 'Nome do bebê / criança', type: 'text', placeholder: 'Ex.: Theo', keywords: ['bebê', 'bebe', 'criança', 'crianca'] },
+    { id: 'occasion', label: 'Ocasião / data especial', type: 'text', placeholder: 'Ex.: Dia das Mães, aniversário, casamento', keywords: ['ocasião', 'ocasiao', 'data especial', 'evento', 'comemoração', 'comemoracao'] },
+    { id: 'giftMessage', label: 'Frase para o presente', type: 'textarea', placeholder: 'Escreva a mensagem que acompanhará o pedido', keywords: ['frase', 'mensagem', 'recado', 'dedicatória', 'dedicatoria'] },
+    { id: 'quantity', label: 'Quantidade desejada', type: 'number', placeholder: 'Ex.: 8', keywords: ['quantidade', 'unidades', 'kit'] },
+    { id: 'size', label: 'Tamanho do ímã', type: 'select', options: ['5x5 cm', '6x6 cm', 'Outro'], keywords: ['tamanho', 'medida', 'dimensão', 'dimensao'] },
+    { id: 'photoReference', label: 'Link ou referência da foto', type: 'text', placeholder: 'Cole aqui o link ou referência enviada', keywords: ['foto', 'imagem', 'arquivo', 'referência', 'referencia'] },
+    { id: 'deliveryDate', label: 'Prazo / data limite', type: 'date', placeholder: '', keywords: ['prazo', 'urgência', 'urgencia', 'data limite', 'entrega'] },
+    { id: 'address', label: 'Endereço de entrega', type: 'textarea', placeholder: 'Rua, número, complemento, bairro, cidade', keywords: ['endereço', 'entrega', 'frete', 'cep'] },
+    { id: 'stylePreference', label: 'Estilo desejado', type: 'text', placeholder: 'Ex.: delicado, minimalista, romântico', keywords: ['estilo', 'visual', 'estética', 'estetica', 'layout'] },
+    { id: 'colors', label: 'Cores preferidas', type: 'text', placeholder: 'Ex.: terracota e creme', keywords: ['cor', 'cores', 'paleta'] },
+    { id: 'notes', label: 'Observações adicionais', type: 'textarea', placeholder: 'Detalhes extras do pedido', keywords: ['observação', 'observacao', 'detalhe', 'extra', 'observações'] }
+  ];
+
+  const aiState = {
+    messages: [],
+    fields: []
+  };
+
+  const messagesMain = document.getElementById('aiMessages');
+  const messagesFloating = document.getElementById('aiMessagesFloating');
+  const formContainer = document.getElementById('dynamicBriefingForm');
+  const emptyState = document.getElementById('aiEmptyState');
+
+  const inputMain = document.getElementById('aiInput');
+  const inputFloating = document.getElementById('aiInputFloating');
+  const sendMain = document.getElementById('aiSendBtn');
+  const sendFloating = document.getElementById('aiSendBtnFloating');
+  const copyBriefingBtn = document.getElementById('copyBriefingBtn');
+  const clearBriefingBtn = document.getElementById('clearBriefingBtn');
+
+  const toggleBtn = document.getElementById('aiToggleBtn');
+  const floatingPanel = document.getElementById('aiFloatingPanel');
+  const closeBtn = document.getElementById('aiCloseBtn');
+
+  function normalizeText(value = '') {
+    return value
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  }
+
+  function saveState() {
+    localStorage.setItem(AI_STORAGE_KEY, JSON.stringify(aiState.messages));
+    localStorage.setItem(BRIEFING_STORAGE_KEY, JSON.stringify(aiState.fields));
+  }
+
+  function loadState() {
+    try {
+      aiState.messages = JSON.parse(localStorage.getItem(AI_STORAGE_KEY)) || [];
+      aiState.fields = JSON.parse(localStorage.getItem(BRIEFING_STORAGE_KEY)) || [];
+    } catch (error) {
+      aiState.messages = [];
+      aiState.fields = [];
+    }
+
+    if (!aiState.messages.length) {
+      aiState.messages = [
+        {
+          role: 'bot',
+          text: 'Oi! Eu sou o assistente da fottu.br.\n\nPosso responder dúvidas sobre o guia e também criar novos campos no briefing. Exemplos:\n• “Como conseguir os primeiros clientes?”\n• “Adicione um campo para nome do pet.”\n• “Quais dados eu preciso pedir do cliente?”'
+        }
+      ];
+    }
+  }
+
+  function createMessageElement(message) {
+    const div = document.createElement('div');
+    div.className = 'ai-msg ' + (message.role === 'user' ? 'user' : 'bot');
+    div.textContent = message.text;
+    return div;
+  }
+
+  function renderMessages() {
+    [messagesMain, messagesFloating].forEach(container => {
+      if (!container) return;
+      container.innerHTML = '';
+      aiState.messages.forEach(message => container.appendChild(createMessageElement(message)));
+      container.scrollTop = container.scrollHeight;
+    });
+  }
+
+  function createFieldElement(field) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'ai-field';
+
+    const label = document.createElement('label');
+    label.setAttribute('for', field.id);
+    label.textContent = field.label;
+
+    let control;
+    if (field.type === 'textarea') {
+      control = document.createElement('textarea');
+    } else if (field.type === 'select') {
+      control = document.createElement('select');
+      (field.options || []).forEach(optionLabel => {
+        const option = document.createElement('option');
+        option.value = optionLabel;
+        option.textContent = optionLabel;
+        control.appendChild(option);
+      });
+    } else {
+      control = document.createElement('input');
+      control.type = field.type || 'text';
+    }
+
+    control.id = field.id;
+    control.name = field.id;
+    if (field.placeholder && control.tagName !== 'SELECT') control.placeholder = field.placeholder;
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(control);
+    return wrapper;
+  }
+
+  function renderFields() {
+    formContainer.innerHTML = '';
+    const uniqueFields = [];
+    const used = new Set();
+
+    aiState.fields.forEach(field => {
+      if (!used.has(field.id)) {
+        uniqueFields.push(field);
+        used.add(field.id);
+      }
+    });
+
+    aiState.fields = uniqueFields;
+
+    if (!aiState.fields.length) {
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+      aiState.fields.forEach(field => formContainer.appendChild(createFieldElement(field)));
+    }
+
+    saveState();
+  }
+
+  function addMessage(role, text) {
+    aiState.messages.push({ role, text });
+    saveState();
+    renderMessages();
+  }
+
+  function scoreContext(question) {
+    const normalized = normalizeText(question);
+    let best = null;
+
+    aiContext.forEach(context => {
+      let score = 0;
+      context.keywords.forEach(keyword => {
+        if (normalized.includes(normalizeText(keyword))) score += 1;
+      });
+      if (!best || score > best.score) best = { context, score };
+    });
+
+    return best && best.score > 0 ? best.context : null;
+  }
+
+  function inferFields(question) {
+    const normalized = normalizeText(question);
+    const matches = fieldCatalog.filter(field =>
+      field.keywords.some(keyword => normalized.includes(normalizeText(keyword)))
+    );
+
+    const wantsFields = /(adicion|inclu|crie|criar|novo campo|novos campos|briefing|formulario|formulário|pedir do cliente|coletar|preciso perguntar|preciso pedir)/.test(normalized);
+
+    if (matches.length && wantsFields) return matches;
+
+    if (/quais dados.*pedido|dados.*cliente|informacoes.*pedido|informações.*pedido|pedir.*cliente/.test(normalized)) {
+      return fieldCatalog.filter(field =>
+        ['customerName', 'customerPhone', 'photoReference', 'quantity', 'deliveryDate', 'address', 'notes'].includes(field.id)
+      );
+    }
+
+    return wantsFields ? matches : [];
+  }
+
+  function normalizeIncomingFields(fields = []) {
+    return (fields || [])
+      .filter(field => field && field.id && field.label)
+      .map(field => ({
+        id: String(field.id).replace(/[^a-zA-Z0-9_-]/g, '') || ('field_' + Math.random().toString(36).slice(2, 8)),
+        label: String(field.label || 'Novo campo'),
+        type: ['text', 'textarea', 'number', 'email', 'tel', 'date', 'select'].includes(field.type) ? field.type : 'text',
+        placeholder: String(field.placeholder || ''),
+        options: Array.isArray(field.options) ? field.options.map(option => String(option)) : [],
+        keywords: Array.isArray(field.keywords) ? field.keywords.map(keyword => String(keyword)) : []
+      }));
+  }
+
+  function addFields(fields) {
+    const added = [];
+    normalizeIncomingFields(fields).forEach(field => {
+      const exists = aiState.fields.some(item => item.id === field.id);
+      if (!exists) {
+        aiState.fields.push(field);
+        added.push(field.label);
+      }
+    });
+    if (added.length) renderFields();
+    return added;
+  }
+
+  function generateLocalReply(question) {
+    const context = scoreContext(question);
+    const suggestedFields = inferFields(question);
+    const addedFields = addFields(suggestedFields);
+    const normalized = normalizeText(question);
+
+    const answerParts = [];
+
+    if (/dados.*cliente|pedir.*cliente|fechar.*pedido|informacoes.*pedido|informações.*pedido/.test(normalized)) {
+      answerParts.push('Para fechar um pedido com segurança, o ideal é coletar pelo menos: nome do cliente, contato, referência da foto, quantidade, prazo desejado e endereço de entrega. Se houver personalização, vale pedir também frase, estilo e observações.');
+    } else if (/preco|precificacao|precificar|valor|margem/.test(normalized)) {
+      answerParts.push('Na precificação, some o custo do blank, insumos, embalagem e tempo de produção. Depois aplique uma margem real. Neste guia, a referência inicial é trabalhar com pelo menos 2,5x o custo total e incentivar kits para elevar o ticket médio.');
+    } else if (/instagram|tiktok|whatsapp|elo7|mercado livre|canal|canais/.test(normalized)) {
+      answerParts.push('A sequência mais eficiente é usar Instagram para atrair, WhatsApp para converter e TikTok para ampliar alcance orgânico. Elo7 e Mercado Livre entram bem como complemento para capturar demanda pronta.');
+    } else if (/tom de voz|comunica|legenda|copy|marca|branding/.test(normalized)) {
+      answerParts.push('A comunicação da fottu.br deve ser próxima, calorosa e emocional. O foco é fazer a pessoa sentir o valor afetivo da lembrança, evitando linguagem fria, técnica ou agressiva.');
+    } else if (/embalagem|pos venda|pos-venda|cartao|cartão/.test(normalized)) {
+      answerParts.push('A experiência de entrega é parte do produto. Uma embalagem simples, bonita e carinhosa, com cartão escrito à mão e contato pós-venda, aumenta a percepção de valor e estimula indicação.');
+    } else if (context) {
+      answerParts.push(context.answer);
+    } else {
+      answerParts.push('Entendi sua dúvida. Dentro deste guia, eu consigo te orientar sobre mercado, início da operação, primeiros clientes, canais de venda, marca, embalagem, tom de voz e organização do pedido.');
+    }
+
+    if (addedFields.length) {
+      answerParts.push('Adicionei ao briefing os seguintes campos: ' + addedFields.join(', ') + '.');
+    } else if (/(adicion|inclu|crie|criar|novo campo|novos campos)/.test(normalized) && !suggestedFields.length) {
+      answerParts.push('Posso criar campos automaticamente. Tente algo como: “adicione um campo para nome do pet”, “adicione um campo para prazo” ou “adicione campos de endereço e frase”.');
+    }
+
+    answerParts.push('Se quiser, você também pode ligar este widget a uma IA real via API para respostas generativas mais avançadas.');
+
+    return answerParts.join('\n\n');
+  }
+
+  async function getReply(question) {
+    if (AI_ENDPOINT) {
+      try {
+        const response = await fetch(AI_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            question,
+            context: aiContext,
+            history: aiState.messages.slice(-10),
+            currentFields: aiState.fields
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data?.fieldsToAdd?.length) {
+            const addedFields = addFields(data.fieldsToAdd);
+            if (addedFields.length && data.reply && !/adicionei ao briefing/i.test(data.reply)) {
+              return data.reply + '\n\nAdicionei ao briefing os seguintes campos: ' + addedFields.join(', ') + '.';
+            }
+          }
+          if (data && data.reply) return data.reply;
+        }
+      } catch (error) {
+        console.warn('Falha no endpoint de IA. Usando motor local.', error);
+      }
+    }
+
+    return generateLocalReply(question);
+  }
+
+  async function handleQuestion(rawQuestion) {
+    const question = (rawQuestion || '').trim();
+    if (!question) return;
+
+    addMessage('user', question);
+    inputMain.value = '';
+    inputFloating.value = '';
+
+    const reply = await getReply(question);
+    addMessage('bot', reply);
+  }
+
+  function bindSend(input, button) {
+    if (!input || !button) return;
+    button.addEventListener('click', () => handleQuestion(input.value));
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        handleQuestion(input.value);
+      }
+    });
+  }
+
+  bindSend(inputMain, sendMain);
+  bindSend(inputFloating, sendFloating);
+
+  document.querySelectorAll('[data-ai-prompt]').forEach(button => {
+    button.addEventListener('click', () => handleQuestion(button.dataset.aiPrompt));
+  });
+
+  copyBriefingBtn?.addEventListener('click', async () => {
+    if (!aiState.fields.length) {
+      addMessage('bot', 'Ainda não há campos no briefing para copiar.');
+      return;
+    }
+
+    const lines = aiState.fields.map(field => '• ' + field.label);
+    const text = 'Briefing inteligente da fottu.br\n\n' + lines.join('\n');
+
+    try {
+      await navigator.clipboard.writeText(text);
+      addMessage('bot', 'Copiei a estrutura do briefing para a área de transferência.');
+    } catch (error) {
+      addMessage('bot', 'Não consegui copiar automaticamente, mas o briefing já está montado na tela.');
+    }
+  });
+
+  clearBriefingBtn?.addEventListener('click', () => {
+    aiState.fields = [];
+    renderFields();
+    addMessage('bot', 'Limpei os campos dinâmicos do briefing.');
+  });
+
+  toggleBtn?.addEventListener('click', () => {
+    floatingPanel.classList.toggle('open');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    floatingPanel.classList.remove('open');
+  });
+
+  loadState();
+  renderMessages();
+  renderFields();
+</script>
+
+</body>
+</html>

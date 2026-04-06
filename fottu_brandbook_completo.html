@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fottu.br — Brand Book Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D0A0B;--ink2:#1A1518;--ink3:#2C2228;
+  --smoke:#FAF7F4;--ash:#EDE8E3;--dust:#CFC8C0;
+  --ember:#D4623A;--ember2:#B8472A;--ember3:#F0876A;
+  --gold:#C9982C;--gold2:#E8C567;--gold3:#A07820;
+  --plum:#5C2D44;--plum2:#7A3D5C;--plum3:#3A1A2C;
+  --cream:#FFF9F3;--text:#1A0E10;
+  --r:16px;--r-sm:10px;--r-lg:24px;
+  --sidebar-w:260px;
+  --shadow:0 4px 32px rgba(13,10,11,0.18);
+  --shadow-lg:0 12px 64px rgba(13,10,11,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;scrollbar-gutter:stable;}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--ink);
+  color:var(--smoke);
+  line-height:1.6;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--ink2);}
+::-webkit-scrollbar-thumb{background:var(--ember);border-radius:10px;}
+
+/* ─── SIDEBAR ─── */
+#sidebarToggle{
+  position:fixed;top:14px;left:14px;z-index:930;
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid rgba(212,98,58,0.3);
+  background:rgba(26,21,24,0.95);
+  color:var(--smoke);font-size:1rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:left 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+#sidebarToggle:hover{background:rgba(212,98,58,0.14);border-color:rgba(212,98,58,0.45);}
+.sidebar-overlay{
+  position:fixed;inset:0;z-index:490;
+  background:rgba(13,10,11,0.45);opacity:0;pointer-events:none;
+  transition:opacity 0.2s ease;
+}
+
+#sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:var(--sidebar-w);
+  background:var(--ink2);border-right:1px solid rgba(201,152,44,0.12);
+  overflow-y:auto;z-index:500;
+  padding-bottom:2rem;
+  transition:transform 0.25s ease;
+}
+.sb-brand{
+  padding:1.8rem 1.5rem 1.4rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:0.5rem;
+}
+.sb-logo-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:700;font-size:1.9rem;
+  letter-spacing:-0.01em;line-height:1;
+}
+.sb-logo-text .e{color:var(--ember);}
+.sb-logo-sub{
+  font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.28);margin-top:0.3rem;
+}
+.sb-version{
+  display:inline-block;margin-top:0.6rem;
+  padding:0.15rem 0.6rem;border-radius:20px;
+  background:rgba(201,152,44,0.12);border:1px solid rgba(201,152,44,0.25);
+  font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold2);
+}
+.sb-chapter{
+  padding:0.6rem 1.5rem 0.3rem;
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ember);font-weight:600;margin-top:0.8rem;
+}
+.sb-item{
+  display:block;padding:0.42rem 1.5rem;
+  color:rgba(250,247,244,0.45);font-size:0.78rem;
+  text-decoration:none;transition:all 0.18s;
+  border-left:2px solid transparent;
+}
+.sb-item:hover,.sb-item.active{
+  color:var(--smoke);background:rgba(212,98,58,0.08);
+  border-left-color:var(--ember);
+}
+.sb-progress{
+  position:fixed;top:0;left:var(--sidebar-w);right:0;height:2px;
+  background:linear-gradient(90deg,var(--ember),var(--gold));
+  transform-origin:left;transform:scaleX(0);
+  transition:transform 0.1s,left 0.25s ease;z-index:600;
+}
+
+/* ─── MAIN ─── */
+#main{margin-left:var(--sidebar-w);min-height:100vh;transition:margin-left 0.25s ease;}
+
+body.sidebar-collapsed #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+body.sidebar-collapsed #main{margin-left:0;}
+body.sidebar-collapsed .sb-progress{left:0;}
+body.sidebar-collapsed #sidebarToggle{left:14px;}
+body:not(.sidebar-collapsed) #sidebarToggle{left:calc(var(--sidebar-w) - 18px);}
+
+/* ─── COVER ─── */
+#cover{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5rem 3rem;
+  background:radial-gradient(ellipse 90% 70% at 50% 40%,rgba(212,98,58,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 80%,rgba(92,45,68,0.15) 0%,transparent 55%),
+    var(--ink);
+  position:relative;overflow:hidden;
+}
+#cover::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1' fill='rgba(212,98,58,0.06)'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.cover-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.35rem 1.1rem;border-radius:30px;
+  border:1px solid rgba(201,152,44,0.3);
+  background:rgba(201,152,44,0.06);
+  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:2.5rem;
+  animation:fadeUp 0.8s ease both;
+}
+.cover-badge::before{content:'◆';font-size:0.5rem;}
+.cover-title{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(4.5rem,9vw,8rem);font-weight:700;
+  line-height:0.9;color:var(--smoke);
+  animation:fadeUp 0.9s 0.1s ease both;
+  position:relative;
+}
+.cover-title .brand-dot{
+  display:inline-block;width:0.22em;height:0.22em;
+  background:var(--ember);border-radius:50%;
+  vertical-align:0.55em;margin:0 0.03em;
+}
+.cover-title .br{color:var(--ember);}
+.cover-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);
+  color:rgba(250,247,244,0.5);margin-top:1.2rem;
+  animation:fadeUp 1s 0.2s ease both;
+}
+.cover-chips{
+  display:flex;flex-wrap:wrap;gap:0.6rem;
+  justify-content:center;margin-top:3rem;
+  animation:fadeUp 1s 0.35s ease both;
+}
+.cover-chip{
+  padding:0.45rem 1.2rem;border-radius:30px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  font-size:0.78rem;color:rgba(250,247,244,0.6);
+}
+.cover-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  color:rgba(255,255,255,0.2);font-size:0.62rem;letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+.cover-scroll::after{
+  content:'';width:1px;height:44px;
+  background:linear-gradient(to bottom,rgba(212,98,58,0.5),transparent);
+  animation:scrollPulse 2s infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.1);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── SECTION WRAPPER ─── */
+.section{padding:5rem 4rem;border-bottom:1px solid rgba(255,255,255,0.04);}
+.section.alt{background:rgba(255,255,255,0.015);}
+.section.dark{background:var(--ink2);}
+.section.plum{background:linear-gradient(160deg,var(--plum3),var(--ink2));}
+
+/* ─── SECTION HEADER ─── */
+.ch-eyebrow{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--ember);font-weight:600;margin-bottom:0.7rem;
+}
+.ch-eyebrow::before{content:'';width:22px;height:1.5px;background:var(--ember);}
+.ch-title{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;
+  color:var(--smoke);line-height:1.1;margin-bottom:0.6rem;
+}
+.ch-lead{
+  font-size:1rem;color:rgba(250,247,244,0.5);
+  max-width:560px;margin-bottom:2.5rem;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.12rem;
+}
+.rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),rgba(212,98,58,0.08),transparent);margin:2.5rem 0;}
+
+/* ─── GRID ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media(max-width:1100px){.g3{grid-template-columns:1fr 1fr;}.g4{grid-template-columns:1fr 1fr;}}
+@media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+/* ─── CARDS ─── */
+.card{
+  background:rgba(255,255,255,0.032);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:var(--r);padding:1.6rem;
+  transition:border-color 0.2s,background 0.2s;
+}
+.card:hover{border-color:rgba(212,98,58,0.28);background:rgba(212,98,58,0.04);}
+.card-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--ember),var(--plum));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;margin-bottom:1rem;
+}
+.card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:700;color:var(--smoke);
+  margin-bottom:0.5rem;
+}
+.card p{font-size:0.83rem;color:rgba(250,247,244,0.55);line-height:1.65;}
+.card.accent{border-color:rgba(201,152,44,0.2);background:rgba(201,152,44,0.04);}
+.card.accent h3{color:var(--gold2);}
+.card.ember{border-color:rgba(212,98,58,0.25);background:rgba(212,98,58,0.05);}
+
+/* ─── QUOTE ─── */
+.blockquote{
+  border-left:3px solid var(--ember);
+  padding:1.2rem 1.8rem;
+  background:rgba(212,98,58,0.05);border-radius:0 var(--r) var(--r) 0;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.25rem;color:var(--smoke);line-height:1.5;
+  margin:1.8rem 0;
+}
+.blockquote cite{display:block;margin-top:0.6rem;font-size:0.75rem;font-style:normal;color:rgba(250,247,244,0.35);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ─── TAGS / BADGES ─── */
+.tag{
+  display:inline-block;padding:0.18rem 0.75rem;
+  border-radius:20px;font-size:0.72rem;font-weight:600;margin:0.2rem;
+}
+.t-ember{background:rgba(212,98,58,0.14);color:var(--ember3);}
+.t-gold{background:rgba(201,152,44,0.14);color:var(--gold2);}
+.t-plum{background:rgba(92,45,68,0.3);color:#D4A0C0;}
+.t-smoke{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.55);}
+
+/* ─── TABLE ─── */
+.tbl{overflow-x:auto;border-radius:var(--r);overflow:hidden;margin:1.5rem 0;}
+table{width:100%;border-collapse:collapse;}
+thead{background:rgba(212,98,58,0.12);}
+thead th{padding:0.85rem 1rem;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ember3);font-weight:700;text-align:left;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);}
+tbody tr:hover{background:rgba(255,255,255,0.02);}
+tbody td{padding:0.8rem 1rem;font-size:0.83rem;color:rgba(250,247,244,0.72);}
+tbody td b{color:var(--smoke);}
+
+/* ─── HIGHLIGHT BOX ─── */
+.highlight{
+  background:linear-gradient(135deg,rgba(92,45,68,0.35),rgba(212,98,58,0.12));
+  border:1px solid rgba(212,98,58,0.18);
+  border-radius:var(--r-lg);padding:2.5rem;
+  position:relative;overflow:hidden;
+}
+.highlight::before{
+  content:'"';position:absolute;top:-0.8rem;right:1.5rem;
+  font-family:'Cormorant Garamond',serif;font-size:10rem;
+  color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;
+}
+
+/* ─── STAT STRIP ─── */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;border-radius:var(--r);overflow:hidden;
+  background:rgba(212,98,58,0.18);margin:2rem 0;
+}
+.stat{background:var(--ink2);padding:1.6rem 1.2rem;text-align:center;}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:2.2rem;font-weight:700;color:var(--ember3);display:block;
+}
+.stat-l{font-size:0.68rem;color:rgba(250,247,244,0.38);letter-spacing:0.06em;margin-top:0.2rem;}
+@media(max-width:800px){.stats{grid-template-columns:1fr 1fr;}}
+
+/* ═══ LOGO SECTION ═══ */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0;}
+@media(max-width:900px){.logo-grid{grid-template-columns:1fr 1fr;}}
+.logo-box{
+  border-radius:var(--r-lg);padding:2.5rem 2rem;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0.6rem;text-align:center;
+  border:1px solid rgba(255,255,255,0.07);
+  transition:all 0.25s;position:relative;overflow:hidden;
+}
+.logo-box:hover{border-color:rgba(212,98,58,0.3);transform:translateY(-3px);}
+.logo-box::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(212,98,58,0.06),transparent);
+  pointer-events:none;
+}
+.logo-box-dark{background:var(--ink);}
+.logo-box-light{background:var(--smoke);}
+.logo-box-terra{background:var(--ember);}
+.logo-box-plum{background:var(--plum3);}
+.logo-box-gold{background:var(--gold3);}
+.logo-name{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  opacity:0.4;margin-top:0.5rem;
+}
+
+/* LOGO RENDERINGS */
+.lw1{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:700;font-size:2.8rem;
+  color:var(--smoke);letter-spacing:-0.02em;
+}
+.lw1 .dot{color:var(--ember);}
+.lw1-light{color:var(--ink);}
+.lw1-light .dot{color:var(--ember);}
+
+/* Logo duplo significado SVG wrapper */
+.logo-dual-wrap{display:flex;align-items:center;gap:0.5rem;}
+.logo-dual-word{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:900;
+  font-size:2.4rem;color:var(--smoke);
+  letter-spacing:-0.03em;
+}
+.logo-dual-word .tt{
+  position:relative;display:inline-block;
+  background:linear-gradient(135deg,var(--gold2),var(--ember3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* Monogram */
+.logo-mono-wrap{
+  width:68px;height:68px;
+  background:linear-gradient(135deg,var(--ember),var(--plum));
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(212,98,58,0.35);
+  position:relative;overflow:hidden;
+}
+.logo-mono-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+}
+.logo-mono-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:900;font-size:2rem;
+  color:#fff;letter-spacing:-0.04em;position:relative;z-index:1;
+}
+
+/* Outlined */
+.logo-outline{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:900;font-size:2.6rem;
+  color:transparent;
+  -webkit-text-stroke:2px var(--smoke);
+  letter-spacing:-0.02em;
+}
+.logo-outline-ember{-webkit-text-stroke-color:var(--ember);}
+
+/* Badge / Stamp */
+.logo-stamp-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+}
+
+/* Stack */
+.logo-stack{text-align:center;}
+.logo-stack-main{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:700;font-size:2.8rem;
+  color:var(--smoke);line-height:1;display:block;
+}
+.logo-stack-sub{
+  font-family:'Outfit',sans-serif;font-weight:300;
+  font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:rgba(250,247,244,0.35);margin-top:0.3rem;display:block;
+}
+.logo-stack-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--ember),transparent);
+  margin:0.4rem 0;
+}
+
+/* Icon with text */
+.logo-icon-combo{display:flex;align-items:center;gap:0.7rem;}
+.logo-icon-symbol{
+  width:46px;height:46px;border-radius:11px;
+  background:linear-gradient(135deg,var(--ember2),var(--plum3));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(212,98,58,0.3);flex-shrink:0;
+}
+.logo-icon-text-wrap{}
+.logo-icon-name{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:700;font-size:1.8rem;
+  color:var(--smoke);line-height:1;
+}
+.logo-icon-tagline{
+  font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(250,247,244,0.3);
+}
+
+/* ─── PALETTE ─── */
+.palette{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0;}
+.swatch{flex:1;min-width:100px;border-radius:12px;overflow:hidden;}
+.sw-color{height:64px;}
+.sw-info{padding:0.75rem;background:rgba(255,255,255,0.035);font-size:0.74rem;}
+.sw-info b{display:block;color:var(--smoke);font-size:0.78rem;margin-bottom:0.1rem;}
+.sw-info code{color:rgba(250,247,244,0.38);font-family:'Space Mono',monospace;font-size:0.62rem;}
+.sw-role{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,244,0.25);margin-top:0.2rem;}
+
+/* ─── TYPOGRAPHY SPECIMENS ─── */
+.typo-block{
+  background:rgba(255,255,255,0.02);
+  border-left:3px solid var(--ember);
+  border-radius:0 var(--r) var(--r) 0;
+  padding:1.5rem 2rem;margin:1.2rem 0;
+}
+.typo-meta{
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(250,247,244,0.3);margin-bottom:0.6rem;
+}
+
+/* ─── GRADIENT GRID ─── */
+.grad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.grad-card{border-radius:var(--r);overflow:hidden;}
+.grad-preview{height:80px;}
+.grad-info{padding:0.9rem;background:rgba(255,255,255,0.03);font-size:0.75rem;}
+.grad-info b{color:var(--smoke);display:block;margin-bottom:0.2rem;}
+.grad-info small{color:rgba(250,247,244,0.35);font-family:'Space Mono',monospace;font-size:0.6rem;}
+
+/* ─── SOCIAL PROFILES ─── */
+.social-card{
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.07);
+  margin-bottom:2rem;
+}
+.sc-cover{height:100px;position:relative;}
+.sc-header-row{
+  display:flex;gap:1.2rem;padding:0 1.8rem 1.2rem;
+  margin-top:-28px;align-items:flex-end;
+}
+.sc-avatar{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ember),var(--plum));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.7rem;font-weight:700;color:#fff;flex-shrink:0;
+  border:3px solid var(--ink2);
+  box-shadow:0 0 0 2px var(--ember);
+}
+.sc-info{padding-bottom:0.3rem;}
+.sc-name{font-weight:700;font-size:1rem;color:var(--smoke);}
+.sc-handle{font-family:'Space Mono',monospace;font-size:0.72rem;color:rgba(250,247,244,0.4);margin-top:0.1rem;}
+.sc-bio-text{padding:0 1.8rem 1.5rem;font-size:0.86rem;color:rgba(250,247,244,0.72);line-height:1.7;}
+.sc-stats{display:flex;border-top:1px solid rgba(255,255,255,0.06);}
+.sc-stat{flex:1;padding:1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.05);}
+.sc-stat:last-child{border-right:none;}
+.sc-stat-n{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.3rem;color:var(--ember3);display:block;font-weight:700;
+}
+.sc-stat-l{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(250,247,244,0.3);}
+
+/* ─── HOOKS ─── */
+.hook{
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(212,98,58,0.15);
+  border-radius:var(--r-sm);padding:1.1rem 1.3rem;margin:0.55rem 0;
+  transition:border-color 0.2s;
+}
+.hook:hover{border-color:rgba(212,98,58,0.35);}
+.hook-label{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);margin-bottom:0.35rem;font-weight:600;}
+.hook-text{font-size:0.95rem;color:var(--smoke);font-weight:500;}
+.hook-why{font-size:0.75rem;color:rgba(250,247,244,0.38);margin-top:0.3rem;font-style:italic;}
+
+/* ─── CALENDAR ─── */
+.cal-month{
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r);overflow:hidden;margin-bottom:1.2rem;
+}
+.cal-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;
+  background:linear-gradient(135deg,rgba(92,45,68,0.5),rgba(212,98,58,0.18));
+}
+.cal-month-name{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:1.2rem;color:var(--smoke);
+}
+.cal-fire{
+  font-size:0.68rem;letter-spacing:0.08em;padding:0.2rem 0.7rem;
+  border-radius:20px;background:rgba(212,98,58,0.25);color:var(--ember3);
+}
+.cal-body{padding:1rem 1.5rem;}
+.cal-dates{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.9rem;}
+.cal-date-chip{
+  padding:0.25rem 0.75rem;border-radius:20px;
+  background:rgba(212,98,58,0.1);color:rgba(250,247,244,0.8);
+  font-size:0.76rem;border:1px solid rgba(212,98,58,0.18);
+}
+.cal-idea{
+  display:flex;align-items:flex-start;gap:0.6rem;
+  padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:0.81rem;color:rgba(250,247,244,0.65);
+}
+.cal-idea::before{content:'→';color:var(--ember);flex-shrink:0;margin-top:0.05rem;}
+.cal-idea:last-child{border-bottom:none;}
+
+/* ─── STICKY TOP BAR ─── */
+.sticky-bar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,10,11,0.92);
+  backdrop-filter:blur(16px);
+  padding:0.9rem 4rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.sticky-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1rem;color:var(--smoke);
+}
+.sticky-num{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--ember);}
+
+/* ─── TOOLS ─── */
+.tool-card{
+  display:flex;gap:1rem;align-items:flex-start;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r);padding:1.3rem;
+  margin-bottom:0.8rem;transition:all 0.2s;
+}
+.tool-card:hover{border-color:rgba(212,98,58,0.25);}
+.tool-emoji{font-size:1.6rem;flex-shrink:0;}
+.tool-info h4{font-size:0.92rem;font-weight:600;color:var(--smoke);margin-bottom:0.25rem;}
+.tool-info p{font-size:0.8rem;color:rgba(250,247,244,0.5);line-height:1.55;}
+.free-badge{
+  display:inline-block;padding:0.12rem 0.55rem;border-radius:10px;
+  background:rgba(74,222,128,0.1);color:#86efac;
+  font-size:0.6rem;font-weight:700;letter-spacing:0.06em;margin-top:0.35rem;
+}
+.paid-badge{
+  display:inline-block;padding:0.12rem 0.55rem;border-radius:10px;
+  background:rgba(201,152,44,0.12);color:var(--gold2);
+  font-size:0.6rem;font-weight:700;letter-spacing:0.06em;margin-top:0.35rem;
+}
+
+/* ─── PERSONA ─── */
+.persona-card{
+  background:linear-gradient(160deg,var(--plum3),rgba(212,98,58,0.08));
+  border:1px solid rgba(212,98,58,0.18);
+  border-radius:20px;padding:2.5rem;
+}
+.persona-name{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:700;font-size:2.2rem;color:var(--smoke);
+  margin-bottom:0.2rem;
+}
+.persona-role{
+  font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:1.5rem;
+}
+.persona-traits{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;}
+
+/* ─── KEY VISUAL ─── */
+.kv-pattern{
+  width:100%;height:140px;border-radius:var(--r);
+  overflow:hidden;position:relative;margin:0.7rem 0;
+}
+
+/* ─── ARCHETYPE ─── */
+.archetype-block{
+  background:linear-gradient(135deg,var(--plum3),var(--ink2));
+  border:1px solid rgba(92,45,68,0.4);
+  border-radius:20px;padding:3rem;
+  display:flex;gap:3rem;align-items:center;flex-wrap:wrap;
+  margin:2rem 0;
+}
+.arch-icon-big{font-size:5rem;flex-shrink:0;}
+.arch-body h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--smoke);margin-bottom:0.5rem;
+}
+.arch-body p{font-size:0.87rem;color:rgba(250,247,244,0.65);line-height:1.75;max-width:500px;}
+
+/* ─── POSITIONING MAP ─── */
+.pos-map-wrap{
+  position:relative;height:300px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--r-lg);margin:2rem 0;
+  background:rgba(255,255,255,0.02);
+  overflow:hidden;
+}
+.pos-axis-x{position:absolute;left:2.5rem;right:2.5rem;top:50%;height:1px;background:rgba(255,255,255,0.1);}
+.pos-axis-y{position:absolute;top:2.5rem;bottom:2.5rem;left:50%;width:1px;background:rgba(255,255,255,0.1);}
+.pos-label{position:absolute;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,247,244,0.28);}
+.pos-point{
+  position:absolute;width:12px;height:12px;border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.pos-label-point{
+  position:absolute;font-size:0.68rem;
+  color:rgba(250,247,244,0.4);white-space:nowrap;
+}
+.pos-fottu{
+  width:16px;height:16px;background:var(--ember);
+  box-shadow:0 0 0 5px rgba(212,98,58,0.25);z-index:2;
+}
+.pos-fottu-label{color:var(--ember);font-weight:700;}
+
+/* ─── WA MESSAGES ─── */
+.wa-bubble{
+  max-width:280px;border-radius:18px;padding:0.75rem 1rem;
+  font-size:0.82rem;line-height:1.55;margin:0.5rem;position:relative;
+}
+.wa-sent{
+  background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.2);
+  border-bottom-right-radius:4px;align-self:flex-end;margin-left:auto;
+}
+.wa-time{font-size:0.6rem;color:rgba(250,247,244,0.3);text-align:right;margin-top:0.3rem;}
+.wa-container{display:flex;flex-direction:column;background:rgba(255,255,255,0.02);border-radius:var(--r);padding:1.2rem;}
+
+/* ─── DONT BOXES ─── */
+.dont-box{
+  background:rgba(239,68,68,0.05);
+  border:1px solid rgba(239,68,68,0.15);
+  border-radius:var(--r-sm);padding:1rem 1.2rem;margin:0.5rem 0;
+}
+.dont-box h4{color:#fca5a5;font-size:0.88rem;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.4rem;}
+.dont-box p{font-size:0.78rem;color:rgba(250,247,244,0.45);}
+
+/* SYSTEM POLISH & PERFORMANCE */
+.section{
+  padding-block:clamp(3.6rem,7vw,5rem);
+  padding-inline:clamp(1rem,3.5vw,4rem);
+  content-visibility:auto;
+  contain-intrinsic-size:1000px;
+}
+#cover{
+  content-visibility:visible;
+  contain-intrinsic-size:auto;
+}
+.g2,.g3,.g4{align-items:stretch;}
+.g2>*,.g3>*,.g4>*{min-width:0;}
+.card,.tool-card,.highlight,.persona-card,.logo-box{height:100%;}
+.tbl{-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.sticky-bar{
+  top:2px;
+  padding-inline:clamp(1rem,3.5vw,4rem);
+}
+@media (max-width:980px){
+  #sidebar{
+    position:sticky;
+    top:0;
+    left:0;
+    width:100%;
+    height:auto;
+    max-height:none;
+    border-right:0;
+    border-bottom:1px solid rgba(201,152,44,0.12);
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    padding:0.7rem 0.8rem;
+  }
+  .sb-brand{
+    margin:0;
+    border-bottom:0;
+    padding:0.2rem 0.5rem 0.2rem 0.2rem;
+    flex:0 0 auto;
+  }
+  .sb-logo-sub,.sb-chapter{display:none;}
+  .sb-version{margin-top:0.3rem;}
+  .sb-item{
+    flex:0 0 auto;
+    border-left:0;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:999px;
+    padding:0.42rem 0.85rem;
+    font-size:0.72rem;
+    background:rgba(255,255,255,0.02);
+  }
+  .sb-item:hover,.sb-item.active{
+    border-left:1px solid rgba(212,98,58,0.45);
+  }
+  #main{margin-left:0;}
+  .sb-progress{left:0;}
+}
+/* Sidebar retratil em mobile/tablet: sobrescreve o modo "chips" */
+@media (max-width:980px){
+  #sidebar{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    width:var(--sidebar-w) !important;
+    height:100vh !important;
+    max-height:none !important;
+    border-right:1px solid rgba(201,152,44,0.12) !important;
+    border-bottom:0 !important;
+    display:block !important;
+    padding:0 0 2rem 0 !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    white-space:normal !important;
+    transform:translateX(calc(-1 * var(--sidebar-w)));
+  }
+  .sb-brand{
+    margin-bottom:0.5rem !important;
+    border-bottom:1px solid rgba(255,255,255,0.06) !important;
+    padding:1.8rem 1.5rem 1.4rem !important;
+  }
+  .sb-logo-sub,.sb-chapter{display:block !important;}
+  .sb-item{
+    display:block !important;
+    border-left:2px solid transparent !important;
+    border-radius:0 !important;
+    padding:0.42rem 1.5rem !important;
+    font-size:0.78rem !important;
+    background:transparent !important;
+  }
+  .sb-item:hover,.sb-item.active{
+    border-left-color:var(--ember) !important;
+    background:rgba(212,98,58,0.08) !important;
+  }
+  #main{margin-left:0;}
+  body:not(.sidebar-collapsed) #sidebar{transform:translateX(0);}
+  body:not(.sidebar-collapsed) .sidebar-overlay{opacity:1;pointer-events:auto;}
+  body:not(.sidebar-collapsed) #sidebarToggle{left:14px;}
+  .sb-progress{left:0;}
+}
+@media (min-width:981px){
+  .sidebar-overlay{display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+
+/* ─── PRINT ─── */
+@media print{#sidebar,#progress,.sticky-bar,#sidebarToggle,.sidebar-overlay{display:none;}#main{margin-left:0;}}
+</style>
+</head>
+<body>
+
+<button id="sidebarToggle" type="button" aria-label="Expandir ou recolher menu lateral" aria-controls="sidebar" aria-expanded="true">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+<!-- PROGRESS BAR -->
+<div class="sb-progress" id="progress"></div>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo-text">fo<span class="e">tt</span>u.br</div>
+    <div class="sb-logo-sub">brand book</div>
+    <span class="sb-version">v2.0 • 2026</span>
+  </div>
+
+  <div class="sb-chapter">1.0 Estratégia</div>
+  <a class="sb-item" href="#s11">1.1 O que é Marca</a>
+  <a class="sb-item" href="#s12">1.2 Brand Marketing</a>
+  <a class="sb-item" href="#s13">1.3 Público-alvo</a>
+  <a class="sb-item" href="#s14">1.4 Posicionamento</a>
+  <a class="sb-item" href="#s15">1.5–1.7 Pos. + Promessa</a>
+  <a class="sb-item" href="#s16">1.8–1.9 História & Pilares</a>
+  <a class="sb-item" href="#s17">1.10–1.12 Persona</a>
+
+  <div class="sb-chapter">2.0 Identidade Visual</div>
+  <a class="sb-item" href="#v21">2.1 Logos — 8 variações</a>
+  <a class="sb-item" href="#v22">2.2 Aplicações</a>
+  <a class="sb-item" href="#v23">2.3 Dont's</a>
+  <a class="sb-item" href="#v24">2.4 Paleta de Cores</a>
+  <a class="sb-item" href="#v25">2.5 Gradientes</a>
+  <a class="sb-item" href="#v26">2.6 Tipografia</a>
+  <a class="sb-item" href="#v27">2.7–2.10 Ícones & Foto</a>
+
+  <div class="sb-chapter">3.0 Identidade Verbal</div>
+  <a class="sb-item" href="#w31">3.1–3.2 Tom de Voz</a>
+  <a class="sb-item" href="#w33">3.3 WhatsApp</a>
+  <a class="sb-item" href="#w34">3.4 Redes Sociais</a>
+
+  <div class="sb-chapter">4.0 Desdobramentos</div>
+  <a class="sb-item" href="#d41">4.1 Key Visual</a>
+  <a class="sb-item" href="#d42">4.2–4.3 Pattern</a>
+  <a class="sb-item" href="#d44">4.4 Redes Sociais</a>
+  <a class="sb-item" href="#d45">4.5 ADs + Display</a>
+  <a class="sb-item" href="#d47">4.7 Site</a>
+  <a class="sb-item" href="#tools">Ferramentas</a>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main id="main">
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-badge">Brand Book Completo 2026</div>
+  <h1 class="cover-title">fo<span class="brand-dot"></span><span class="br">tt</span>u.br</h1>
+  <p class="cover-sub">Lembranças que ficam para sempre.</p>
+  <div class="cover-chips">
+    <span class="cover-chip">8 variações de logo</span>
+    <span class="cover-chip">Estratégia completa</span>
+    <span class="cover-chip">4 redes sociais</span>
+    <span class="cover-chip">Identidade verbal</span>
+    <span class="cover-chip">Calendário 2026</span>
+    <span class="cover-chip">Manual de marca</span>
+  </div>
+  <div class="cover-scroll">scroll</div>
+</section>
+
+<!-- ══════════════════════════════════════
+  1.0 ESTRATÉGIA
+══════════════════════════════════════ -->
+
+<section id="s11" class="section dark">
+  <div class="sticky-bar"><span class="sticky-title">1.0 Estratégia de Marca</span><span class="sticky-num">CAP 01</span></div>
+  <br>
+  <div class="ch-eyebrow">1.1 — O que é Marca</div>
+  <h2 class="ch-title">Marca não é logo.<br>É o que as pessoas sentem.</h2>
+  <p class="ch-lead">A fottu.br ocupa um espaço emocional entre a foto no celular e a saudade que mora na geladeira.</p>
+
+  <div class="g3">
+    <div class="card"><div class="card-icon">🧠</div><h3>Na mente</h3><p>Ser sinônimo de "imã personalizado com amor" — o primeiro nome que vem quando alguém pensa em presentear com significado.</p></div>
+    <div class="card"><div class="card-icon">💛</div><h3>No coração</h3><p>A conexão emocional que faz a cliente escolher a fottu.br mesmo se o concorrente for mais barato. Afeto é nosso diferencial.</p></div>
+    <div class="card"><div class="card-icon">🔁</div><h3>No hábito</h3><p>A marca que vem naturalmente quando chega uma data especial. Estamos presentes no cotidiano — literalmente na geladeira.</p></div>
+  </div>
+
+  <div class="blockquote">
+    Marca é a soma de tudo que alguém sente quando pensa em você.<br>
+    Não é o que você diz que é. É o que elas sentem.
+    <cite>— Princípio fundamental da fottu.br</cite>
+  </div>
+</section>
+
+<section id="s12" class="section">
+  <div class="ch-eyebrow">1.2 — Brand Marketing</div>
+  <h2 class="ch-title">Vendemos emoção.<br>Não produto.</h2>
+  <div class="g2" style="margin-bottom:2rem;">
+    <div class="card" style="border-color:rgba(239,68,68,0.2);">
+      <h3 style="color:#fca5a5;">❌ Marketing de Produto (evitar)</h3>
+      <p>"Ímã de geladeira 5×5cm, acabamento vitrificado, estrutura metálica, impressão HD, película protetora."</p>
+    </div>
+    <div class="card ember">
+      <h3 style="color:var(--ember3);">✅ Brand Marketing (nossa voz)</h3>
+      <p>"Toda vez que ela abre a geladeira, vê o rosto da filha. Não é um ímã — é amor que você pode tocar."</p>
+    </div>
+  </div>
+  <div class="tbl">
+    <table><thead><tr><th>Funil</th><th>Objetivo</th><th>Como fottu.br aplica</th></tr></thead>
+    <tbody>
+      <tr><td><b>Awareness</b></td><td>Fazer as pessoas saberem que existimos</td><td>TikTok orgânico + Reels emocionais</td></tr>
+      <tr><td><b>Consideração</b></td><td>Nos inserir na decisão de compra</td><td>Depoimentos + processo + antes&depois</td></tr>
+      <tr><td><b>Conversão</b></td><td>Fechar o pedido</td><td>WhatsApp + CTA direto + urgência de data</td></tr>
+      <tr><td><b>Fidelização</b></td><td>Fazer a cliente voltar</td><td>Pós-venda afetivo + cartão escrito à mão</td></tr>
+      <tr><td><b>Advocacy</b></td><td>Transformar clientes em embaixadoras</td><td>Repost + programa de indicação</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<section id="s13" class="section alt">
+  <div class="ch-eyebrow">1.3 — Público-alvo</div>
+  <h2 class="ch-title">Quem é a nossa cliente.</h2>
+  <p class="ch-lead">Mulheres de 25 a 45 anos que carregam a vida toda no celular e querem tirá-la de lá.</p>
+
+  <div class="g2" style="margin-bottom:1.5rem;">
+    <div class="card"><h3>👩 Demográfico</h3><p>Mulheres 25–45 anos • Classes B e C • Áreas urbanas • Renda compatível com compras afetivas de R$60–150</p></div>
+    <div class="card"><h3>💭 Psicográfico</h3><p>Sentimentais • Valorizam família, pets, viagens e memórias • Compram por emoção • Se identificam com produtos que têm história</p></div>
+    <div class="card"><h3>📱 Comportamento</h3><p>Ativas no Instagram e TikTok • Consomem conteúdo emocional • Compram em datas especiais • Marcam marcas nos stories quando amam</p></div>
+    <div class="card"><h3>🎯 Nichos quentes</h3><p>Mães • Noivas • Tutoras de pets • Viajantes • Quem viveu momento marcante (bebê, formatura, casamento)</p></div>
+  </div>
+
+  <div class="highlight">
+    <div class="ch-eyebrow" style="margin-bottom:0.5rem;">DOR PRINCIPAL</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--smoke);line-height:1.5;">"Tenho fotos lindas no celular que nunca ninguém vai ver. Queria tê-las aqui, na minha casa, todo dia, de um jeito bonito e com significado."</p>
+  </div>
+</section>
+
+<section id="s14" class="section dark">
+  <div class="ch-eyebrow">1.4 — Mapa de Posicionamento</div>
+  <h2 class="ch-title">Onde a fottu.br vive<br>no mercado.</h2>
+
+  <div class="pos-map-wrap">
+    <div class="pos-axis-x"></div>
+    <div class="pos-axis-y"></div>
+    <span class="pos-label" style="top:0.6rem;left:50%;transform:translateX(-50%);">PREMIUM</span>
+    <span class="pos-label" style="bottom:0.6rem;left:50%;transform:translateX(-50%);">GENÉRICO</span>
+    <span class="pos-label" style="left:0.7rem;top:50%;transform:translateY(-50%);">FUNCIONAL</span>
+    <span class="pos-label" style="right:0.7rem;top:50%;transform:translateY(-50%);">EMOCIONAL</span>
+    <div class="pos-point" style="left:28%;top:40%;background:rgba(255,255,255,0.18);"></div>
+    <span class="pos-label-point" style="left:30%;top:36%;">Gráficas genéricas</span>
+    <div class="pos-point" style="left:44%;top:62%;background:rgba(255,255,255,0.18);"></div>
+    <span class="pos-label-point" style="left:46%;top:58%;">ML/Shopee</span>
+    <div class="pos-point" style="left:58%;top:28%;background:rgba(255,255,255,0.18);"></div>
+    <span class="pos-label-point" style="left:60%;top:24%;">Canecas/almofadas</span>
+    <div class="pos-point pos-fottu" style="left:76%;top:20%;"></div>
+    <span class="pos-label-point pos-fottu-label" style="left:68%;top:12%;font-size:0.78rem;">● fottu.br</span>
+  </div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);">Ocupamos o quadrante <b style="color:var(--ember);">Premium + Emocional</b> — praticamente sem concorrência com branding forte. Esse é o nosso oceano azul.</p>
+</section>
+
+<section id="s15" class="section alt">
+  <div class="ch-eyebrow">1.5 · 1.6 · 1.7 — Posicionamento, Promessa & Tarefa</div>
+  <h2 class="ch-title">O que somos,<br>o que prometemos.</h2>
+
+  <div class="highlight" style="margin-bottom:1.5rem;">
+    <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ember);margin-bottom:0.7rem;">DECLARAÇÃO DE POSICIONAMENTO</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--smoke);line-height:1.65;">Somos uma marca de decoração afetiva personalizada que transforma lembranças em pequenos símbolos de amor para o dia a dia. Criamos ímãs personalizados para pessoas que valorizam memória afetiva e desejam manter por perto histórias, saudades e alegrias — com acabamento premium e significado emocional.</p>
+  </div>
+
+  <div class="g3">
+    <div class="card accent"><div style="font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">PROMESSA</div><p style="color:var(--smoke);">Cada pedido será tratado com o mesmo cuidado que você trataria sua própria memória mais preciosa.</p></div>
+    <div class="card accent"><div style="font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">NOSSA TAREFA</div><p style="color:var(--smoke);">Tirar lembranças do celular e transformá-las em presença física e diária na vida das pessoas.</p></div>
+    <div class="card accent"><div style="font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">PITCH ELEVADOR</div><p style="color:var(--smoke);">Transformamos fotos em ímãs personalizados para que lembranças importantes deixem de ficar esquecidas no celular.</p></div>
+  </div>
+</section>
+
+<section id="s16" class="section dark">
+  <div class="ch-eyebrow">1.8 · 1.9 — História & Pilares</div>
+  <h2 class="ch-title">De onde viemos.<br>No que acreditamos.</h2>
+
+  <div class="card" style="margin-bottom:2rem;padding:2rem;">
+    <div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember);margin-bottom:0.8rem;">HISTÓRIA DA MARCA</div>
+    <p style="font-size:0.9rem;color:rgba(250,247,244,0.75);line-height:1.85;">A fottu.br nasceu de uma inquietação simples: a maioria das pessoas tem centenas de fotos maravilhosas guardadas no celular que nunca mais são revistas. Fotos de filhos, viagens, momentos que a gente jura que não vai esquecer — e vai. A ideia foi criar um produto que fizesse essas memórias voltarem à tona todo dia, de forma bonita, afetiva e acessível. Um presente que não vai para a gaveta. Que vai para a geladeira — e fica para sempre.</p>
+  </div>
+
+  <div class="g4">
+    <div class="card"><h3 style="color:var(--gold2);">💛 Afeto</h3><p>Cada ímã carrega uma história real. Tratamos isso com a seriedade que merece.</p></div>
+    <div class="card"><h3 style="color:var(--gold2);">✨ Qualidade</h3><p>Acabamento premium é respeito pela memória que guardamos.</p></div>
+    <div class="card"><h3 style="color:var(--gold2);">🤝 Proximidade</h3><p>Somos amigas da cliente — ela nos conta a história da foto.</p></div>
+    <div class="card"><h3 style="color:var(--gold2);">🌿 Presença</h3><p>Trazer o passado para o presente — todo dia, sem esforço.</p></div>
+  </div>
+</section>
+
+<section id="s17" class="section plum">
+  <div class="ch-eyebrow">1.10 · 1.11 · 1.12 — Personalidade, Arquétipo & Persona</div>
+  <h2 class="ch-title">A fottu.br tem nome,<br>jeito e arquétipo.</h2>
+
+  <div class="archetype-block">
+    <div class="arch-icon-big">🌹</div>
+    <div class="arch-body">
+      <h3>Arquétipo: O Cuidador</h3>
+      <p>Guiada pelo arquétipo do Cuidador — aquele que protege, cuida e preserva o que é precioso. Nossa marca existe para guardar o que as pessoas mais amam, com ternura e competência. Referências: Dove, Natura, Johnson's. Nossa versão: mais íntima, mais afetiva, mais brasileira.</p>
+    </div>
+  </div>
+
+  <div class="persona-card">
+    <div class="persona-name">Ana Clara</div>
+    <div class="persona-role">Brand Persona — a voz por trás da fottu.br</div>
+    <div class="g2">
+      <p style="font-size:0.87rem;color:rgba(250,247,244,0.72);line-height:1.8;">Ana Clara tem 32 anos, é mãe de dois filhos e ama fotografia. Trabalha com algo que gosta, mas vive corrida. Decora a geladeira com carinho, escreve mensagem personalizada em cada presente e chora com final de filme. Quando fala de memória, fala com os olhos brilhando.</p>
+      <div>
+        <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ember);margin-bottom:0.7rem;">COMO FALA</div>
+        <div class="hook" style="margin-bottom:0.5rem;"><div class="hook-text">"Você vai adorar, confia em mim" 💛</div></div>
+        <div class="hook" style="margin-bottom:0.5rem;"><div class="hook-text">"Essa foto merece estar na geladeira"</div></div>
+        <div class="hook"><div class="hook-text">"Que presente mais significativo, gente"</div></div>
+      </div>
+    </div>
+    <div class="persona-traits">
+      <span class="tag t-ember">Calorosa</span><span class="tag t-ember">Atenciosa</span>
+      <span class="tag t-ember">Sentimental</span><span class="tag t-gold">Estética refinada</span>
+      <span class="tag t-gold">Ama detalhes</span><span class="tag t-smoke">Brasileira de verdade</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin-bottom:1.2rem;">Traços de Personalidade</h3>
+  <div class="g3">
+    <div class="card"><h3>Calorosa</h3><p>Fala como quem cuida — não como quem vende.</p></div>
+    <div class="card"><h3>Elegante sem arrogância</h3><p>Premium mas acessível. Bonita mas próxima.</p></div>
+    <div class="card"><h3>Sentimental com propósito</h3><p>Usa emoção de forma honesta — nunca manipuladora.</p></div>
+    <div class="card"><h3>Atenciosa nos detalhes</h3><p>Lembra o nome. Nota quando é aniversário.</p></div>
+    <div class="card"><h3>Confiante e discreta</h3><p>Não grita promoção. Deixa o produto falar.</p></div>
+    <div class="card"><h3>Brasileira de verdade</h3><p>Celebra a geladeira cheia, a família reunida.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  2.0 IDENTIDADE VISUAL
+══════════════════════════════════════ -->
+
+<section id="v21" class="section dark">
+  <div class="sticky-bar"><span class="sticky-title">2.0 Identidade Visual</span><span class="sticky-num">CAP 02</span></div>
+  <br>
+  <div class="ch-eyebrow">2.1 — Logo — 8 Variações</div>
+  <h2 class="ch-title">Oito formas de ser<br>reconhecida.</h2>
+  <p class="ch-lead">Cada variação tem um contexto ideal. Nunca misture estilos num mesmo material.</p>
+
+  <!-- LOGO 1: Wordmark principal -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-ember">01 — Wordmark Principal</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Fonte serifada itálica — elegância e afeto. Os dois "tt" criam ritmo visual único que remete a dois ímãs se unindo.</p>
+  <div class="logo-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="logo-box logo-box-dark">
+      <div class="lw1">fo<span class="dot">tt</span>u.br</div>
+      <span class="logo-name">Fundo escuro — principal</span>
+    </div>
+    <div class="logo-box logo-box-light">
+      <div class="lw1 lw1-light">fo<span class="dot">tt</span>u.br</div>
+      <span class="logo-name" style="color:rgba(0,0,0,0.3);">Fundo claro — impresso</span>
+    </div>
+    <div class="logo-box logo-box-terra">
+      <div class="lw1" style="color:#fff;">fottu.br</div>
+      <span class="logo-name">Fundo terracota</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 2: Duplo significado ímã + câmera -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-gold">02 — Duplo Significado</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:0.5rem;"><b style="color:var(--smoke);">Conceito:</b> Os "tt" dourados remetem simultaneamente a dois ímãs se atraindo e à lente de uma câmera. O "." entre fottu e br é um ímã circular ou botão de câmera.</p>
+  <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(201,152,44,0.2);border-radius:var(--r);padding:1.2rem;margin-bottom:1rem;font-size:0.83rem;color:rgba(250,247,244,0.6);">
+    ◆ "fo" + [ímãs tt em dourado] + "u" + [ponto = ímã circular] + "br" &nbsp;→&nbsp; <b style="color:var(--gold2);">fo·tt·u·●·br</b><br>
+    ◆ Os "tt" em destaque gold também lembram a silhueta de uma câmera vista de cima (dois pés do tripé)<br>
+    ◆ A palavra inteira soa como "fottu" = foto + tutus (apelido carinhoso) = memória com amor
+  </div>
+  <div class="logo-grid">
+    <div class="logo-box logo-box-dark">
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2.5rem;color:var(--smoke);">fo</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+          <svg width="18" height="7" viewBox="0 0 18 7"><rect width="18" height="7" rx="3" fill="url(#gtt1)"/><defs><linearGradient id="gtt1" x1="0" y1="0" x2="18" y2="7"><stop stop-color="#E8C567"/><stop offset="1" stop-color="#F0876A"/></linearGradient></defs></svg>
+          <svg width="18" height="7" viewBox="0 0 18 7"><rect width="18" height="7" rx="3" fill="url(#gtt2)"/><defs><linearGradient id="gtt2" x1="0" y1="0" x2="18" y2="7"><stop stop-color="#F0876A"/><stop offset="1" stop-color="#D4623A"/></linearGradient></defs></svg>
+        </div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2.5rem;color:var(--smoke);">u</div>
+        <div style="width:10px;height:10px;background:var(--ember);border-radius:50%;margin:0 2px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2.5rem;color:rgba(250,247,244,0.5);">br</div>
+      </div>
+      <span class="logo-name">ímãs nos "tt" — duplo significado</span>
+    </div>
+    <div class="logo-box logo-box-dark">
+      <div style="display:flex;align-items:center;gap:0.7rem;">
+        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ember2),var(--plum));display:flex;align-items:center;justify-content:center;position:relative;">
+          <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect x="1" y="3" width="20" height="12" rx="2.5" stroke="white" stroke-width="1.8"/><circle cx="11" cy="9" r="4" stroke="white" stroke-width="1.5"/><rect x="7" y="0" width="8" height="4" rx="1.5" fill="white" opacity="0.7"/><circle cx="11" cy="9" r="1.5" fill="white" opacity="0.7"/></svg>
+          <div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;background:var(--gold2);border-radius:50%;border:1.5px solid var(--ink);"></div>
+        </div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1.8rem;color:var(--smoke);">fottu.br</div>
+          <div style="font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,244,0.3);">memórias que ficam</div>
+        </div>
+      </div>
+      <span class="logo-name">ícone câmera + ímã circular</span>
+    </div>
+    <div class="logo-box logo-box-plum">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;">
+        <svg width="56" height="32" viewBox="0 0 56 32" fill="none">
+          <path d="M4 4 L4 22 Q4 30 14 30 L42 30 Q52 30 52 22 L52 4" stroke="white" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+          <rect x="1" y="1" width="12" height="7" rx="2.5" fill="#E8C567"/>
+          <rect x="43" y="1" width="12" height="7" rx="2.5" fill="#F0876A"/>
+        </svg>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1.6rem;color:#fff;">fottu.br</div>
+      </div>
+      <span class="logo-name">ímã ferradura estilizado</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 3: Monograma / Lettermark -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-plum">03 — Monograma / Lettermark</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Para perfil de redes sociais, avatar, bordado em embalagem, lacre e carimbo. Compacto e reconhecível.</p>
+  <div class="logo-grid">
+    <div class="logo-box logo-box-dark">
+      <div class="logo-mono-wrap"><span class="logo-mono-text">f<span style="font-size:1.3rem;color:var(--gold2);vertical-align:super;">b</span></span></div>
+      <span class="logo-name">monograma — ícone quadrado</span>
+    </div>
+    <div class="logo-box logo-box-dark">
+      <div style="width:68px;height:68px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2rem;color:var(--gold2);line-height:1;">f</div>
+        <div style="font-size:0.42rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,244,0.3);">fottu.br</div>
+      </div>
+      <span class="logo-name">monograma circular — avatar</span>
+    </div>
+    <div class="logo-box logo-box-light">
+      <div style="width:68px;height:68px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2rem;color:var(--smoke);letter-spacing:-0.04em;">fb</span>
+      </div>
+      <span class="logo-name" style="color:rgba(0,0,0,0.3);">monograma — versão clara</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 4: Negativo/Outline -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-ember">04 — Espaço Negativo / Outline</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Técnica elegante para carimbo, embalagem e materiais promocionais. Presença forte com leveza visual.</p>
+  <div class="logo-grid">
+    <div class="logo-box logo-box-terra">
+      <div class="logo-outline" style="-webkit-text-stroke-color:#fff;">fottu.br</div>
+      <span class="logo-name">outline branco — fundo terracota</span>
+    </div>
+    <div class="logo-box logo-box-plum">
+      <div class="logo-outline logo-outline-ember">fottu.br</div>
+      <span class="logo-name">outline terracota — fundo vinho</span>
+    </div>
+    <div class="logo-box logo-box-gold">
+      <div class="logo-outline" style="-webkit-text-stroke-color:var(--ink);">fottu.br</div>
+      <span class="logo-name" style="color:rgba(0,0,0,0.4);">outline escuro — fundo dourado</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 5: Badge Stamp -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-gold">05 — Badge / Stamp Circular</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Para selos de embalagem, etiquetas, cartão de visita e materiais premium.</p>
+  <div class="logo-grid">
+    <div class="logo-box logo-box-dark">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="55" stroke="#C9982C" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <circle cx="60" cy="60" r="48" stroke="rgba(212,98,58,0.35)" stroke-width="1" fill="none"/>
+        <text x="60" y="57" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="700" font-size="21" fill="#FAF7F4">fottu.br</text>
+        <text x="60" y="73" text-anchor="middle" font-family="Outfit,sans-serif" font-size="6.5" fill="#8A7070" letter-spacing="2.5">MEMÓRIAS AFETIVAS</text>
+        <circle cx="21" cy="60" r="2.5" fill="#C9982C"/>
+        <circle cx="99" cy="60" r="2.5" fill="#C9982C"/>
+      </svg>
+      <span class="logo-name">badge — embalagem/etiqueta</span>
+    </div>
+    <div class="logo-box logo-box-light">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="55" stroke="#4A1525" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <circle cx="60" cy="60" r="48" stroke="rgba(212,98,58,0.3)" stroke-width="1" fill="none"/>
+        <text x="60" y="57" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="700" font-size="21" fill="#1A0E10">fottu.br</text>
+        <text x="60" y="73" text-anchor="middle" font-family="Outfit,sans-serif" font-size="6.5" fill="#8A7070" letter-spacing="2.5">MEMÓRIAS AFETIVAS</text>
+        <circle cx="21" cy="60" r="2.5" fill="#D4623A"/>
+        <circle cx="99" cy="60" r="2.5" fill="#D4623A"/>
+      </svg>
+      <span class="logo-name" style="color:rgba(0,0,0,0.3);">badge — versão impressa</span>
+    </div>
+    <div class="logo-box logo-box-terra">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="55" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <circle cx="60" cy="60" r="48" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none"/>
+        <text x="60" y="57" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-weight="700" font-size="21" fill="white">fottu.br</text>
+        <text x="60" y="73" text-anchor="middle" font-family="Outfit,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.55)" letter-spacing="2.5">MEMÓRIAS AFETIVAS</text>
+        <circle cx="21" cy="60" r="2.5" fill="white" opacity="0.7"/>
+        <circle cx="99" cy="60" r="2.5" fill="white" opacity="0.7"/>
+      </svg>
+      <span class="logo-name">badge — terracota</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 6: Stack -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-smoke">06 — Versão Stacked (empilhada)</span></div>
+  <div class="logo-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="logo-box logo-box-dark">
+      <div class="logo-stack">
+        <div style="font-family:'Outfit',sans-serif;font-weight:300;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(250,247,244,0.3);margin-bottom:0.2rem;">✦ lembranças que ficam para sempre ✦</div>
+        <div class="logo-stack-rule"></div>
+        <span class="logo-stack-main">fottu.br</span>
+        <div class="logo-stack-rule"></div>
+        <span class="logo-stack-sub">memórias afetivas personalizadas</span>
+      </div>
+      <span class="logo-name">stacked — materiais impressos</span>
+    </div>
+    <div class="logo-box logo-box-plum">
+      <div class="logo-icon-combo">
+        <div class="logo-icon-symbol">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <path d="M3 5L3 18Q3 23 9 23L17 23Q23 23 23 18L23 5" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <rect x="1" y="3" width="6" height="4" rx="1.5" fill="#E8C567"/>
+            <rect x="19" y="3" width="6" height="4" rx="1.5" fill="#F0876A"/>
+          </svg>
+        </div>
+        <div class="logo-icon-text-wrap">
+          <div class="logo-icon-name">fottu.br</div>
+          <div class="logo-icon-tagline">ímãs personalizados</div>
+        </div>
+      </div>
+      <span class="logo-name">ícone ímã + wordmark</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 7: Tipográfico moderno -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-ember">07 — Tipográfico Moderno</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Versão digital-first, para anúncios e contextos onde a fonte serifada perde legibilidade.</p>
+  <div class="logo-grid" style="grid-template-columns:1fr 1fr 1fr;">
+    <div class="logo-box logo-box-dark">
+      <div style="font-family:'Space Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--smoke);letter-spacing:0.05em;">fottu<span style="color:var(--ember);">.</span>br</div>
+      <span class="logo-name">Space Mono — digital</span>
+    </div>
+    <div class="logo-box logo-box-light">
+      <div style="font-family:'Outfit',sans-serif;font-weight:700;font-size:2rem;color:var(--ink);letter-spacing:-0.03em;">fottu<span style="color:var(--ember);">.br</span></div>
+      <span class="logo-name" style="color:rgba(0,0,0,0.3);">Outfit Bold — fundo claro</span>
+    </div>
+    <div class="logo-box logo-box-dark" style="border:1px solid rgba(201,152,44,0.3);">
+      <div style="display:flex;align-items:baseline;gap:0.15rem;">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:900;font-size:2.8rem;color:transparent;-webkit-text-stroke:1.5px var(--gold2);letter-spacing:-0.02em;">fottu</div>
+        <div style="font-family:'Outfit',sans-serif;font-weight:300;font-size:1rem;color:var(--ember);letter-spacing:0.05em;">.br</div>
+      </div>
+      <span class="logo-name">outline gold + sans .br</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- LOGO 8: Minimalista ícone puro -->
+  <div style="margin-bottom:0.5rem;"><span class="tag t-gold">08 — Ícone Puro (App / Favicon)</span></div>
+  <p style="font-size:0.82rem;color:rgba(250,247,244,0.45);margin-bottom:1rem;">Para uso em WhatsApp, favicon, app icon, botões pequenos. Reconhecível sem o nome.</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <div style="background:var(--ink);border-radius:20px;padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;border:1px solid rgba(255,255,255,0.07);">
+      <svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#icbg1)"/><path d="M12 16L12 42Q12 54 24 54L40 54Q52 54 52 42L52 16" stroke="white" stroke-width="6.5" stroke-linecap="round" fill="none"/><rect x="8" y="11" width="14" height="9" rx="3.5" fill="white" opacity="0.9"/><rect x="42" y="11" width="14" height="9" rx="3.5" fill="#E8C567"/><defs><linearGradient id="icbg1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#D4623A"/><stop offset="1" stop-color="#3A1A2C"/></linearGradient></defs></svg>
+      <span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,247,244,0.3);">64×64 — app icon</span>
+    </div>
+    <div style="background:var(--ink);border-radius:20px;padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;border:1px solid rgba(255,255,255,0.07);">
+      <svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="url(#icbg2)"/><path d="M12 16L12 42Q12 54 24 54L40 54Q52 54 52 42L52 16" stroke="white" stroke-width="6.5" stroke-linecap="round" fill="none"/><rect x="8" y="11" width="14" height="9" rx="3.5" fill="white" opacity="0.9"/><rect x="42" y="11" width="14" height="9" rx="3.5" fill="#E8C567"/><defs><linearGradient id="icbg2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#D4623A"/><stop offset="1" stop-color="#3A1A2C"/></linearGradient></defs></svg>
+      <span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,247,244,0.3);">64×64 — ícone circular</span>
+    </div>
+    <div style="background:var(--smoke);border-radius:20px;padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;border:1px solid rgba(0,0,0,0.07);">
+      <svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#FAF7F4"/><path d="M12 16L12 42Q12 54 24 54L40 54Q52 54 52 42L52 16" stroke="#D4623A" stroke-width="6.5" stroke-linecap="round" fill="none"/><rect x="8" y="11" width="14" height="9" rx="3.5" fill="#D4623A"/><rect x="42" y="11" width="14" height="9" rx="3.5" fill="#C9982C"/></svg>
+      <span style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,0,0,0.3);">ícone — versão clara</span>
+    </div>
+  </div>
+</section>
+
+<section id="v22" class="section alt">
+  <div class="ch-eyebrow">2.2 — Aplicações do Logo</div>
+  <h2 class="ch-title">Logo certo<br>para cada contexto.</h2>
+  <div class="tbl"><table><thead><tr><th>Contexto</th><th>Versão recomendada</th><th>Tamanho mínimo</th></tr></thead>
+  <tbody>
+    <tr><td><b>Perfil Instagram/TikTok</b></td><td>Monograma circular (#03) ou ícone puro (#08)</td><td>400×400px</td></tr>
+    <tr><td><b>Stories / Reels</b></td><td>Wordmark principal (#01) — canto superior</td><td>120px largura</td></tr>
+    <tr><td><b>Embalagem/caixinha</b></td><td>Badge stamp (#05) ou outline (#04)</td><td>3cm diâmetro</td></tr>
+    <tr><td><b>Cartão de visita</b></td><td>Wordmark principal + tagline</td><td>2.5cm largura</td></tr>
+    <tr><td><b>Anúncios digitais</b></td><td>Tipográfico moderno (#07) em fundo escuro</td><td>80px largura</td></tr>
+    <tr><td><b>WhatsApp Business</b></td><td>Ícone puro (#08) — circular</td><td>Tamanho padrão WA</td></tr>
+    <tr><td><b>Papelaria/cartão à mão</b></td><td>Badge circular (#05) como carimbo</td><td>Carimbo 3–4cm</td></tr>
+    <tr><td><b>Banner de feira</b></td><td>Stacked (#06) em grande destaque</td><td>Mín. 15cm</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="v23" class="section dark">
+  <div class="ch-eyebrow">2.3 — Dont's do Logo</div>
+  <h2 class="ch-title">O que nunca fazer.</h2>
+  <div class="g3">
+    <div class="dont-box"><h4>❌ Distorcer proporções</h4><p>Nunca esticar horizontal ou vertical. Proporções são fixas e inegociáveis.</p></div>
+    <div class="dont-box"><h4>❌ Trocar as fontes</h4><p>Cormorant Garamond Italic é obrigatória. Nunca Arial, Roboto ou qualquer outra.</p></div>
+    <div class="dont-box"><h4>❌ Fundo de baixo contraste</h4><p>Nunca aplicar o logo sobre fotos complexas ou fundos com cor muito similar.</p></div>
+    <div class="dont-box"><h4>❌ Cores fora da paleta</h4><p>O logo não aparece em verde, azul, roxo ou qualquer cor não aprovada.</p></div>
+    <div class="dont-box"><h4>❌ Sombras e brilhos</h4><p>Drop shadow, glow e gradientes externos descaracterizam o logo.</p></div>
+    <div class="dont-box"><h4>❌ Tamanho abaixo do mínimo</h4><p>Wordmark: mínimo 100px digital / 3cm impresso. Abaixo disso, use só o ícone.</p></div>
+  </div>
+</section>
+
+<section id="v24" class="section alt">
+  <div class="ch-eyebrow">2.4 — Paleta de Cores</div>
+  <h2 class="ch-title">Cores que comunicam<br>afeto e elegância.</h2>
+  <h3 style="color:var(--ember3);margin-bottom:0.8rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Primárias</h3>
+  <div class="palette">
+    <div class="swatch"><div class="sw-color" style="background:#FAF7F4;"></div><div class="sw-info"><b>Creme</b><code>#FAF7F4</code><div class="sw-role">Fundo principal</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#D4623A;"></div><div class="sw-info"><b>Terracota</b><code>#D4623A</code><div class="sw-role">Primária / CTA</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#5C2D44;"></div><div class="sw-info"><b>Vinho</b><code>#5C2D44</code><div class="sw-role">Secundária</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#3A1A2C;"></div><div class="sw-info"><b>Vinho Profundo</b><code>#3A1A2C</code><div class="sw-role">Fundos escuros</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#C9982C;"></div><div class="sw-info"><b>Dourado</b><code>#C9982C</code><div class="sw-role">Premium / destaque</div></div></div>
+  </div>
+  <h3 style="color:var(--ember3);margin:1.5rem 0 0.8rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">Suporte</h3>
+  <div class="palette">
+    <div class="swatch"><div class="sw-color" style="background:#0D0A0B;"></div><div class="sw-info"><b>Tinta</b><code>#0D0A0B</code><div class="sw-role">Fundo escuro</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#F0876A;"></div><div class="sw-info"><b>Terracota Claro</b><code>#F0876A</code><div class="sw-role">Hover / suave</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#E8C567;"></div><div class="sw-info"><b>Dourado Claro</b><code>#E8C567</code><div class="sw-role">Texto s/ escuro</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#EDE8E3;"></div><div class="sw-info"><b>Areia</b><code>#EDE8E3</code><div class="sw-role">Fundo alternativo</div></div></div>
+    <div class="swatch"><div class="sw-color" style="background:#CFC8C0;"></div><div class="sw-info"><b>Poeira</b><code>#CFC8C0</code><div class="sw-role">Bordas / detalhes</div></div></div>
+  </div>
+  <div class="card" style="margin-top:1.5rem;">
+    <h3>Regra das cores</h3>
+    <p>Nunca use mais de 3 cores numa mesma peça. Terracota é a cor de ação — aparece em botões e CTAs. Dourado é reservado para momentos premium e datas especiais. Creme é o fundo padrão de materiais impressos. Vinho Profundo para fundos escuros digitais.</p>
+  </div>
+</section>
+
+<section id="v25" class="section dark">
+  <div class="ch-eyebrow">2.5 — Gradientes</div>
+  <h2 class="ch-title">Gradientes aprovados.</h2>
+  <div class="grad-grid">
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(135deg,#D4623A,#5C2D44);"></div><div class="grad-info"><b>Pôr do Sol</b><small>Terracota → Vinho · Principal</small></div></div>
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(135deg,#3A1A2C,#D4623A);"></div><div class="grad-info"><b>Brasa</b><small>Vinho Profundo → Terracota</small></div></div>
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(135deg,#C9982C,#E8C567);"></div><div class="grad-info"><b>Ouro</b><small>Dourado → Dourado Claro</small></div></div>
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(160deg,#0D0A0B,#3A1A2C);"></div><div class="grad-info"><b>Noite</b><small>Tinta → Vinho Profundo</small></div></div>
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(135deg,#FAF7F4,#EDE8E3);"></div><div class="grad-info"><b>Névoa</b><small>Creme → Areia · Impressos</small></div></div>
+    <div class="grad-card"><div class="grad-preview" style="background:linear-gradient(135deg,#5C2D44,#3A1A2C,#D4623A);"></div><div class="grad-info"><b>Memória</b><small>Tricolor exclusivo fottu.br</small></div></div>
+  </div>
+</section>
+
+<section id="v26" class="section alt">
+  <div class="ch-eyebrow">2.6 — Tipografia</div>
+  <h2 class="ch-title">Três fontes.<br>Um sistema completo.</h2>
+
+  <div class="typo-block">
+    <div class="typo-meta">DISPLAY · TÍTULOS — Cormorant Garamond Italic</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.8rem;color:var(--smoke);line-height:1.05;">Cada foto guarda<br>um mundo inteiro.</div>
+    <p style="font-size:0.77rem;color:rgba(250,247,244,0.35);margin-top:0.7rem;">Regular / SemiBold / Bold · Italic obrigatório · 24–72px · Uso: títulos, nome da marca, campanhas emocionais.</p>
+  </div>
+
+  <div class="typo-block">
+    <div class="typo-meta">CORPO / INTERFACE — Outfit</div>
+    <div style="font-family:'Outfit',sans-serif;font-size:1rem;color:rgba(250,247,244,0.75);">Pedido simples: você nos envia a foto, escolhe o tamanho e nós cuidamos do resto. Em até 5 dias úteis, sua memória favorita chega na sua porta com muito carinho.</div>
+    <p style="font-size:0.77rem;color:rgba(250,247,244,0.35);margin-top:0.7rem;">Light / Regular / Medium · 14–18px · Uso: textos corridos, descrições de produto, WhatsApp, legendas.</p>
+  </div>
+
+  <div class="typo-block">
+    <div class="typo-meta">TÉCNICO / CÓDIGO — Space Mono (uso restrito)</div>
+    <div style="font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--ember);">@fottu.br · #fottubr · KIT-4X · PEDIDO-001 · R$79,00</div>
+    <p style="font-size:0.77rem;color:rgba(250,247,244,0.35);margin-top:0.7rem;">Regular · 11–14px · Uso: handles, códigos, referências técnicas, datas no brand book.</p>
+  </div>
+</section>
+
+<section id="v27" class="section dark">
+  <div class="ch-eyebrow">2.7 · 2.8 · 2.9 · 2.10 — Iconografia, Fotografia, Formas & Normas</div>
+  <h2 class="ch-title">Os elementos que<br>completam a marca.</h2>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">Iconografia</h3>
+      <div class="card"><p><b style="color:var(--smoke);">Estilo:</b> Linha fina (stroke), bordas arredondadas, traço de 1.5–2px. Nunca ícones preenchidos. Paleta: terracota + dourado.</p></div>
+      <div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:1rem;">
+        <div style="text-align:center;"><div style="font-size:1.6rem;">📸</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Foto</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">🧲</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Ímã</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">💝</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Afeto</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">🏠</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Lar</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">🎁</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Presente</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">🐾</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Pet</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">⭐</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Premium</div></div>
+        <div style="text-align:center;"><div style="font-size:1.6rem;">✨</div><div style="font-size:0.6rem;color:rgba(250,247,244,0.3);">Detalhes</div></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">Diretrizes de Fotografia</h3>
+      <div class="hook"><div class="hook-label">✅ Permitido</div><div class="hook-text">Luz natural, tons quentes, geladeiras reais e habitadas</div></div>
+      <div class="hook"><div class="hook-label">✅ Permitido</div><div class="hook-text">Mãos femininas segurando o produto com carinho</div></div>
+      <div class="hook"><div class="hook-label">✅ Permitido</div><div class="hook-text">Contexto doméstico real — cozinhas com vida</div></div>
+      <div class="hook" style="border-color:rgba(239,68,68,0.2);"><div class="hook-label" style="color:#fca5a5;">❌ Proibido</div><div class="hook-text">Fundo branco de estúdio — frio e sem emoção</div></div>
+      <div class="hook" style="border-color:rgba(239,68,68,0.2);"><div class="hook-label" style="color:#fca5a5;">❌ Proibido</div><div class="hook-text">Edição pesada que altere as cores da paleta</div></div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">2.9 — Formas</h3>
+      <p style="font-size:0.83rem;color:rgba(250,247,244,0.55);margin-bottom:1rem;">As formas da fottu.br são <b style="color:var(--smoke);">arredondadas e orgânicas</b> — evocam o ímã, a lente, o afeto. Evite ângulos retos e formas muito geométricas em elementos decorativos.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div style="width:60px;height:60px;background:var(--ember);border-radius:50%;opacity:0.7;"></div>
+        <div style="width:60px;height:60px;background:var(--ember);border-radius:16px;opacity:0.7;"></div>
+        <div style="width:80px;height:40px;background:var(--ember);border-radius:30px;opacity:0.7;margin-top:10px;"></div>
+        <div style="width:60px;height:60px;background:var(--ember);border-radius:50% 50% 50% 12px;opacity:0.7;"></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">2.10 — Normas Gerais</h3>
+      <div class="hook"><div class="hook-text">Espaço mínimo ao redor do logo = altura da letra "f"</div></div>
+      <div class="hook"><div class="hook-text">Consistência > Criatividade — use sempre os elementos aprovados</div></div>
+      <div class="hook"><div class="hook-text">Em dúvida, use menos — minimalismo é mais elegante</div></div>
+      <div class="hook"><div class="hook-text">Nunca misture versões de logo no mesmo material</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  3.0 IDENTIDADE VERBAL
+══════════════════════════════════════ -->
+
+<section id="w31" class="section alt">
+  <div class="sticky-bar"><span class="sticky-title">3.0 Identidade Verbal</span><span class="sticky-num">CAP 03</span></div>
+  <br>
+  <div class="ch-eyebrow">3.1 · 3.2 — Tom de Voz & Normas</div>
+  <h2 class="ch-title">Como a fottu.br<br>se expressa.</h2>
+
+  <div class="g2">
+    <div class="card ember">
+      <h3 style="color:var(--ember3);">✅ Falamos assim</h3>
+      <ul style="padding-left:1.1rem;font-size:0.83rem;color:rgba(250,247,244,0.72);line-height:2.1;">
+        <li>Com calor humano — como quem cuida, não quem vende</li>
+        <li>Chamando pelo nome quando possível</li>
+        <li>Celebrando pequenos momentos como grandes</li>
+        <li>Com emoção honesta — nunca manipuladora</li>
+        <li>Com confiança discreta — o produto fala</li>
+        <li>Em português brasileiro natural e inclusivo</li>
+        <li>Com emojis com moderação: 💛 📸 🧲 ✨</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(239,68,68,0.15);">
+      <h3 style="color:#fca5a5;">❌ Nunca falamos assim</h3>
+      <ul style="padding-left:1.1rem;font-size:0.83rem;color:rgba(250,247,244,0.55);line-height:2.1;">
+        <li>Linguagem gritada ("MEGA DESCONTO!!!!!")</li>
+        <li>Frieza corporativa e técnica</li>
+        <li>Gírias forçadas fora do contexto</li>
+        <li>Autopromoção excessiva</li>
+        <li>Descrição técnica como argumento emocional</li>
+        <li>Texto genérico que poderia ser de qualquer marca</li>
+        <li>Excesso de emojis ou pontuação repetida</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin-bottom:1.2rem;">Exemplos de linguagem em prática</h3>
+  <div class="g2">
+    <div>
+      <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,247,244,0.3);margin-bottom:0.6rem;">❌ VERSÃO ERRADA</div>
+      <div class="blockquote" style="border-left-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.04);font-size:0.9rem;">"Produto de alta qualidade! Ímã sublimação 5x5 vitrificado. Entrega rápida! Entre em contato!!"</div>
+    </div>
+    <div>
+      <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,247,244,0.3);margin-bottom:0.6rem;">✅ VERSÃO CERTA</div>
+      <div class="blockquote">"Toda vez que ela abre a geladeira, vai ver essa foto. Essa é a diferença entre um presente e uma memória."</div>
+    </div>
+  </div>
+</section>
+
+<section id="w33" class="section dark">
+  <div class="ch-eyebrow">3.3 — WhatsApp Business</div>
+  <h2 class="ch-title">Cada mensagem é<br>uma experiência de marca.</h2>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">⚙️ Configuração do Perfil</h3>
+      <div class="hook"><div class="hook-label">NOME DA CONTA</div><div class="hook-text">fottu.br — Ímãs Personalizados</div></div>
+      <div class="hook"><div class="hook-label">CATEGORIA</div><div class="hook-text">Compras e varejo / Presentes personalizados</div></div>
+      <div class="hook"><div class="hook-label">DESCRIÇÃO DO NEGÓCIO</div><div class="hook-text">Transformamos suas fotos em ímãs de geladeira personalizados com acabamento premium. Memórias que ficam para sempre. 💛 Atendemos todo o Brasil.</div></div>
+      <div class="hook"><div class="hook-label">MENSAGEM DE BOAS-VINDAS</div><div class="hook-text">Oi! 💛 Que bom ter você aqui na fottu.br! Você chegou no lugar certo pra transformar suas memórias favoritas em ímãs lindos. Me conta — qual momento você quer eternizar?</div></div>
+      <div class="hook"><div class="hook-label">MENSAGEM DE AUSÊNCIA</div><div class="hook-text">Oi! No momento não estou disponível, mas já já te respondo. Me conta: qual memória especial você quer transformar em ímã? Já vai pensando na foto! 📸</div></div>
+    </div>
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">💬 Templates de Mensagens</h3>
+      <div class="wa-container">
+        <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.6rem;">CONFIRMAÇÃO DE PEDIDO</div>
+        <div class="wa-bubble wa-sent">Perfeito, [nome]! 🥰 Recebi sua foto e ela ficou linda. Vou começar a produção hoje. Prazo: até [data]. Pix confirmado?<div class="wa-time">agora ✓✓</div></div>
+
+        <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:1rem;margin-bottom:0.6rem;">ENVIO DO PRODUTO</div>
+        <div class="wa-bubble wa-sent">[Nome], saiu! 📦✨ Seus ímãs foram despachados com muito carinho. Rastreio: [xxx]. Mal posso esperar ver a foto na geladeira! Me manda quando chegar? 🧲💛<div class="wa-time">agora ✓✓</div></div>
+
+        <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:1rem;margin-bottom:0.6rem;">PÓS-VENDA (3 DIAS DEPOIS)</div>
+        <div class="wa-bubble wa-sent">Oi [nome]! Chegou bem? 💛 Fico feliz de saber que sua lembrança está na geladeira agora. Se quiser me marcar num story, fico muito feliz! 🥰<div class="wa-time">agora ✓✓</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="w34" class="section alt">
+  <div class="ch-eyebrow">3.4 — Redes Sociais</div>
+  <h2 class="ch-title">Perfis, bios e<br>o que funciona em cada rede.</h2>
+
+  <!-- INSTAGRAM -->
+  <h3 style="color:var(--smoke);margin:0 0 1rem;font-family:'Cormorant Garamond',serif;font-size:1.5rem;">📸 Instagram</h3>
+  <div class="social-card">
+    <div class="sc-cover" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);"></div>
+    <div class="sc-header-row">
+      <div class="sc-avatar">f</div>
+      <div class="sc-info">
+        <div class="sc-name">fottu.br</div>
+        <div class="sc-handle">@fottu.br · Conta comercial · Loja de decoração</div>
+      </div>
+    </div>
+    <div class="sc-bio-text">
+      📸 Seus momentos favoritos na geladeira, todo dia<br>
+      💛 Ímãs personalizados com acabamento premium<br>
+      🧲 Peça pelo link · Envio pra todo Brasil<br>
+      ✨ Presente com significado de verdade<br>
+      🔗 fottu.bio/pedido ← Cardápio digital
+    </div>
+    <div class="sc-stats">
+      <div class="sc-stat"><span class="sc-stat-n">9+</span><div class="sc-stat-l">posts antes de divulgar</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">4×</span><div class="sc-stat-l">reels por semana</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">5×</span><div class="sc-stat-l">stories por dia</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">100%</span><div class="sc-stat-l">comentários respondidos</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>O que funciona no Instagram em 2026</h3>
+    <div class="tbl" style="margin-top:1rem;">
+      <table><thead><tr><th>Formato</th><th>Alcance</th><th>Objetivo</th><th>Freq. ideal</th></tr></thead>
+      <tbody>
+        <tr><td><b>Reels</b></td><td>70% do alcance orgânico</td><td>Awareness + emoção</td><td>4× por semana</td></tr>
+        <tr><td><b>Stories</b></td><td>Maior taxa de conversão</td><td>Relacionamento + venda</td><td>5× por dia</td></tr>
+        <tr><td><b>Carrossel</b></td><td>Mais salvamentos</td><td>Autoridade + educação</td><td>2× por semana</td></tr>
+        <tr><td><b>Post estático</b></td><td>Feed / vitrine</td><td>Depoimentos + produto</td><td>3× por semana</td></tr>
+        <tr><td><b>Collab</b></td><td>Dobro do alcance</td><td>Novo público</td><td>2× por mês</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <h3 style="color:var(--smoke);margin:2rem 0 1rem;font-family:'Cormorant Garamond',serif;font-size:1.5rem;">🎵 TikTok</h3>
+  <div class="social-card">
+    <div class="sc-cover" style="background:linear-gradient(135deg,#010101,#1a1a2e);"></div>
+    <div class="sc-header-row">
+      <div class="sc-avatar" style="background:linear-gradient(135deg,#ff0050,#00f2ea);">f</div>
+      <div class="sc-info">
+        <div class="sc-name">fottu.br</div>
+        <div class="sc-handle">@fottu.br</div>
+      </div>
+    </div>
+    <div class="sc-bio-text">📸 Tirando suas fotos do celular pra geladeira<br>🧲 Ímãs personalizados com muito afeto<br>💛 Pede o seu pelo link na bio ↓</div>
+    <div class="sc-stats">
+      <div class="sc-stat"><span class="sc-stat-n">15–45s</span><div class="sc-stat-l">duração ideal</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">3s</span><div class="sc-stat-l">gancho crítico</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">1–2×</span><div class="sc-stat-l">por dia</div></div>
+      <div class="sc-stat"><span class="sc-stat-n">100%</span><div class="sc-stat-l">resposta a comentários</div></div>
+    </div>
+  </div>
+
+  <!-- PINTEREST -->
+  <h3 style="color:var(--smoke);margin:2rem 0 1rem;font-family:'Cormorant Garamond',serif;font-size:1.5rem;">📌 Pinterest — Motor de Busca Visual</h3>
+  <div class="card">
+    <p style="font-size:0.87rem;color:rgba(250,247,244,0.65);line-height:1.75;">Pinterest é diferente das outras redes — é um <b style="color:var(--smoke);">mecanismo de busca visual</b>. Conteúdo postado hoje gera cliques por meses. Palavras-chave no título e descrição são fundamentais: "ímã personalizado geladeira", "presente com foto personalizado", "decoração afetiva cozinha", "imã foto presente mãe". Crie pastas temáticas: Produtos • Inspirações de Cozinha • Presentes Personalizados • Decoração Afetiva.</p>
+  </div>
+
+  <div class="rule"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin-bottom:1.2rem;">🔖 Hashtags Estratégicas</h3>
+  <div style="margin-bottom:1rem;">
+    <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ember);margin-bottom:0.6rem;">MARCA (sempre usar)</div>
+    <span class="tag t-ember">#fottubr</span><span class="tag t-ember">#fottubrimpressoes</span>
+  </div>
+  <div style="margin-bottom:1rem;">
+    <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">PRODUTO (uso frequente)</div>
+    <span class="tag t-gold">#imãpersonalizado</span><span class="tag t-gold">#imadegerladeira</span><span class="tag t-gold">#presentepersonalizado</span><span class="tag t-gold">#presentecomfoto</span>
+  </div>
+  <div style="margin-bottom:1rem;">
+    <div style="font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,247,244,0.35);margin-bottom:0.6rem;">NICHO (rotacionar por conteúdo)</div>
+    <span class="tag t-smoke">#memoriaafetiva</span><span class="tag t-smoke">#decoracaopersonalizada</span><span class="tag t-smoke">#presenteparamae</span><span class="tag t-smoke">#presentecriativo</span><span class="tag t-smoke">#presentedenamoro</span><span class="tag t-smoke">#presenteparapet</span><span class="tag t-smoke">#lembrancapersonalizada</span><span class="tag t-smoke">#decoracaoafetiva</span>
+  </div>
+
+  <div class="rule"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin-bottom:1rem;">🎬 Hooks — Aberturas que param o scroll</h3>
+  <div class="g2">
+    <div>
+      <div class="hook"><div class="hook-label">CURIOSIDADE</div><div class="hook-text">"Você tem uma foto perfeita no celular que nunca vai ver de novo."</div><div class="hook-why">95% das pessoas se identificam. Para o scroll imediatamente.</div></div>
+      <div class="hook"><div class="hook-label">REVELAÇÃO</div><div class="hook-text">"O presente que ela não parou de comentar por semanas."</div><div class="hook-why">Resultado antes da solução. Gera curiosidade sobre o que foi.</div></div>
+      <div class="hook"><div class="hook-label">IDENTIDADE</div><div class="hook-text">"Se você é daquelas que decora a geladeira com carinho, esse vídeo é pra você."</div><div class="hook-why">Aciona pertencimento. Quem se identifica, assiste até o fim.</div></div>
+      <div class="hook"><div class="hook-label">PROBLEMA</div><div class="hook-text">"Ela passou horas escolhendo a foto. Chorou quando viu o resultado."</div><div class="hook-why">Narrativa emocional desde o primeiro segundo.</div></div>
+    </div>
+    <div>
+      <div class="hook"><div class="hook-label">PROVOCAÇÃO</div><div class="hook-text">"Quantas fotos lindas você tem no celular que ninguém mais vai ver?"</div><div class="hook-why">Pergunta retórica que gera reflexão e comentários.</div></div>
+      <div class="hook"><div class="hook-label">CONTRASTE</div><div class="hook-text">"Antes: foto esquecida no celular. Depois: sorriso toda vez que abre a geladeira."</div><div class="hook-why">Before/After emocional sempre performa.</div></div>
+      <div class="hook"><div class="hook-label">URGÊNCIA</div><div class="hook-text">"A data chega em X dias. Ainda dá tempo de dar o presente que ela vai guardar pra sempre."</div><div class="hook-why">Ativa aversão à perda + urgência real.</div></div>
+      <div class="hook"><div class="hook-label">NÚMEROS</div><div class="hook-text">"5 presentes que nunca fui me arrepender de ter dado."</div><div class="hook-why">Listicle — promete valor claro e rápido.</div></div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin-bottom:1rem;">📐 Estrutura de Vídeos que Convertem</h3>
+  <div class="card">
+    <div class="tbl" style="margin-top:0;">
+      <table><thead><tr><th>Segundo</th><th>Elemento</th><th>O que fazer</th></tr></thead>
+      <tbody>
+        <tr><td><b>0–3s</b></td><td>GANCHO</td><td>Frase que para o scroll. Visual impactante. Pergunta provocadora.</td></tr>
+        <tr><td><b>3–15s</b></td><td>CONTEÚDO</td><td>Processo/história/antes&depois. Mostrar, não contar.</td></tr>
+        <tr><td><b>15–25s</b></td><td>PROVA</td><td>Resultado, depoimento, reação emocional real.</td></tr>
+        <tr><td><b>25–30s</b></td><td>CTA</td><td>"Link na bio" / "Me chama no direct" / "Manda sua foto"</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  4.0 DESDOBRAMENTOS
+══════════════════════════════════════ -->
+
+<section id="d41" class="section dark">
+  <div class="sticky-bar"><span class="sticky-title">4.0 Desdobramentos</span><span class="sticky-num">CAP 04</span></div>
+  <br>
+  <div class="ch-eyebrow">4.1 — Key Visual</div>
+  <h2 class="ch-title">O visual-chave<br>da fottu.br.</h2>
+
+  <div class="highlight">
+    <div class="ch-eyebrow" style="margin-bottom:0.5rem;">CONCEITO DO KEY VISUAL</div>
+    <p style="font-size:0.9rem;color:rgba(250,247,244,0.8);line-height:1.8;">O Key Visual da fottu.br é sempre construído sobre o <b style="color:var(--ember3);">trio: mão + ímã + geladeira</b>. A mão representa cuidado e afeto. O ímã representa o produto e a memória materializada. A geladeira representa o cotidiano, o lar, a presença constante. Quando esses três elementos aparecem juntos, é fottu.br instantaneamente reconhecível.</p>
+  </div>
+
+  <div class="g3" style="margin-top:2rem;">
+    <div class="card"><h3>Elemento 1 — Mão</h3><p>Mão feminina, pele natural, unhas discretas. Segurando o ímã com delicadeza. Luz quente e natural. Representa: cuidado, afeto, humanidade.</p></div>
+    <div class="card"><h3>Elemento 2 — Ímã</h3><p>O produto em destaque, com a foto claramente visível. Sempre com acabamento impecável. Representa: o produto, a memória materializada.</p></div>
+    <div class="card"><h3>Elemento 3 — Geladeira</h3><p>Geladeira real, habitada, com vida. Não estúdio. Luz natural da cozinha. Representa: cotidiano, lar, presença diária.</p></div>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--smoke);margin:2rem 0 1rem;">Composições Aprovadas</h3>
+  <div class="g2">
+    <div class="kv-pattern" style="background:linear-gradient(135deg,var(--plum3),var(--ember2));display:flex;align-items:center;justify-content:center;">
+      <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;">
+        <div style="font-size:2rem;margin-bottom:0.3rem;">🤚 → 🧲 → ❄️</div>
+        <div style="font-size:0.75rem;opacity:0.6;">Mão entregando o ímã à geladeira</div>
+      </div>
+    </div>
+    <div class="kv-pattern" style="background:linear-gradient(135deg,var(--ink2),var(--plum));display:flex;align-items:center;justify-content:center;">
+      <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;">
+        <div style="font-size:2rem;margin-bottom:0.3rem;">📱 → ✨ → 🧲</div>
+        <div style="font-size:0.75rem;opacity:0.6;">Antes (celular) → Depois (ímã na geladeira)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="d42" class="section alt">
+  <div class="ch-eyebrow">4.2 · 4.3 — Pattern & Pasta de Marca</div>
+  <h2 class="ch-title">Elementos que criam<br>consistência visual.</h2>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">Pattern (Padrão Repetitivo)</h3>
+      <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:2px;border-radius:var(--r);overflow:hidden;margin-bottom:1rem;">
+        {Array(32).fill(0).map((_,i) => `<div style="height:32px;background:${i%2===0?'rgba(212,98,58,0.15)':'rgba(212,98,58,0.04)'};">`).join('')}
+      </div>
+      <div style="height:80px;border-radius:var(--r);overflow:hidden;margin-bottom:0.8rem;position:relative;background:var(--ink2);">
+        <svg width="100%" height="100%" viewBox="0 0 400 80">
+          <defs><pattern id="pt1" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.5" fill="rgba(212,98,58,0.25)"/><circle cx="0" cy="0" r="1.5" fill="rgba(212,98,58,0.25)"/><circle cx="40" cy="0" r="1.5" fill="rgba(212,98,58,0.25)"/><circle cx="0" cy="40" r="1.5" fill="rgba(212,98,58,0.25)"/><circle cx="40" cy="40" r="1.5" fill="rgba(212,98,58,0.25)"/></pattern></defs>
+          <rect width="400" height="80" fill="url(#pt1)"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:rgba(250,247,244,0.3);">pattern de pontos — fottu.br</div>
+      </div>
+      <div style="height:80px;border-radius:var(--r);overflow:hidden;background:var(--ember2);">
+        <svg width="100%" height="100%" viewBox="0 0 400 80">
+          <defs><pattern id="pt2" width="30" height="52" patternUnits="userSpaceOnUse"><path d="M8 10 L8 30 Q8 38 16 38 L22 38 Q30 38 30 30 L30 10" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none" stroke-linecap="round"/></pattern></defs>
+          <rect width="400" height="80" fill="url(#pt2)"/>
+        </svg>
+      </div>
+      <div style="font-size:0.72rem;color:rgba(250,247,244,0.35);margin-top:0.5rem;">patterns: pontos e ímãs estilizados</div>
+    </div>
+    <div>
+      <h3 style="color:var(--gold2);margin-bottom:1rem;">4.3 — Pasta de Marca</h3>
+      <p style="font-size:0.83rem;color:rgba(250,247,244,0.55);margin-bottom:1rem;">Organização recomendada dos arquivos da marca:</p>
+      <div class="hook"><div class="hook-label">📁 01 - LOGOS</div><div class="hook-text">PNG fundo transparente · SVG · Versões color/PB · Todas as 8 variações</div></div>
+      <div class="hook"><div class="hook-label">📁 02 - CORES</div><div class="hook-text">Paleta em ASE (Adobe) · Paleta em PNG · Swatches Canva</div></div>
+      <div class="hook"><div class="hook-label">📁 03 - FONTES</div><div class="hook-text">Cormorant Garamond · Outfit · Space Mono · Licenças</div></div>
+      <div class="hook"><div class="hook-label">📁 04 - TEMPLATES</div><div class="hook-text">Stories · Feed · Carrossel · Capa YouTube · Anúncios</div></div>
+      <div class="hook"><div class="hook-label">📁 05 - FOTOS</div><div class="hook-text">Produto · Contexto · Clientes (com autorização) · Key Visual</div></div>
+      <div class="hook"><div class="hook-label">📁 06 - EMBALAGEM</div><div class="hook-text">Arte caixinha · Arte cartão · Arte adesivo · Arte carimbo</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="d44" class="section dark">
+  <div class="ch-eyebrow">4.4 — Redes Sociais — Templates e Layout</div>
+  <h2 class="ch-title">Estrutura visual<br>de cada formato.</h2>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Instagram Feed</h3>
+      <div class="card" style="margin-bottom:1rem;">
+        <h3>Estética do feed</h3>
+        <p>Tons quentes e claros. Fundo creme ou areia. Produto em uso real. Geladeiras coloridas e cheias de vida. Nunca fundo preto puro. Luz natural sempre. Consistência de cores > variedade.</p>
+      </div>
+      <div class="card">
+        <h3>Grid 3×3 recomendado</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;border-radius:8px;overflow:hidden;margin-top:0.5rem;">
+          <div style="height:70px;background:linear-gradient(135deg,var(--ember2),var(--plum3));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📸</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ink2),var(--plum));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧲</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ember),var(--plum2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">💛</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--plum),var(--ink2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">✨</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ember3),var(--ember2));display:flex;align-items:center;justify-content:center;font-size:1.4rem;">fb</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ink2),var(--plum3));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🎁</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ember2),var(--ink2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🏠</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--plum3),var(--ember));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📦</div>
+          <div style="height:70px;background:linear-gradient(135deg,var(--ink),var(--plum));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">⭐</div>
+        </div>
+        <p style="font-size:0.72rem;color:rgba(250,247,244,0.35);margin-top:0.5rem;">Alterne: produto → bastidores → depoimento → produto → educativo → reels...</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Stories — Estrutura Semanal</h3>
+      <div class="tbl"><table><thead><tr><th>Dia</th><th>Tipo de Story</th><th>Objetivo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Seg</b></td><td>Bastidor da semana</td><td>Humanização</td></tr>
+        <tr><td><b>Ter</b></td><td>Produto/kit do dia</td><td>Vitrine</td></tr>
+        <tr><td><b>Qua</b></td><td>Depoimento de cliente</td><td>Prova social</td></tr>
+        <tr><td><b>Qui</b></td><td>Enquete ou caixinha de dúvidas</td><td>Engajamento</td></tr>
+        <tr><td><b>Sex</b></td><td>Pedidos da semana + CTA</td><td>Conversão</td></tr>
+        <tr><td><b>Sab</b></td><td>Bastidor / processo de produção</td><td>Confiança</td></tr>
+        <tr><td><b>Dom</b></td><td>Inspiração emocional</td><td>Conexão</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section id="d45" class="section alt">
+  <div class="ch-eyebrow">4.5 · 4.6 — ADs & Google Display</div>
+  <h2 class="ch-title">Anúncios que<br>convertem com emoção.</h2>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Meta Ads (Facebook/Instagram)</h3>
+      <div class="tbl"><table><thead><tr><th>Formato</th><th>Objetivo</th><th>Copy sugerida</th></tr></thead>
+      <tbody>
+        <tr><td><b>Reel Ad</b></td><td>Awareness</td><td>"Foto no celular → ímã na geladeira. Vem ver."</td></tr>
+        <tr><td><b>Carrossel</b></td><td>Consideração</td><td>"O presente que ela vai usar todo dia" + fotos de produto</td></tr>
+        <tr><td><b>Story Ad</b></td><td>Conversão</td><td>"Só X vagas essa semana. Garante a sua."</td></tr>
+        <tr><td><b>Imagem única</b></td><td>Retargeting</td><td>"Ainda pensando? Sua memória favorita te espera."</td></tr>
+      </tbody></table></div>
+      <div class="card" style="margin-top:1rem;">
+        <h3>Segmentação recomendada</h3>
+        <p>Mulheres 25–45 • Interesses: família, decoração, presentes, fotografia • Comportamento: compras online • Lookalike de clientes existentes</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Google Display</h3>
+      <div class="card" style="margin-bottom:1rem;">
+        <h3>Headline principal</h3>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--smoke);">"Transforme sua foto favorita em ímã personalizado"</p>
+      </div>
+      <div class="card" style="margin-bottom:1rem;">
+        <h3>Headlines alternativas (A/B)</h3>
+        <p>"Presente que ela nunca vai jogar fora"<br>"Memórias que ficam na geladeira pra sempre"<br>"Ímã com sua foto — entrega em todo Brasil"</p>
+      </div>
+      <div class="card">
+        <h3>Descrições</h3>
+        <p>"Acabamento premium, impressão HD, entrega rápida. Personalize com sua foto favorita."<br>"O presente com mais significado que ela vai ter na geladeira todo dia."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="d47" class="section dark">
+  <div class="ch-eyebrow">4.7 — Site</div>
+  <h2 class="ch-title">Quando criar o site<br>e o que ele precisa ter.</h2>
+
+  <div class="card" style="margin-bottom:1.5rem;padding:2rem;background:rgba(201,152,44,0.06);border-color:rgba(201,152,44,0.2);">
+    <h3 style="color:var(--gold2);">⚠️ Prioridade de Criação</h3>
+    <p>Nos primeiros 6 meses, o site não é prioridade. Instagram + WhatsApp + Elo7 convertem melhor. Crie o site apenas quando você tiver: +100 clientes, fluxo de caixa estável, e necessidade de escalar com anúncios de Google.</p>
+  </div>
+
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Estrutura ideal do site</h3>
+      <div class="hook"><div class="hook-label">HOME</div><div class="hook-text">Hero emocional → produto em contexto → depoimentos → CTA para WhatsApp</div></div>
+      <div class="hook"><div class="hook-label">PRODUTOS</div><div class="hook-text">Kits com fotos, preços claros, botão "Pedir pelo WhatsApp"</div></div>
+      <div class="hook"><div class="hook-label">COMO FUNCIONA</div><div class="hook-text">3 passos simples: escolhe foto → nos chama → recebe em casa</div></div>
+      <div class="hook"><div class="hook-label">DEPOIMENTOS</div><div class="hook-text">Grid de fotos de clientes com ímãs na geladeira + avaliações</div></div>
+      <div class="hook"><div class="hook-label">FAQ</div><div class="hook-text">Dúvidas frequentes respondidas com a voz da marca</div></div>
+    </div>
+    <div>
+      <h3 style="color:var(--smoke);margin-bottom:1rem;">Antes do site: link na bio</h3>
+      <p style="font-size:0.83rem;color:rgba(250,247,244,0.55);margin-bottom:1rem;">Use um link de bio (Linktree ou nativo do Instagram) com:</p>
+      <div class="hook"><div class="hook-label">LINK 1</div><div class="hook-text">💛 Fazer meu pedido (WhatsApp direto)</div></div>
+      <div class="hook"><div class="hook-label">LINK 2</div><div class="hook-text">📦 Ver kits e preços (Cardápio / Elo7)</div></div>
+      <div class="hook"><div class="hook-label">LINK 3</div><div class="hook-text">⭐ Ver depoimentos de clientes</div></div>
+      <div class="hook"><div class="hook-label">LINK 4</div><div class="hook-text">📸 Como enviar a foto certa</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+  FERRAMENTAS
+══════════════════════════════════════ -->
+
+<section id="tools" class="section alt">
+  <div class="ch-eyebrow">Kit de Ferramentas</div>
+  <h2 class="ch-title">O arsenal digital<br>da fottu.br.</h2>
+
+  <h3 style="color:var(--gold2);margin-bottom:1rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">🎨 Design & Criação</h3>
+  <div class="g2">
+    <div class="tool-card"><div class="tool-emoji">🎨</div><div class="tool-info"><h4>Canva Pro</h4><p>Posts, stories, carrosséis, artes de datas. Tem app no celular. Prioridade #1 pra começar.</p><span class="free-badge">Grátis</span><span class="paid-badge">Pro R$55/mês — recomendado</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">📱</div><div class="tool-info"><h4>CapCut</h4><p>Edição de Reels e TikTok no celular. Templates virais, legendas automáticas, efeitos em alta.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">🎬</div><div class="tool-info"><h4>InShot</h4><p>Edição rápida de vídeo para Stories e Reels. Corte, música, formato em segundos.</p><span class="free-badge">Grátis</span><span class="paid-badge">Pro sem anúncios</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">✨</div><div class="tool-info"><h4>Adobe Express</h4><p>Alternativa ao Canva com integração Adobe. Bom para criar variações de marca e assets premium.</p><span class="free-badge">Plano grátis</span></div></div>
+  </div>
+
+  <h3 style="color:var(--gold2);margin:1.5rem 0 1rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">📊 Gestão & Analytics</h3>
+  <div class="g2">
+    <div class="tool-card"><div class="tool-emoji">📅</div><div class="tool-info"><h4>Meta Business Suite</h4><p>Agendamento gratuito de posts e stories para Instagram e Facebook. Métricas completas.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">📈</div><div class="tool-info"><h4>Later ou Buffer</h4><p>Agendamento visual com pré-visualização do grid. Ajuda a planejar a estética do feed.</p><span class="free-badge">Plano grátis</span><span class="paid-badge">Plano pago para + recursos</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">🗂️</div><div class="tool-info"><h4>Notion</h4><p>Calendário editorial, controle de pedidos, banco de ideias de conteúdo. Tudo organizado num lugar.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">💬</div><div class="tool-info"><h4>WhatsApp Business</h4><p>Catálogo de produtos, respostas automáticas, etiquetas de clientes, listas de transmissão.</p><span class="free-badge">Grátis</span></div></div>
+  </div>
+
+  <h3 style="color:var(--gold2);margin:1.5rem 0 1rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">🔍 Pesquisa & Tendências</h3>
+  <div class="g2">
+    <div class="tool-card"><div class="tool-emoji">🔍</div><div class="tool-info"><h4>TikTok Creative Center</h4><p>Veja os sons em alta, hashtags trending, conteúdo de maior performance por nicho.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">📊</div><div class="tool-info"><h4>Google Trends</h4><p>Sazonalidade de buscas. Veja quando "presente dia das mães" começa a subir — e planeje com antecedência.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">🌐</div><div class="tool-info"><h4>Answer The Public</h4><p>O que as pessoas perguntam sobre presentes personalizados. Gera pautas de conteúdo infinitas.</p><span class="free-badge">Plano grátis limitado</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">📌</div><div class="tool-info"><h4>Pinterest Trends</h4><p>Tendências de decoração e presentes com antecedência de meses. Ótimo para planejar conteúdo sazonal.</p><span class="free-badge">Grátis</span></div></div>
+  </div>
+
+  <h3 style="color:var(--gold2);margin:1.5rem 0 1rem;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;">💰 Vendas & Presença Online</h3>
+  <div class="g2">
+    <div class="tool-card"><div class="tool-emoji">🛒</div><div class="tool-info"><h4>Elo7</h4><p>Maior marketplace de presentes personalizados do Brasil. Seu público ideal está aqui. Configure bem as palavras-chave.</p><span class="free-badge">Grátis para cadastro</span><span class="paid-badge">Comissão por venda</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">📦</div><div class="tool-info"><h4>Mercado Livre</h4><p>Volume e alcance amplo. Pessoas chegam com intenção de compra. Invista em fotos e título otimizado.</p><span class="paid-badge">Comissão por venda</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">🔗</div><div class="tool-info"><h4>Linktree / Beacons</h4><p>Link de bio com todos os canais: WhatsApp, Elo7, ML, cardápio digital. Indispensável.</p><span class="free-badge">Grátis</span></div></div>
+    <div class="tool-card"><div class="tool-emoji">💳</div><div class="tool-info"><h4>Pix + Mercado Pago</h4><p>Pix para pagamento rápido. Mercado Pago para parcelamento e link de pagamento profissional.</p><span class="free-badge">Grátis para receber</span></div></div>
+  </div>
+</section>
+
+<!-- CALENDÁRIO -->
+<section class="section dark" style="padding-top:3rem;">
+  <div class="ch-eyebrow">Calendário Editorial 2026</div>
+  <h2 class="ch-title">12 meses.<br>12 estratégias.</h2>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Janeiro</span><span class="cal-fire">🆕 Virada de Ano</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">01/Jan — Ano Novo</span><span class="cal-date-chip">Foco: recomeço</span></div>
+      <div class="cal-idea">"Renova a geladeira, renova a energia" — troque os ímãs velhos por novos</div>
+      <div class="cal-idea">Kit "Melhores momentos de 2025" — para quem quer eternizar o ano que passou</div>
+      <div class="cal-idea">Conteúdo educativo: "Como escolher sua melhor foto do ano" — topo de funil</div>
+      <div class="cal-idea">Pré-venda Dia dos Namorados (14/fev): lista de espera começa aqui</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Fevereiro</span><span class="cal-fire">💕 Namorados — ALTA TEMPORADA</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥 14/Fev — Namorados</span><span class="cal-date-chip">Carnaval</span></div>
+      <div class="cal-idea">⚠️ Campanha começa em 20/jan — 25 dias de antecedência</div>
+      <div class="cal-idea">"A melhor foto de vocês dois, pra ficar na geladeira pra sempre"</div>
+      <div class="cal-idea">Kit casal: 2 ímãs com fotos do casal (1 pra cada geladeira)</div>
+      <div class="cal-idea">Urgência crescente: "Últimos dias pra garantir entrega até 14/02"</div>
+      <div class="cal-idea">Carnaval pós-data: "Foto de Carnaval ficou linda? Aqui ela vira ímã"</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Março</span><span class="cal-fire">👩 Dia da Mulher (08/03)</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥 08/Mar — Dia da Mulher</span></div>
+      <div class="cal-idea">"Presenteia a mulher que você admira com a memória mais linda dela"</div>
+      <div class="cal-idea">Série: "Histórias de mulheres que colecionam memórias"</div>
+      <div class="cal-idea">⚠️ Pré-Dia das Mães: "Lista de espera aberta para maio" — começa a capturar</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Abril</span><span class="cal-fire">🐰 Páscoa + Aquecimento Mães</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥 Páscoa (variável)</span><span class="cal-date-chip">Início campanha Mães</span></div>
+      <div class="cal-idea">Páscoa: "Kit ímãs no lugar da caixa de chocolate — ela prefere isso" (provocativo)</div>
+      <div class="cal-idea">⚠️ Dia das Mães é em maio — campanha começa AGORA</div>
+      <div class="cal-idea">"O presente mais especial pra dar pra sua mãe em 2026"</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Maio</span><span class="cal-fire">👩‍👧 DIA DAS MÃES — MAIOR DATA 🔥🔥🔥</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥🔥 2° Dom/Mai</span></div>
+      <div class="cal-idea">🚨 MÁXIMA PRODUÇÃO — limite pedidos se precisar para manter qualidade</div>
+      <div class="cal-idea">"A geladeira dela vai ter você pra sempre" — campanha emocional máxima</div>
+      <div class="cal-idea">Kit especial Dia das Mães: embalagem diferenciada + cartão temático</div>
+      <div class="cal-idea">Stories diários de countdown + reações de clientes recebendo</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Junho</span><span class="cal-fire">🌽 Namorados BR (12/06) + Festa Junina</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥 12/Jun — Namorados BR</span><span class="cal-date-chip">Festas Juninas</span></div>
+      <div class="cal-idea">⚠️ Campanha namorados começa 25/maio</div>
+      <div class="cal-idea">"O presente que ela vai mostrar pra mãe, pra amiga e pra todo mundo"</div>
+      <div class="cal-idea">Festa Junina: "Foto de forró virou ímã" — conteúdo descontraído e sazonal</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Julho</span><span class="cal-fire">🏖️ Férias + Viagens</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥 Férias Escolares</span></div>
+      <div class="cal-idea">"Voltou de viagem? Eterniza a melhor foto aqui"</div>
+      <div class="cal-idea">"Geladeira como diário de viagens — 1 ímã por destino"</div>
+      <div class="cal-idea">Pré-aquecimento Dia dos Pais — começa a criar conteúdo de topo</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Agosto</span><span class="cal-fire">👨 Dia dos Pais — ALTA TEMPORADA</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥 2° Dom/Ago — Pais</span></div>
+      <div class="cal-idea">⚠️ Campanha começa 20/julho</div>
+      <div class="cal-idea">"Ele não pede nada. Você sabe o que dar."</div>
+      <div class="cal-idea">Nicho forte: foto de pai com filhos — máxima emoção</div>
+      <div class="cal-idea">"A reação do pai quando viu a foto do filho pequeno na geladeira"</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Setembro</span><span class="cal-fire">🌸 Construção de Comunidade</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">Primavera 22/Set</span></div>
+      <div class="cal-idea">Mês de relacionamento — menos venda, mais conexão</div>
+      <div class="cal-idea">Série "Geladeiras da comunidade fottu.br" — UGC de clientes</div>
+      <div class="cal-idea">⚠️ Começa lista de espera para Natal: "Reserva já sua vaga"</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Outubro</span><span class="cal-fire">👶 Dia das Crianças (12/10)</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥 12/Out — Crianças</span><span class="cal-date-chip">31/Out — Halloween</span></div>
+      <div class="cal-idea">"A foto mais fofa do seu filho merece uma geladeira toda dela"</div>
+      <div class="cal-idea">Halloween: "Foto de fantasia de criança? Fica incrível em ímã"</div>
+      <div class="cal-idea">⚠️ Pré-Natal começa AGORA: captação antecipada com desconto early bird</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Novembro</span><span class="cal-fire">🛒 Black Friday + Pré-Natal</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥 Última 6ª — Black Friday</span></div>
+      <div class="cal-idea">Black Friday fottu.br: Kit 8 pelo preço do Kit 4 — apenas 24h</div>
+      <div class="cal-idea">"Compra agora, dá no Natal" — framing de presente antecipado</div>
+      <div class="cal-idea">Lista de transmissão BF: clientes anteriores com oferta exclusiva VIP</div>
+      <div class="cal-idea">⚠️ Preparar logística: aumentar insumos, definir corte de pedidos</div>
+    </div>
+  </div>
+
+  <div class="cal-month">
+    <div class="cal-hdr"><span class="cal-month-name">Dezembro</span><span class="cal-fire">🎄 NATAL — 2ª MAIOR DATA 🔥🔥🔥</span></div>
+    <div class="cal-body">
+      <div class="cal-dates"><span class="cal-date-chip">🔥🔥🔥 25/Dez — Natal</span><span class="cal-date-chip">31/Dez — Virada</span></div>
+      <div class="cal-idea">🚨 Corte de pedidos: mínimo 8 dias antes pra garantir entrega</div>
+      <div class="cal-idea">Embalagem especial de Natal: caixinha temática + cartão</div>
+      <div class="cal-idea">Série "Reações de Natal" — colete vídeos de clientes recebendo</div>
+      <div class="cal-idea">Urgência crescente: countdown diário nos stories</div>
+      <div class="cal-idea">Virada: "Que memória de 2026 você quer eternizar?" — semente 2027</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--ink2);border-top:1px solid rgba(212,98,58,0.15);padding:3rem 4rem;text-align:center;">
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.5rem;font-weight:700;color:var(--ember3);margin-bottom:0.5rem;">fottu.br</div>
+  <div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,244,0.25);">Brand Book Completo · 2026 · v2.0</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(250,247,244,0.2);margin-top:1rem;font-size:1rem;">Lembranças que ficam para sempre.</div>
+</footer>
+
+</main>
+
+<script>
+// Progress bar (raf + passive para scroll suave)
+const prog = document.getElementById('progress');
+let progressTicking = false;
+
+function updateProgress() {
+  const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const progress = Math.min(1, Math.max(0, window.scrollY / max));
+  if (prog) prog.style.transform = `scaleX(${progress})`;
+  progressTicking = false;
+}
+
+function requestProgressUpdate() {
+  if (progressTicking) return;
+  progressTicking = true;
+  requestAnimationFrame(updateProgress);
+}
+
+window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+window.addEventListener('resize', requestProgressUpdate, { passive: true });
+requestProgressUpdate();
+
+// Active nav (observa apenas secoes do main para evitar ruido)
+const items = Array.from(document.querySelectorAll('.sb-item'));
+const sections = Array.from(document.querySelectorAll('main section[id]'));
+let activeSectionId = '';
+
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver((entries) => {
+    let nextId = activeSectionId;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) nextId = entry.target.id;
+    });
+
+    if (!nextId || nextId === activeSectionId) return;
+    activeSectionId = nextId;
+
+    items.forEach((item) => item.classList.remove('active'));
+    const activeLink = document.querySelector(`.sb-item[href="#${activeSectionId}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  }, {
+    rootMargin: '-24% 0px -60% 0px',
+    threshold: [0, 0.2, 0.6]
+  });
+
+  sections.forEach((section) => obs.observe(section));
+}
+
+// Sidebar retratil
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+function setSidebarCollapsed(collapsed) {
+  document.body.classList.toggle('sidebar-collapsed', collapsed);
+  if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+
+if (window.matchMedia('(max-width: 980px)').matches) {
+  setSidebarCollapsed(true);
+}
+
+sidebarToggle?.addEventListener('click', () => {
+  const collapsed = document.body.classList.contains('sidebar-collapsed');
+  setSidebarCollapsed(!collapsed);
+});
+
+sidebarOverlay?.addEventListener('click', () => setSidebarCollapsed(true));
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 980) {
+    setSidebarCollapsed(true);
+  } else {
+    setSidebarCollapsed(false);
+  }
+}, { passive: true });
+
+items.forEach((item) => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 980) setSidebarCollapsed(true);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fottu.br — Estratégia de Conteúdo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08060A;--bg2:#100D14;--bg3:#1A1520;
+  --surface:rgba(255,255,255,0.035);--border:rgba(255,255,255,0.07);
+  --ember:#D4623A;--ember2:#F08060;--ember3:#B8472A;
+  --gold:#C9982C;--gold2:#E4C060;
+  --plum:#6B2D52;--plum2:#3D1830;
+  --green:#2E7D5C;--teal:#1E6B7A;
+  --cream:#FBF7F2;--text:#E8E2DC;--muted:rgba(232,226,220,0.45);
+  --r:14px;--r-sm:8px;--r-lg:20px;
+  --sidebar-w:260px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scrollbar-gutter:stable;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--ember);border-radius:4px;}
+
+/* SIDEBAR NAV */
+#sidebarToggle{
+  position:fixed;top:14px;left:14px;z-index:930;
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid rgba(212,98,58,0.3);
+  background:rgba(16,13,20,0.95);
+  color:var(--cream);font-size:1rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:left 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+#sidebarToggle:hover{background:rgba(212,98,58,0.14);border-color:rgba(212,98,58,0.45);}
+
+#sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:var(--sidebar-w);
+  background:var(--bg2);border-right:1px solid rgba(212,98,58,0.15);
+  overflow-y:auto;z-index:920;padding-bottom:1.2rem;
+  transition:transform 0.25s ease;
+}
+.sb-brand{
+  padding:1.35rem 1.1rem 1.1rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:0.6rem;
+}
+.sb-logo{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:2rem;
+  line-height:1;
+  background:linear-gradient(135deg,var(--cream),var(--ember2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sb-sub{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.34);margin-top:0.45rem;
+}
+.sb-version{
+  display:inline-block;margin-top:0.65rem;
+  padding:0.16rem 0.62rem;border-radius:20px;
+  border:1px solid rgba(201,152,44,0.25);background:rgba(201,152,44,0.1);
+  font-size:0.62rem;letter-spacing:0.11em;text-transform:uppercase;color:var(--gold2);
+}
+.sb-item{
+  display:block;padding:0.48rem 1.1rem;
+  color:rgba(232,226,220,0.56);text-decoration:none;font-size:0.8rem;
+  border-left:2px solid transparent;transition:all 0.18s;
+}
+.sb-item:hover,.sb-item.active{
+  color:var(--cream);
+  background:rgba(212,98,58,0.08);
+  border-left-color:var(--ember);
+}
+
+.sidebar-overlay{
+  position:fixed;inset:0;z-index:910;
+  background:rgba(8,6,10,0.45);opacity:0;pointer-events:none;
+  transition:opacity 0.2s ease;
+}
+
+#mainContent{margin-left:var(--sidebar-w);min-height:100vh;transition:margin-left 0.25s ease;}
+
+body.sidebar-collapsed #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+body.sidebar-collapsed #mainContent{margin-left:0;}
+body.sidebar-collapsed .progress-bar{left:0;}
+body.sidebar-collapsed #sidebarToggle{left:14px;}
+body:not(.sidebar-collapsed) #sidebarToggle{left:calc(var(--sidebar-w) - 18px);}
+
+.progress-bar{
+  position:fixed;top:0;left:var(--sidebar-w);right:0;height:2px;z-index:915;
+  background:rgba(255,255,255,0.05);
+  transition:left 0.25s ease;
+}
+.progress-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,var(--ember),var(--gold));
+  transform-origin:left center;
+  transform:scaleX(0);
+  will-change:transform;
+}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:5.8rem 2rem 4.2rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%,rgba(212,98,58,0.08) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 70% at 80% 60%,rgba(107,45,82,0.1) 0%,transparent 55%),
+    var(--bg);
+  position:relative;overflow:hidden;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(212,98,58,0.1);border:1px solid rgba(212,98,58,0.25);
+  border-radius:30px;padding:0.3rem 1rem;
+  font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ember2);
+  margin-bottom:2rem;animation:rise 0.7s ease both;
+}
+.hero-h1{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:clamp(2.8rem,7vw,5.5rem);line-height:1.05;
+  color:var(--cream);animation:rise 0.8s 0.1s ease both;
+}
+.hero-h1 span{
+  background:linear-gradient(135deg,var(--ember2),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.05rem;color:var(--muted);margin-top:1rem;
+  max-width:560px;animation:rise 0.9s 0.2s ease both;
+}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(212,98,58,0.15);
+  border-radius:var(--r-lg);overflow:hidden;
+  width:100%;max-width:720px;margin-top:3.5rem;
+  animation:rise 1s 0.3s ease both;
+}
+.hs{background:var(--bg2);padding:1.4rem 1rem;text-align:center;}
+.hs-n{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:2rem;font-weight:900;color:var(--ember2);display:block;
+}
+.hs-l{font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;}
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:700px){.hero-stats{grid-template-columns:1fr 1fr;}}
+
+/* SECTIONS */
+.sec{padding:5rem 3rem;}
+.sec.alt{background:var(--bg2);}
+.sec.dark{background:var(--bg);}
+.container{max-width:1080px;margin:0 auto;}
+
+/* EYEBROW / TITLE */
+.ey{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--ember);font-weight:700;margin-bottom:0.6rem;
+}
+.ey::before{content:'';width:20px;height:1.5px;background:var(--ember);}
+h2.tt{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:clamp(1.7rem,3.5vw,2.6rem);color:var(--cream);
+  line-height:1.1;margin-bottom:0.6rem;
+}
+.lead{
+  font-size:1rem;color:var(--muted);max-width:540px;margin-bottom:2.5rem;
+}
+.rule{width:100%;height:1px;background:linear-gradient(90deg,var(--ember),rgba(212,98,58,0.05),transparent);margin:2.5rem 0;}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media(max-width:900px){.g3{grid-template-columns:1fr 1fr;}.g4{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:border-color 0.2s;}
+.card:hover{border-color:rgba(212,98,58,0.3);}
+.card h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:0.5rem;}
+.card p{font-size:0.83rem;color:var(--muted);line-height:1.65;}
+.card-ico{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--ember3),var(--plum));display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:0.9rem;}
+
+/* NETWORK TABS */
+.net-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.net-tab{
+  padding:0.5rem 1.2rem;border-radius:30px;font-size:0.8rem;font-weight:600;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;transition:all 0.2s;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.net-tab.active,.net-tab:hover{background:rgba(212,98,58,0.12);border-color:var(--ember);color:var(--cream);}
+
+/* NETWORK CARDS */
+.net-card{
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--border);margin-bottom:2rem;
+}
+.nc-header{padding:1.8rem;display:flex;gap:1.2rem;align-items:flex-start;}
+.nc-cover-stripe{height:6px;}
+.nc-avatar{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:1.6rem;color:#fff;
+  border:2.5px solid rgba(255,255,255,0.2);
+}
+.nc-info h3{font-size:1rem;font-weight:700;color:var(--cream);}
+.nc-info .handle{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted);}
+.nc-bio{padding:0 1.8rem 1.5rem;font-size:0.86rem;color:rgba(232,226,220,0.75);line-height:1.7;}
+.nc-metrics{display:flex;border-top:1px solid var(--border);}
+.nc-m{flex:1;padding:1rem;text-align:center;border-right:1px solid var(--border);}
+.nc-m:last-child{border-right:none;}
+.nc-m-n{font-family:'Fraunces',serif;font-style:italic;font-size:1.4rem;font-weight:900;color:var(--ember2);display:block;}
+.nc-m-l{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);}
+
+/* CONTENT IDEAS */
+.ideas-container{display:flex;flex-direction:column;gap:0;}
+.idea{
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  padding:1rem 0;display:flex;gap:1rem;align-items:flex-start;
+  transition:background 0.15s;
+}
+.idea:hover{background:rgba(212,98,58,0.03);margin:0 -1rem;padding:1rem;}
+.idea-num{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  color:var(--ember);flex-shrink:0;width:44px;
+  padding-top:0.2rem;
+}
+.idea-body{flex:1;}
+.idea-title{font-size:0.93rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem;}
+.idea-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:0.4rem;}
+.idea-meta{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.badge{
+  display:inline-block;padding:0.12rem 0.6rem;border-radius:12px;
+  font-size:0.62rem;font-weight:700;letter-spacing:0.04em;
+}
+.b-fw{background:rgba(201,152,44,0.12);color:var(--gold2);}
+.b-net{background:rgba(107,45,82,0.25);color:#D4A0C0;}
+.b-bias{background:rgba(212,98,58,0.12);color:var(--ember2);}
+.b-fmt{background:rgba(46,125,92,0.15);color:#6ECFA8;}
+.b-prio{background:rgba(255,100,80,0.12);color:#FF8070;}
+
+/* HOOK CARDS */
+.hook{
+  background:var(--surface);border:1px solid rgba(212,98,58,0.15);
+  border-radius:var(--r-sm);padding:1rem 1.2rem;margin:0.5rem 0;
+}
+.hook-lbl{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);margin-bottom:0.3rem;font-weight:700;}
+.hook-txt{font-size:0.92rem;color:var(--cream);font-weight:600;}
+.hook-why{font-size:0.75rem;color:var(--muted);margin-top:0.25rem;font-style:italic;}
+
+/* FRAMEWORK LEGEND */
+.fw-legend{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.fw-item{
+  padding:0.35rem 0.9rem;border-radius:20px;
+  background:rgba(201,152,44,0.1);border:1px solid rgba(201,152,44,0.2);
+  font-size:0.75rem;font-weight:600;color:var(--gold2);
+  display:flex;align-items:center;gap:0.35rem;
+}
+
+/* TABLE */
+.tbl{overflow-x:auto;border-radius:var(--r);overflow:hidden;margin:1.5rem 0;}
+table{width:100%;border-collapse:collapse;}
+thead{background:rgba(212,98,58,0.12);}
+thead th{padding:0.8rem 1rem;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ember2);font-weight:700;text-align:left;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);}
+tbody tr:hover{background:rgba(255,255,255,0.02);}
+tbody td{padding:0.75rem 1rem;font-size:0.82rem;color:rgba(232,226,220,0.75);}
+tbody td b{color:var(--cream);}
+
+/* QUOTE */
+.quote{
+  border-left:3px solid var(--ember);
+  padding:1.2rem 1.8rem;background:rgba(212,98,58,0.05);
+  border-radius:0 var(--r) var(--r) 0;
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:1.15rem;color:var(--cream);margin:1.5rem 0;
+}
+
+/* TAGS */
+.tag{display:inline-block;padding:0.15rem 0.7rem;border-radius:12px;font-size:0.7rem;font-weight:600;margin:0.2rem;}
+.t-e{background:rgba(212,98,58,0.12);color:var(--ember2);}
+.t-g{background:rgba(201,152,44,0.12);color:var(--gold2);}
+.t-p{background:rgba(107,45,82,0.25);color:#D4A0C0;}
+.t-s{background:rgba(255,255,255,0.06);color:var(--muted);}
+
+/* TOOL CARD */
+.tool{
+  display:flex;gap:1rem;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:1.2rem;margin-bottom:0.8rem;transition:border-color 0.2s;
+}
+.tool:hover{border-color:rgba(212,98,58,0.25);}
+.tool-em{font-size:1.5rem;flex-shrink:0;}
+.tool h4{font-size:0.9rem;font-weight:700;color:var(--cream);margin-bottom:0.2rem;}
+.tool p{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+.free{display:inline-block;padding:0.1rem 0.5rem;border-radius:8px;background:rgba(74,222,128,0.1);color:#86efac;font-size:0.58rem;font-weight:700;margin-top:0.3rem;}
+.paid{display:inline-block;padding:0.1rem 0.5rem;border-radius:8px;background:rgba(201,152,44,0.1);color:var(--gold2);font-size:0.58rem;font-weight:700;margin-top:0.3rem;}
+
+/* HIGHLIGHT */
+.hl{
+  background:linear-gradient(135deg,rgba(107,45,82,0.25),rgba(212,98,58,0.1));
+  border:1px solid rgba(212,98,58,0.18);border-radius:var(--r-lg);
+  padding:2rem;margin:1.5rem 0;
+}
+
+/* SECTION STICKY */
+.stk{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,6,10,0.94);backdrop-filter:blur(12px);
+  padding:0.8rem 3rem;border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.stk-t{font-family:'Fraunces',serif;font-style:italic;font-size:0.95rem;color:var(--cream);}
+.stk-n{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--ember);}
+
+/* COLUMNS */
+.col2{column-count:2;column-gap:1.5rem;}
+@media(max-width:700px){.col2{column-count:1;}}
+
+/* STORY FRAMES */
+.sf{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.sf-top{padding:1.2rem;border-bottom:1px solid var(--border);}
+.sf-net{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ember);font-weight:700;margin-bottom:0.3rem;}
+.sf-title{font-size:0.9rem;font-weight:700;color:var(--cream);}
+.sf-body{padding:1.2rem;font-size:0.8rem;color:var(--muted);line-height:1.65;}
+.sf-meta{display:flex;gap:0.3rem;flex-wrap:wrap;padding:0 1.2rem 1.2rem;}
+
+/* SKIP nav inside long lists */
+.count-box{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(212,98,58,0.1);border:1px solid rgba(212,98,58,0.2);
+  border-radius:8px;padding:0.25rem 0.7rem;
+  font-size:0.7rem;color:var(--ember2);font-weight:600;
+  margin-bottom:0.5rem;
+}
+
+/* SYSTEM POLISH & PERFORMANCE */
+.sec{
+  padding-block:clamp(3.5rem,7vw,5rem);
+  padding-inline:clamp(1rem,3vw,3rem);
+  content-visibility:auto;
+  contain-intrinsic-size:900px;
+}
+#hero{
+  content-visibility:visible;
+  contain-intrinsic-size:auto;
+}
+.container{width:min(1080px,100%);}
+.g2,.g3,.g4{align-items:stretch;}
+.g2>*,.g3>*,.g4>*{min-width:0;}
+.card,.tool,.sf,.net-card,.hl{height:100%;}
+.tbl,.cal-tbl{
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.idea{
+  margin:0;
+  padding:1rem 0.4rem;
+  border-radius:8px;
+}
+.idea:hover{
+  margin:0;
+  padding:1rem 0.4rem;
+}
+.stk{
+  padding-inline:clamp(1rem,3vw,3rem);
+}
+@media(max-width:700px){
+  .sec{padding-inline:1rem;}
+  .stk{padding-inline:1rem;}
+}
+@media(max-width:980px){
+  #mainContent{margin-left:0;}
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+  body:not(.sidebar-collapsed) #sidebar{transform:translateX(0);}
+  body:not(.sidebar-collapsed) .sidebar-overlay{opacity:1;pointer-events:auto;}
+  body:not(.sidebar-collapsed) #sidebarToggle{left:14px;}
+  .progress-bar{left:0;}
+}
+@media(min-width:981px){
+  .sidebar-overlay{display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<button id="sidebarToggle" type="button" aria-label="Expandir ou recolher menu lateral" aria-controls="sidebar" aria-expanded="true">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+<nav id="sidebar" aria-label="Menu lateral do conteudo completo">
+  <div class="sb-brand">
+    <div class="sb-logo">fottu.br</div>
+    <div class="sb-sub">conteudo completo</div>
+    <span class="sb-version">v2.0 • 2026</span>
+  </div>
+  <a class="sb-item" href="#hero">Capa</a>
+  <a class="sb-item" href="#networks">1.0 Redes</a>
+  <a class="sb-item" href="#hooks">2.0 Hooks</a>
+  <a class="sb-item" href="#storytelling">3.0 Storytelling</a>
+  <a class="sb-item" href="#vieses">4.0 Vieses</a>
+  <a class="sb-item" href="#static">5.0 Posts Estáticos</a>
+  <a class="sb-item" href="#stories">6.0 Stories</a>
+  <a class="sb-item" href="#tools">7.0 Ferramentas</a>
+</nav>
+<div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+
+<main id="mainContent">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pill">Estratégia de Conteúdo & Comunicação · 2026</div>
+  <h1 class="hero-h1">1000+ ideias.<br><span>Uma marca.</span></h1>
+  <p class="hero-sub">Frameworks de storytelling + vieses cognitivos + cada rede social mapeada. Tudo para a fottu.br.</p>
+  <div class="hero-stats">
+    <div class="hs"><span class="hs-n">500+</span><span class="hs-l">Ideias Storytelling</span></div>
+    <div class="hs"><span class="hs-n">500+</span><span class="hs-l">Vieses Cognitivos</span></div>
+    <div class="hs"><span class="hs-n">7</span><span class="hs-l">Frameworks</span></div>
+    <div class="hs"><span class="hs-n">4</span><span class="hs-l">Redes Sociais</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  REDES SOCIAIS — O QUE FUNCIONA
+══════════════════════════════════ -->
+<section id="networks" class="sec alt">
+  <div class="container">
+    <div class="stk"><span class="stk-t">Redes Sociais — Estratégia por Plataforma</span><span class="stk-n">01</span></div>
+    <br>
+    <div class="ey">01 — Redes Sociais</div>
+    <h2 class="tt">O que funciona em<br>cada plataforma.</h2>
+    <p class="lead">Cada rede tem sua linguagem. Usar a técnica certa no lugar certo multiplica resultados.</p>
+
+    <!-- INSTAGRAM -->
+    <div class="net-card">
+      <div class="nc-cover-stripe" style="background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);"></div>
+      <div class="nc-header">
+        <div class="nc-avatar" style="background:linear-gradient(135deg,#833ab4,#fd1d1d);">📸</div>
+        <div class="nc-info">
+          <h3>Instagram — @fottu.br</h3>
+          <div class="handle">Vitrine emocional + conversão</div>
+        </div>
+      </div>
+      <div class="nc-bio">
+        📸 Seus momentos favoritos na geladeira, todo dia<br>
+        💛 Ímãs personalizados com acabamento premium<br>
+        🧲 Peça pelo link · Envio para todo o Brasil<br>
+        ✨ Presente com significado de verdade
+      </div>
+      <div class="nc-metrics">
+        <div class="nc-m"><span class="nc-m-n">4×</span><div class="nc-m-l">reels/semana</div></div>
+        <div class="nc-m"><span class="nc-m-n">5×</span><div class="nc-m-l">stories/dia</div></div>
+        <div class="nc-m"><span class="nc-m-n">3×</span><div class="nc-m-l">posts/semana</div></div>
+        <div class="nc-m"><span class="nc-m-n">70%</span><div class="nc-m-l">alcance via reels</div></div>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Formato</th><th>Técnica ideal</th><th>Objetivo</th><th>Duração</th><th>Melhor horário</th></tr></thead>
+        <tbody>
+          <tr><td><b>Reels</b></td><td>Hook emocional + antes/depois + CTA</td><td>Awareness + alcance</td><td>15–30s</td><td>18h–21h</td></tr>
+          <tr><td><b>Stories</b></td><td>Enquete + bastidores + link direto</td><td>Engajamento + venda</td><td>15s por slide</td><td>8h–10h e 20h–22h</td></tr>
+          <tr><td><b>Carrossel</b></td><td>Conteúdo educativo + provocação</td><td>Salvamentos + autoridade</td><td>5–10 slides</td><td>12h–14h</td></tr>
+          <tr><td><b>Post estático</b></td><td>Depoimento visual + produto em contexto</td><td>Prova social + vitrine</td><td>—</td><td>18h–20h</td></tr>
+          <tr><td><b>Collab</b></td><td>Parceria com fotógrafa / lifestyle</td><td>Novo público</td><td>—</td><td>Qualquer</td></tr>
+          <tr><td><b>Lives</b></td><td>Q&A + processo ao vivo + unboxing</td><td>Comunidade + confiança</td><td>20–40min</td><td>19h–21h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g3" style="margin-top:1.5rem;">
+      <div class="card"><div class="card-ico">🎬</div><h3>Reels — O motor principal</h3><p>70% do alcance orgânico vem de Reels. Os 3 primeiros segundos são decisivos. Use texto na tela + narração + música emocional. Mostre processo, reação, resultado.</p></div>
+      <div class="card"><div class="card-ico">📱</div><h3>Stories — Onde a venda acontece</h3><p>Stories convertem mais que qualquer outro formato. Use: link direto, enquete com "sim/não", caixinha de perguntas, countdown de data, e reposte marcações de clientes.</p></div>
+      <div class="card"><div class="card-ico">🖼️</div><h3>Carrossel — Autoridade e salvamentos</h3><p>Carrosséis geram 3× mais salvamentos. Slide 1 deve ser um hook forte. Slides 2–8 entregam valor. Slide final tem CTA. Algoritmo premia conteúdo salvo.</p></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- TIKTOK -->
+    <div class="net-card">
+      <div class="nc-cover-stripe" style="background:linear-gradient(90deg,#010101,#ff0050,#00f2ea);"></div>
+      <div class="nc-header">
+        <div class="nc-avatar" style="background:linear-gradient(135deg,#ff0050,#00f2ea);">🎵</div>
+        <div class="nc-info">
+          <h3>TikTok — @fottu.br</h3>
+          <div class="handle">Motor de descoberta orgânica</div>
+        </div>
+      </div>
+      <div class="nc-bio">
+        📸 Tirando suas fotos do celular pra geladeira<br>
+        🧲 Ímãs personalizados com muito afeto<br>
+        💛 Pede o seu pelo link na bio ↓
+      </div>
+      <div class="nc-metrics">
+        <div class="nc-m"><span class="nc-m-n">1–2×</span><div class="nc-m-l">vídeos/dia</div></div>
+        <div class="nc-m"><span class="nc-m-n">3s</span><div class="nc-m-l">gancho crítico</div></div>
+        <div class="nc-m"><span class="nc-m-n">15–45s</span><div class="nc-m-l">duração ideal</div></div>
+        <div class="nc-m"><span class="nc-m-n">100%</span><div class="nc-m-l">resposta a comentários</div></div>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Formato</th><th>Técnica ideal</th><th>Objetivo</th><th>Alcance</th></tr></thead>
+        <tbody>
+          <tr><td><b>Vídeo orgânico</b></td><td>Hook 3s + narrativa emocional + CTA</td><td>Descoberta massiva</td><td>Potencial ilimitado</td></tr>
+          <tr><td><b>Resposta a comentário</b></td><td>Vídeo respondendo uma dúvida real</td><td>Engajamento + autoridade</td><td>Alto</td></tr>
+          <tr><td><b>Dueto</b></td><td>Reagir a vídeo de cliente ou parceiro</td><td>Comunidade + UGC</td><td>Médio-alto</td></tr>
+          <tr><td><b>Série</b></td><td>"Parte 1, 2, 3..." com gancho no final</td><td>Retenção + seguidores</td><td>Cresce ao longo</td></tr>
+          <tr><td><b>Trend adaptada</b></td><td>Usar áudio viral com produto</td><td>Alcance via trending</td><td>Muito alto</td></tr>
+          <tr><td><b>POV / Role play</b></td><td>POV: você está escolhendo a foto...</td><td>Identificação imediata</td><td>Alto</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2" style="margin-top:1.5rem;">
+      <div class="card"><div class="card-ico">⚡</div><h3>A regra dos 3 segundos</h3><p>No TikTok, se você não parar o scroll nos primeiros 3 segundos, perdeu. O gancho vai no título do vídeo, nos primeiros frames visuais E nas primeiras palavras ditas. Todos ao mesmo tempo.</p></div>
+      <div class="card"><div class="card-ico">🎯</div><h3>Não siga trends — adapte</h3><p>Não force trends que não têm a ver com o produto. Adapte: se uma trend usa música sentimental, ela é feita para fottu.br. Se é de humor pesado ou protesto, pule.</p></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- WHATSAPP -->
+    <div class="net-card">
+      <div class="nc-cover-stripe" style="background:linear-gradient(90deg,#25D366,#128C7E);"></div>
+      <div class="nc-header">
+        <div class="nc-avatar" style="background:linear-gradient(135deg,#25D366,#128C7E);">💬</div>
+        <div class="nc-info">
+          <h3>WhatsApp Business — fottu.br</h3>
+          <div class="handle">Canal de fechamento e relacionamento</div>
+        </div>
+      </div>
+      <div class="nc-bio">
+        Transformamos suas fotos em ímãs de geladeira personalizados com acabamento premium. Memórias que ficam para sempre. 💛 Atendemos todo o Brasil.
+      </div>
+      <div class="nc-metrics">
+        <div class="nc-m"><span class="nc-m-n">98%</span><div class="nc-m-l">taxa de abertura</div></div>
+        <div class="nc-m"><span class="nc-m-n">&lt;2h</span><div class="nc-m-l">tempo de resposta</div></div>
+        <div class="nc-m"><span class="nc-m-n">3</span><div class="nc-m-l">listas de transmissão</div></div>
+        <div class="nc-m"><span class="nc-m-n">100%</span><div class="nc-m-l">conversão primária</div></div>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Recurso</th><th>Como usar</th><th>Objetivo</th></tr></thead>
+        <tbody>
+          <tr><td><b>Catálogo</b></td><td>Todos os kits com foto, preço e descrição curta</td><td>Vitrine / pré-qualificação</td></tr>
+          <tr><td><b>Listas de transmissão</b></td><td>Segmente: mães, noivas, pets, corporativo</td><td>Comunicação personalizada</td></tr>
+          <tr><td><b>Status</b></td><td>Bastidores diários + produto + datas especiais</td><td>Engajamento passivo</td></tr>
+          <tr><td><b>Respostas rápidas</b></td><td>Templates para FAQ, confirmação, pós-venda</td><td>Eficiência + consistência de voz</td></tr>
+          <tr><td><b>Etiquetas</b></td><td>Organize: Novo lead, Pedido feito, Aguardando foto, Enviado, Fidelizado</td><td>Gestão do funil</td></tr>
+          <tr><td><b>Grupos VIP</b></td><td>Clientes recorrentes com ofertas antecipadas</td><td>Fidelização + advocacia</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- PINTEREST -->
+    <div class="net-card">
+      <div class="nc-cover-stripe" style="background:linear-gradient(90deg,#e60023,#ad081b);"></div>
+      <div class="nc-header">
+        <div class="nc-avatar" style="background:linear-gradient(135deg,#e60023,#ad081b);">📌</div>
+        <div class="nc-info">
+          <h3>Pinterest — fottu.br</h3>
+          <div class="handle">Motor de busca visual — tráfego perene</div>
+        </div>
+      </div>
+      <div class="nc-bio">
+        Ímãs personalizados com foto para decorar sua geladeira com memórias afetivas. Presentes únicos que ficam para sempre.
+      </div>
+      <div class="nc-metrics">
+        <div class="nc-m"><span class="nc-m-n">Meses</span><div class="nc-m-l">conteúdo ativo</div></div>
+        <div class="nc-m"><span class="nc-m-n">SEO</span><div class="nc-m-l">foco principal</div></div>
+        <div class="nc-m"><span class="nc-m-n">5+</span><div class="nc-m-l">pastas temáticas</div></div>
+        <div class="nc-m"><span class="nc-m-n">Vertical</span><div class="nc-m-l">formato obrigatório</div></div>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-top:1rem;">
+      <div class="card"><h3>🔍 Pinterest é busca, não social</h3><p>Diferente do Instagram e TikTok, Pinterest funciona como Google para imagens. Um Pin bem otimizado gera cliques por 6–12 meses. Foque em: título rico em palavras-chave, descrição longa, board organizada por tema.</p></div>
+      <div class="card"><h3>📌 Palavras-chave essenciais</h3><p>"ímã de geladeira personalizado" · "presente com foto personalizado" · "decoração afetiva cozinha" · "imã foto família" · "presente dia das mães personalizado" · "lembrança personalizada com foto"</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  HOOKS & ABERTURAS
+══════════════════════════════════ -->
+<section id="hooks" class="sec dark">
+  <div class="container">
+    <div class="stk"><span class="stk-t">Hooks e Aberturas de Vídeo</span><span class="stk-n">02</span></div>
+    <br>
+    <div class="ey">02 — Hooks & Aberturas</div>
+    <h2 class="tt">Primeiros 3 segundos<br>que param o scroll.</h2>
+    <p class="lead">O hook é a parte mais importante do conteúdo. Sem ele, ninguém vê o resto.</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Estrutura do Vídeo Ideal</th><th>Tempo</th><th>O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td><b>0–3s — GANCHO</b></td><td>Crítico</td><td>Frase que para + visual impactante + texto na tela</td></tr>
+          <tr><td><b>3–15s — CONTEÚDO</b></td><td>Core</td><td>Processo / história / antes&depois / revelação</td></tr>
+          <tr><td><b>15–25s — PROVA</b></td><td>Credibilidade</td><td>Resultado real / depoimento / reação emocional</td></tr>
+          <tr><td><b>25–30s — CTA</b></td><td>Conversão</td><td>"Link na bio" / "Me chama" / "Comenta aqui"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2">
+      <div>
+        <h3 style="color:var(--cream);margin-bottom:1rem;font-family:'Fraunces',serif;font-size:1.1rem;">🔥 Hooks por Emoção</h3>
+        <div class="hook"><div class="hook-lbl">IDENTIFICAÇÃO</div><div class="hook-txt">"Você tem uma foto perfeita no celular que nunca vai ver de novo."</div><div class="hook-why">95% se identificam. Para qualquer scroll.</div></div>
+        <div class="hook"><div class="hook-lbl">CURIOSIDADE</div><div class="hook-txt">"O presente que ela não parou de comentar por semanas."</div><div class="hook-why">Resultado antes da solução. Gera suspense.</div></div>
+        <div class="hook"><div class="hook-lbl">SURPRESA</div><div class="hook-txt">"Ela chorou quando abriu. Eu não esperava por isso."</div><div class="hook-why">Emoção inesperada prende atenção.</div></div>
+        <div class="hook"><div class="hook-lbl">PROVOCAÇÃO</div><div class="hook-txt">"Quantas fotos lindas você tem no celular que ninguém mais vai ver?"</div><div class="hook-why">Pergunta retórica que gera reflexão e comentários.</div></div>
+        <div class="hook"><div class="hook-lbl">PERTENCIMENTO</div><div class="hook-txt">"Se você é daquelas que decora a geladeira com carinho, esse vídeo é pra você."</div><div class="hook-why">Aciona identidade. Quem se vê, assiste até o fim.</div></div>
+        <div class="hook"><div class="hook-lbl">CONTRASTE</div><div class="hook-txt">"Antes: foto esquecida. Depois: sorriso toda vez que abre a geladeira."</div><div class="hook-why">Before/after emocional funciona sempre.</div></div>
+        <div class="hook"><div class="hook-lbl">URGÊNCIA</div><div class="hook-txt">"Faltam X dias pra data. Ainda dá tempo de dar o presente que ela nunca vai esquecer."</div><div class="hook-why">Ativa aversão à perda.</div></div>
+        <div class="hook"><div class="hook-lbl">SEGREDO</div><div class="hook-txt">"A maioria das pessoas não sabe que dá pra fazer isso com uma foto do celular."</div><div class="hook-why">Exclusividade de informação.</div></div>
+      </div>
+      <div>
+        <h3 style="color:var(--cream);margin-bottom:1rem;font-family:'Fraunces',serif;font-size:1.1rem;">🎯 Hooks por Nicho</h3>
+        <div class="hook"><div class="hook-lbl">PARA MÃES</div><div class="hook-txt">"Se você tem uma foto do filho no celular que merecia estar na parede..."</div><div class="hook-why">Direto ao público certo.</div></div>
+        <div class="hook"><div class="hook-lbl">PARA PETS</div><div class="hook-txt">"Quem tem pet entende o amor que a gente sente. Essa foto prova isso."</div><div class="hook-why">Comunidade de pet owners responde muito bem.</div></div>
+        <div class="hook"><div class="hook-lbl">PARA CASAIS</div><div class="hook-txt">"A melhor foto de vocês dois ainda está no celular. Isso vai mudar."</div><div class="hook-why">Chamada à ação específica e pessoal.</div></div>
+        <div class="hook"><div class="hook-lbl">PARA FILHOS</div><div class="hook-txt">"Se você tem avó, você PRECISA ver esse vídeo."</div><div class="hook-why">Gancho de nicho muito forte — gera presente imediato.</div></div>
+        <div class="hook"><div class="hook-lbl">PARA VIAJANTES</div><div class="hook-txt">"Voltou de viagem? Essa foto merece existir fora do celular."</div><div class="hook-why">Timing perfeito — gatilho pós-viagem.</div></div>
+        <div class="hook"><div class="hook-lbl">PARA PRESENTES</div><div class="hook-txt">"Cansada de dar presente genérico? Isso aqui resolve."</div><div class="hook-why">Problema universal com solução direta.</div></div>
+        <div class="hook"><div class="hook-lbl">PÓS-NASCIMENTO</div><div class="hook-txt">"Primeira semana de vida do bebê. Essa foto não pode só ficar no celular."</div><div class="hook-why">Urgência emocional + momento único.</div></div>
+        <div class="hook"><div class="hook-lbl">NOSTALGIA</div><div class="hook-txt">"A geladeira da vovó sempre teve fotos da família. Por que a sua não tem?"</div><div class="hook-why">Ativa memória afetiva de infância.</div></div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="color:var(--cream);margin-bottom:1.2rem;font-family:'Fraunces',serif;font-size:1.2rem;">🎬 Descrições Completas de Vídeo</h3>
+    <div class="g2">
+      <div class="sf">
+        <div class="sf-top"><div class="sf-net">TikTok / Reel</div><div class="sf-title">Processo do começo ao fim em 30 segundos</div></div>
+        <div class="sf-body">
+          <b style="color:var(--cream);">Gancho:</b> "É assim que uma foto vira memória pra sempre" (texto na tela + mão segurando celular)<br><br>
+          <b style="color:var(--cream);">Corpo:</b> Timelapse do processo: celular → computador → máquina imprimindo → peça saindo → embalagem sendo preparada → caixinha fechada<br><br>
+          <b style="color:var(--cream);">Prova:</b> Ímã colocado na geladeira + zoom na foto detalhada<br><br>
+          <b style="color:var(--cream);">CTA:</b> "Manda sua foto favorita no link da bio 💛"<br><br>
+          <b style="color:var(--cream);">Descrição/caption:</b> "Cada ímã começa com uma foto especial e termina na geladeira pra ser vista todo dia 🧲 Qual memória você quer eternizar? Me conta nos comentários! #imapersonalizado #fottubr #presentepersonalizado"
+        </div>
+        <div class="sf-meta"><span class="badge b-fmt">Processo</span><span class="badge b-net">TikTok</span><span class="badge b-net">Instagram</span></div>
+      </div>
+      <div class="sf">
+        <div class="sf-top"><div class="sf-net">Reel Emocional</div><div class="sf-title">A reação de quem recebeu</div></div>
+        <div class="sf-body">
+          <b style="color:var(--cream);">Gancho:</b> "Esse foi o momento que eu nunca vou esquecer como empreendedora" (close no rosto emocionado)<br><br>
+          <b style="color:var(--cream);">Corpo:</b> Mostrar o vídeo/foto da cliente recebendo o produto. Se for um texto de cliente, narrar com emoção genuína enquanto mostra o produto<br><br>
+          <b style="color:var(--cream);">Prova:</b> Mostrar a mensagem real da cliente (com autorização)<br><br>
+          <b style="color:var(--cream);">CTA:</b> "Essa é a fottu.br. Cada pedido tem uma história. Qual é a sua? 💛"<br><br>
+          <b style="color:var(--cream);">Descrição:</b> "Receber esse feedback foi tudo 😭💛 É por isso que a fottu.br existe — pra transformar memórias em presença física no dia a dia. #memoriaafetiva #fottubr #imapersonalizado"
+        </div>
+        <div class="sf-meta"><span class="badge b-fmt">Depoimento</span><span class="badge b-net">Reel</span><span class="badge b-bias">Conformidade</span></div>
+      </div>
+      <div class="sf">
+        <div class="sf-top"><div class="sf-net">TikTok / Reel</div><div class="sf-title">Antes e depois — foto no celular vs ímã na geladeira</div></div>
+        <div class="sf-body">
+          <b style="color:var(--cream);">Gancho:</b> Tela dividida: esquerda = galeria do celular com centenas de fotos. Direita = geladeira com ímãs. Texto: "Qual você prefere?"<br><br>
+          <b style="color:var(--cream);">Corpo:</b> Mostrar uma foto específica na galeria → animação de transformação → o mesmo ímã na geladeira<br><br>
+          <b style="color:var(--cream);">Prova:</b> Reação de quem vê o ímã pela primeira vez<br><br>
+          <b style="color:var(--cream);">CTA:</b> "Comenta: quantas fotos lindas você tem esquecidas no celular? 📱"<br><br>
+          <b style="color:var(--cream);">Hashtags:</b> #imadegerladeira #presentecomfoto #fottubr #decoracaopersonalizada #memoriaafetiva #presentepersonalizado
+        </div>
+        <div class="sf-meta"><span class="badge b-fmt">Antes/Depois</span><span class="badge b-net">TikTok</span><span class="badge b-fw">PAS</span></div>
+      </div>
+      <div class="sf">
+        <div class="sf-top"><div class="sf-net">TikTok — Série</div><div class="sf-title">Pedido que me fez chorar — Parte 1</div></div>
+        <div class="sf-body">
+          <b style="color:var(--cream);">Gancho:</b> "Esse pedido chegou diferente. Vou te contar." (voz calma, rosto próximo à câmera)<br><br>
+          <b style="color:var(--cream);">Corpo:</b> Contar a história do pedido (avó, pet falecido, última foto juntos etc.) sem mostrar ainda o produto<br><br>
+          <b style="color:var(--cream);">Final da Parte 1:</b> Corte antes da revelação. "Parte 2 já vem 🤍"<br><br>
+          <b style="color:var(--cream);">Parte 2:</b> A foto escolhida sendo produzida → ímã ficando pronto → enviado → reação de quem recebeu<br><br>
+          <b style="color:var(--cream);">Resultado:</b> Séries aumentam seguidores novos e retém audiência entre episódios.
+        </div>
+        <div class="sf-meta"><span class="badge b-fmt">Série</span><span class="badge b-net">TikTok</span><span class="badge b-fw">3 Atos</span><span class="badge b-bias">Disponibilidade</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  STORYTELLING — 500+ IDEIAS
+══════════════════════════════════ -->
+<section id="storytelling" class="sec alt">
+  <div class="container">
+    <div class="stk"><span class="stk-t">500+ Ideias com Frameworks de Storytelling</span><span class="stk-n">03</span></div>
+    <br>
+    <div class="ey">03 — 500+ Ideias · Storytelling</div>
+    <h2 class="tt">Frameworks validados aplicados<br>à realidade da fottu.br.</h2>
+    <p class="lead">Cada ideia usa ao menos um framework. Adapte à sua realidade e ao que seus clientes vivem.</p>
+
+    <div class="fw-legend">
+      <div class="fw-item">🦸 Jornada do Herói</div>
+      <div class="fw-item">🎭 3 Atos</div>
+      <div class="fw-item">🗺️ StoryBrand</div>
+      <div class="fw-item">⭕ Story Circle</div>
+      <div class="fw-item">➕ 2+2</div>
+      <div class="fw-item">🎬 Pixar</div>
+      <div class="fw-item">🔥 PAS</div>
+    </div>
+
+    <!-- JORNADA DO HERÓI -->
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">🦸 Jornada do Herói — A cliente é a heroína</div>
+      <p style="font-size:0.83rem;color:var(--muted);">A cliente enfrenta o problema (foto esquecida/presente sem significado) → encontra a guia (fottu.br) → transforma a memória → vive com mais afeto.</p>
+    </div>
+
+    <div class="count-box">🦸 Jornada do Herói · Ideias #001–#080</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#001</div><div class="idea-body"><div class="idea-title">A foto esquecida que voltou à vida</div><div class="idea-desc">Cliente tinha foto do avô falecido guardada na galeria há 3 anos. A fottu.br transformou em ímã. Hoje ele está na geladeira todo dia.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel emocional</span><span class="badge b-fmt">Vídeo 30s</span></div></div></div>
+      <div class="idea"><div class="idea-num">#002</div><div class="idea-body"><div class="idea-title">Ela achou que era frescura — até receber</div><div class="idea-desc">Marido comprou sem avisar. Ela achou exagero. Quando abriu e viu a foto da primeira viagem juntos, chorou. Mostrar reação de surpresa.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok</span><span class="badge b-fmt">Vídeo + texto</span></div></div></div>
+      <div class="idea"><div class="idea-num">#003</div><div class="idea-body"><div class="idea-title">O presente que ela pediu pra repetir no ano seguinte</div><div class="idea-desc">Recompra espontânea como herói. A jornada da satisfação que vira hábito afetivo.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Story + Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#004</div><div class="idea-body"><div class="idea-title">Da galeria do celular pra geladeira da avó de 80 anos</div><div class="idea-desc">Neta colocou foto dos bisnetos na geladeira da avó. Mostrar a reação — geladeira como o objeto mais visitado da casa da avó.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok / Reel</span><span class="badge b-fmt">Vídeo emocional</span></div></div></div>
+      <div class="idea"><div class="idea-num">#005</div><div class="idea-body"><div class="idea-title">A mãe que não sabia o que queria — até ver</div><div class="idea-desc">O "não sei o que dar de presente" que toda filha sente → descoberta da fottu.br → rosto da mãe quando abre.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#006</div><div class="idea-body"><div class="idea-title">A tutora que queria eternizar o pet falecido</div><div class="idea-desc">Cachorro faleceu. A dona tinha uma foto linda. A fottu.br transformou em ímã. Hoje ele ainda está na cozinha, todo dia.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok emocional</span><span class="badge b-prio">Alto potencial viral</span></div></div></div>
+      <div class="idea"><div class="idea-num">#007</div><div class="idea-body"><div class="idea-title">De foto no celular a primeira coisa que vê de manhã</div><div class="idea-desc">A geladeira é o primeiro lugar que muita gente vai de manhã. Esse ímã muda como o dia começa. "Toda manhã, ela vê o rosto da filha antes de ver qualquer outra coisa."</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel curto 15s</span></div></div></div>
+      <div class="idea"><div class="idea-num">#008</div><div class="idea-body"><div class="idea-title">Ela mudou de casa e os ímãs foram a primeira coisa que colocou</div><div class="idea-desc">Apartamento novo, vazio. Primeiro ato dela: os ímãs na geladeira. Pertencimento criado por memória.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#009</div><div class="idea-body"><div class="idea-title">A noiva que queria guardar o dia mais importante</div><div class="idea-desc">Kit de 6 fotos do casamento. Um pra cada irmã da família. Mostrar a distribuição e as reações.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel / Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">#010</div><div class="idea-body"><div class="idea-title">O filho que morava longe e queria estar perto</div><div class="idea-desc">Mandou kit de ímãs com fotos dele e da família nova pra geladeira da mãe no interior. Distância que virou presença física.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel emocional</span><span class="badge b-prio">Viral potencial</span></div></div></div>
+      <div class="idea"><div class="idea-num">#011</div><div class="idea-body"><div class="idea-title">Ela passou 3 anos querendo fazer algo com a foto</div><div class="idea-desc">A inércia rompida. "Ficou 3 anos na galeria. Em 3 dias, estava na geladeira." A jornada da procrastinação afetiva resolvida.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok</span><span class="badge b-bias">Status Quo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#012</div><div class="idea-body"><div class="idea-title">A avó que ficou emocionada com o bisneto</div><div class="idea-desc">Primeira foto do bisneto, ainda na maternidade. Virou ímã. Hoje é o primeiro objeto que a avó mostra pra visita.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#013</div><div class="idea-body"><div class="idea-title">Ela nunca soube o que dar de presente — até hoje</div><div class="idea-desc">A pessoa que sofre pra comprar presente (quase todo mundo). A fottu.br resolve com uma foto e um sentimento.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel / Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">#014</div><div class="idea-body"><div class="idea-title">A geladeira que conta a história da família</div><div class="idea-desc">Cada ímã é um capítulo. Nascimento, viagem, casamento, pet. A geladeira como linha do tempo afetiva da família.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Carrossel</span><span class="badge b-fmt">Série de conteúdo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#015</div><div class="idea-body"><div class="idea-title">Meu primeiro pedido — a história da fottu.br</div><div class="idea-desc">Conte a história de como e por que você começou. Quem foi o primeiro cliente, o que sentiu, por que vale a pena.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok / Reel</span><span class="badge b-fmt">Fundadora</span></div></div></div>
+      <div class="idea"><div class="idea-num">#016</div><div class="idea-body"><div class="idea-title">A foto que ela pensou que tinha perdido</div><div class="idea-desc">Celular antigo, foto recuperada. Transformada em ímã antes que desaparecesse de novo. A fottu.br como guardiã de memórias.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok</span><span class="badge b-bias">Aversão à Perda</span></div></div></div>
+      <div class="idea"><div class="idea-num">#017</div><div class="idea-body"><div class="idea-title">Ela comprou pra si mesma pela primeira vez</div><div class="idea-desc">Autoamor. Comprar um ímã das próprias memórias, pra própria geladeira. "Você também merece se presentear."</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Instagram</span></div></div></div>
+      <div class="idea"><div class="idea-num">#018</div><div class="idea-body"><div class="idea-title">A última foto com a vovó — agora está na geladeira</div><div class="idea-desc">A última foto tirada antes de um ente querido partir. Memória preservada com dignidade e amor.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok emocional</span><span class="badge b-prio">Conteúdo sensível</span></div></div></div>
+      <div class="idea"><div class="idea-num">#019</div><div class="idea-body"><div class="idea-title">O bebê que virou ímã gigante na geladeira da bisavó</div><div class="idea-desc">4 gerações conectadas por uma foto e um ímã. A bisavó vê o bebê todo dia. Impacto intergeracional real.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#020</div><div class="idea-body"><div class="idea-title">A viagem que quase não aconteceu — agora é ímã</div><div class="idea-desc">Viagem que quase foi cancelada. Momentos que quase não existiram. Agora na geladeira pra sempre.</div><div class="idea-meta"><span class="badge b-fw">🦸 Jornada</span><span class="badge b-net">TikTok</span></div></div></div>
+    </div>
+
+    <!-- 3 ATOS -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">🎭 Arquitetura dos 3 Atos</div>
+      <p style="font-size:0.83rem;color:var(--muted);">Ato 1 — situação inicial (estável) · Ato 2 — conflito ou descoberta · Ato 3 — resolução e transformação.</p>
+    </div>
+
+    <div class="count-box">🎭 3 Atos · Ideias #021–#100</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#021</div><div class="idea-body"><div class="idea-title">Tinha 847 fotos. Zero na geladeira.</div><div class="idea-desc">Ato 1: galeria cheia, casa sem memórias. Ato 2: descoberta dos ímãs. Ato 3: geladeira cheia, coração cheio.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Reel / TikTok</span><span class="badge b-fmt">15s</span></div></div></div>
+      <div class="idea"><div class="idea-num">#022</div><div class="idea-body"><div class="idea-title">O presente errado que se tornou o certo</div><div class="idea-desc">Ato 1: comprou algo genérico. Ato 2: reação morna dela. Ato 3: ano seguinte, ímã personalizado. Reação completamente diferente.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#023</div><div class="idea-body"><div class="idea-title">3 anos de bebê documentados. Nenhuma foto impressa.</div><div class="idea-desc">Ato 1: mãe fotógrafa do filho por 3 anos. Ato 2: percebe que nenhuma foto existe fisicamente. Ato 3: kit de ímãs com a linha do tempo do bebê.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#024</div><div class="idea-body"><div class="idea-title">Perdi meu cachorro. Encontrei uma forma de mantê-lo perto.</div><div class="idea-desc">Ato 1: pet faleceu. Ato 2: galeria cheia de fotos sem utilidade. Ato 3: ímã na geladeira — ele ainda está presente.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok emocional</span><span class="badge b-prio">Viral pets</span></div></div></div>
+      <div class="idea"><div class="idea-num">#025</div><div class="idea-body"><div class="idea-title">Minha mãe guardava em álbum. Eu guardo em ímã.</div><div class="idea-desc">Ato 1: tradição do álbum de fotos. Ato 2: era digital — fotos no celular. Ato 3: ímã como álbum moderno, físico e acessível.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Reel</span><span class="badge b-bias">Nostalgia</span></div></div></div>
+      <div class="idea"><div class="idea-num">#026</div><div class="idea-body"><div class="idea-title">O Natal que ela nunca vai esquecer</div><div class="idea-desc">Ato 1: família reunida, presente embrulhado. Ato 2: ela abre — não é o esperado. Ato 3: ela vê a foto da família, chora, coloca na geladeira naquela mesma noite.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Reel Natal</span></div></div></div>
+      <div class="idea"><div class="idea-num">#027</div><div class="idea-body"><div class="idea-title">Ela disse que não precisava de mais nada. Mentira.</div><div class="idea-desc">Ato 1: pessoa que "já tem tudo". Ato 2: recebe ímãs com fotos da própria vida. Ato 3: desapontamento virou gratidão genuína.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#028</div><div class="idea-body"><div class="idea-title">Presente de última hora que virou o mais especial do ano</div><div class="idea-desc">Ato 1: 3 dias antes da data. Ato 2: pediu com urgência, chegou a tempo. Ato 3: ela ficou sem palavras. A urgência como parte da história.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Story urgência</span></div></div></div>
+      <div class="idea"><div class="idea-num">#029</div><div class="idea-body"><div class="idea-title">Ela deixou a foto do ex na geladeira por 2 anos</div><div class="idea-desc">Ato 1: foto do ex na geladeira (ímã genérico). Ato 2: novo capítulo de vida. Ato 3: trocou por fotos de quem ama hoje. Renovação de fase.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok relatable</span><span class="badge b-prio">Humor leve</span></div></div></div>
+      <div class="idea"><div class="idea-num">#030</div><div class="idea-body"><div class="idea-title">A decisão de começar a fottu.br</div><div class="idea-desc">Ato 1: a incerteza e o medo de empreender. Ato 2: primeiro pedido, primeiros erros. Ato 3: resultados, aprendizados e por que valeu.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok fundadora</span></div></div></div>
+      <div class="idea"><div class="idea-num">#031</div><div class="idea-body"><div class="idea-title">Geladeira antes: cinza. Depois: cheia de vida.</div><div class="idea-desc">Ato 1: geladeira nova e fria, sem personalidade. Ato 2: primeiros ímãs chegam. Ato 3: antes/depois visual da geladeira transformada.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Reel before/after</span></div></div></div>
+      <div class="idea"><div class="idea-num">#032</div><div class="idea-body"><div class="idea-title">A entrega que chegou com cartão escrito à mão</div><div class="idea-desc">Ato 1: cliente esperando pacote comum. Ato 2: abre e vê o papel seda, o cheiro, o cartão com seu nome. Ato 3: foi mostrar pra todo mundo.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Unboxing Reel</span><span class="badge b-bias">Efeito Halo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#033</div><div class="idea-body"><div class="idea-title">O kit de 8 que virou tradição de família no Natal</div><div class="idea-desc">Ato 1: primeiro pedido, 1 ímã. Ato 2: segunda vez, 4 ímãs. Ato 3: terceiro ano, kit de 8 para distribuir entre os irmãos.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Completude</span></div></div></div>
+      <div class="idea"><div class="idea-num">#034</div><div class="idea-body"><div class="idea-title">Ela chorou quando abriu. Eu chorei quando vi o vídeo.</div><div class="idea-desc">Ato 1: cliente grava a reação da amiga recebendo o presente. Ato 2: envia o vídeo pra você. Ato 3: a emoção de quem faz o produto ao ver o impacto.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">TikTok / Reel</span><span class="badge b-prio">UGC</span></div></div></div>
+      <div class="idea"><div class="idea-num">#035</div><div class="idea-body"><div class="idea-title">Memória digital tem prazo de validade. Ímã, não.</div><div class="idea-desc">Ato 1: vida registrada no celular. Ato 2: celular quebra, dados somem, nuvem expira. Ato 3: o ímã sobreviveu — a memória continua viva.</div><div class="idea-meta"><span class="badge b-fw">🎭 3 Atos</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Aversão à Perda</span></div></div></div>
+    </div>
+
+    <!-- STORYBRAND -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">🗺️ Framework StoryBrand</div>
+      <p style="font-size:0.83rem;color:var(--muted);">A cliente é a protagonista. A fottu.br é a guia. Estrutura: personagem → problema → guia → plano → ação → evitar fracasso → sucesso.</p>
+    </div>
+
+    <div class="count-box">🗺️ StoryBrand · Ideias #036–#120</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#036</div><div class="idea-body"><div class="idea-title">Você tem o problema. Nós temos o plano em 3 passos.</div><div class="idea-desc">Post direto: "Fotos demais no celular, nenhuma em casa? → 1. Escolhe a foto favorita · 2. Nos chama no WhatsApp · 3. Recebe na porta." A guia com plano claro.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#037</div><div class="idea-body"><div class="idea-title">O guia que você precisava pra sair do "não sei o que dar"</div><div class="idea-desc">Post didático: "Tem data especial chegando? Passo a passo pra dar um presente que ela nunca vai esquecer." Posicionar fottu.br como especialista confiável.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#038</div><div class="idea-body"><div class="idea-title">A consequência de não fazer nada com suas fotos</div><div class="idea-desc">O que acontece se você não age: iCloud vence, celular quebra, fotos somem. A falha que o StoryBrand chama de "fracasso a evitar".</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">TikTok</span><span class="badge b-bias">Aversão à Perda</span></div></div></div>
+      <div class="idea"><div class="idea-num">#039</div><div class="idea-body"><div class="idea-title">Você tem a foto. Nós temos o resto.</div><div class="idea-desc">Simplificação máxima da barreira de entrada. O único esforço da cliente é escolher a foto. O plano é simples e o guia é confiável.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Reel / Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">#040</div><div class="idea-body"><div class="idea-title">A vitória que ela vai sentir quando abrir a caixinha</div><div class="idea-desc">Descrever em detalhes o momento da abertura. O papel seda, o cheiro, o cartão. A vitória do protagonista como foco narrativo.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Reel unboxing</span></div></div></div>
+      <div class="idea"><div class="idea-num">#041</div><div class="idea-body"><div class="idea-title">FAQ em carrossel — removendo objeções do caminho</div><div class="idea-desc">As 8 dúvidas mais comuns: como envio a foto? Qual a qualidade? Demora quanto? Posso parcelar? Entrega pra minha cidade? Cada slide remove uma barreira.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#042</div><div class="idea-body"><div class="idea-title">Você merece ter suas memórias fora do celular</div><div class="idea-desc">CTA emocional. Não é luxo. É necessidade afetiva. Qualquer pessoa merece ter isso em casa. Chamada à ação que valida a decisão.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Post estático</span></div></div></div>
+      <div class="idea"><div class="idea-num">#043</div><div class="idea-body"><div class="idea-title">Nós cuidamos da memória. Você aproveita o resultado.</div><div class="idea-desc">Posicionar a fottu.br como especialista confiável. A cliente não precisa entender de impressão — ela só precisa confiar.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Post estático</span></div></div></div>
+      <div class="idea"><div class="idea-num">#044</div><div class="idea-body"><div class="idea-title">3 motivos pelos quais ela vai preferir ímã ao invés de quadro</div><div class="idea-desc">1. Está na geladeira — vê todo dia. 2. Magnético — fácil trocar. 3. Acessível — dá pra ter vários. O plano comparativo.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#045</div><div class="idea-body"><div class="idea-title">Série tutorial: como escolher a melhor foto pra virar ímã</div><div class="idea-desc">A guia ensinando a protagonista: resolução ideal, enquadramento, tipo de foto que fica mais linda. 5 slides educativos.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Autoridade</span></div></div></div>
+      <div class="idea"><div class="idea-num">#046</div><div class="idea-body"><div class="idea-title">Se você soubesse como era fácil pedir, teria feito antes</div><div class="idea-desc">Barreira de entrada imaginada vs realidade. "3 passos, menos de 5 minutos, pix confirmado." Remover medo da complexidade.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Story</span><span class="badge b-bias">Status Quo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#047</div><div class="idea-body"><div class="idea-title">Comparativo: ímã vs caneca vs almofada</div><div class="idea-desc">A geladeira vs objetos que ficam guardados. A fottu.br como guia mostrando qual produto de fato tem presença diária.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#048</div><div class="idea-body"><div class="idea-title">O que acontece quando você dá o presente certo</div><div class="idea-desc">A vitória da protagonista: ela mantém o ímã por anos, mostra pra toda visita, recompra no próximo aniversário. A vida pós-sucesso.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#049</div><div class="idea-body"><div class="idea-title">Você não precisa entender de impressão pra ter um produto perfeito</div><div class="idea-desc">Remover barreira técnica. A guia cuida de tudo. Você só escolhe a foto e confia.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">#050</div><div class="idea-body"><div class="idea-title">A prova de que funciona: 5 avaliações reais</div><div class="idea-desc">Carrossel com 5 depoimentos reais de clientes. A guia confiável tem provas. Cada avaliação é um argumento de credibilidade.</div><div class="idea-meta"><span class="badge b-fw">🗺️ StoryBrand</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Conformidade</span></div></div></div>
+    </div>
+
+    <!-- PIXAR -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">🎬 Framework da Pixar</div>
+      <p style="font-size:0.83rem;color:var(--muted);">Era uma vez... / Todos os dias... / Até que um dia... / Por causa disso... / Por causa disso... / Até que finalmente... / E desde então...</p>
+    </div>
+
+    <div class="count-box">🎬 Pixar · Ideias #051–#110</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#051</div><div class="idea-body"><div class="idea-title">Era uma vez uma foto esquecida...</div><div class="idea-desc">"Era uma vez uma foto. Tirada em 2019, numa viagem que ela nunca esqueceu. Ficou guardada por anos. Até que um dia, encontrou a fottu.br. E desde então, está na geladeira todo dia." Reel narrado.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">Reel narrado</span></div></div></div>
+      <div class="idea"><div class="idea-num">#052</div><div class="idea-body"><div class="idea-title">Era uma vez uma mãe que nunca sabia o que dar de presente</div><div class="idea-desc">Estrutura Pixar completa aplicada ao problema da filha que quer presentear a mãe. Todos os dias ela tentava. Até que um dia encontrou a fottu.br. Desde então, o presente nunca mais foi um problema.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">Reel emocional</span></div></div></div>
+      <div class="idea"><div class="idea-num">#053</div><div class="idea-body"><div class="idea-title">Era uma vez uma pequena marca que queria mudar as memórias</div><div class="idea-desc">A história da fottu.br em formato Pixar. A origem, o propósito, os primeiros clientes, o caminho. Humaniza profundamente a marca.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">TikTok marca</span></div></div></div>
+      <div class="idea"><div class="idea-num">#054</div><div class="idea-body"><div class="idea-title">Era uma vez um avô que nunca aparecia nas fotos</div><div class="idea-desc">Sempre atrás da câmera, nunca na foto. Neto pegou a única foto rara dele e fez um ímã. Era uma vez → agora está na geladeira da família.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">Reel emocional</span><span class="badge b-prio">Alta emoção</span></div></div></div>
+      <div class="idea"><div class="idea-num">#055</div><div class="idea-body"><div class="idea-title">Era uma vez uma noiva com 4.000 fotos do casamento</div><div class="idea-desc">Todos os dias ela abria o celular querendo escolher uma. Até que finalmente escolheu a foto mais significativa. Desde então, toda manhã revive aquele dia por 2 segundos.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">TikTok / Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#056</div><div class="idea-body"><div class="idea-title">Era uma vez uma geladeira completamente vazia de memórias</div><div class="idea-desc">Todos os dias ela passava na frente dela sem sentir nada. Até que um dia chegou o primeiro ímã. Por causa disso, sentiu que aquele apartamento finalmente era lar.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#057</div><div class="idea-body"><div class="idea-title">Era uma vez um pet que morava no coração e na galeria</div><div class="idea-desc">Todos os dias ela via a foto no celular e sorria. Até que um dia transformou em ímã. Desde então, o sorriso acontece na cozinha, não no celular.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">TikTok pets</span></div></div></div>
+      <div class="idea"><div class="idea-num">#058</div><div class="idea-body"><div class="idea-title">Era uma vez uma empreendedora que achou que não conseguia</div><div class="idea-desc">A história da fundadora da fottu.br: medo, primeiro pedido, erro, aprendizado, crescimento. O arco Pixar completo de empreendedorismo afetivo.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">TikTok fundadora</span></div></div></div>
+      <div class="idea"><div class="idea-num">#059</div><div class="idea-body"><div class="idea-title">Era uma vez uma viagem que quase não aconteceu</div><div class="idea-desc">A viagem que o dinheiro mal cobriu, que o tempo não ajudou, mas que aconteceu. Hoje está na geladeira. Toda vez que abre, lembra que valeu.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#060</div><div class="idea-body"><div class="idea-title">Era uma vez um filho que morava a 1.200km da mãe</div><div class="idea-desc">Todos os dias ela sentia falta. Até que um dia ele mandou um kit de ímãs com fotos dele e da família nova. Desde então, a geladeira dela tem os filhos por perto.</div><div class="idea-meta"><span class="badge b-fw">🎬 Pixar</span><span class="badge b-net">Reel emocional</span></div></div></div>
+    </div>
+
+    <!-- STORY CIRCLE -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">⭕ Story Circle (Dan Harmon)</div>
+      <p style="font-size:0.83rem;color:var(--muted);">8 etapas: Zona de conforto → Necessidade → Busca → Encontro → Pagamento → Regresso → Mudança → Nova zona de conforto.</p>
+    </div>
+
+    <div class="count-box">⭕ Story Circle · Ideias #061–#120</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#061</div><div class="idea-body"><div class="idea-title">A jornada completa de uma cliente — do celular à geladeira</div><div class="idea-desc">Série de 8 stories/posts: 1. Zona de conforto (foto no celular). 2. Necessidade (queria ela na casa). 3. Busca (como fazer). 4. Encontro (fottu.br). 5. Pagamento (pedido). 6. Regresso (produto chegou). 7. Mudança (geladeira transformada). 8. Nova vida.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Série Stories</span></div></div></div>
+      <div class="idea"><div class="idea-num">#062</div><div class="idea-body"><div class="idea-title">O ciclo das memórias — viver → fotografar → esquecer → reviver</div><div class="idea-desc">Mostrar como a fottu.br quebra o ciclo "esquecer" e insere como ponte entre fotografar e reviver. O círculo completo.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#063</div><div class="idea-body"><div class="idea-title">Ela queria se sentir em casa no apartamento novo</div><div class="idea-desc">Círculo: apê vazio → falta de pertencimento → busca → encontra fottu.br → ímãs na geladeira → se sente em casa. Nova zona de conforto.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#064</div><div class="idea-body"><div class="idea-title">A cada fase da vida, uma nova geladeira</div><div class="idea-desc">Solteira, casada, com filhos, com netos. A geladeira muda com a vida. A fottu.br acompanha cada círculo de vida.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Completude</span></div></div></div>
+      <div class="idea"><div class="idea-num">#065</div><div class="idea-body"><div class="idea-title">O ciclo de um pedido — do "quero" ao "amei"</div><div class="idea-desc">Mostrar o processo circular: ideia → dúvida → pedido → espera → chegou → geladeira → novo desejo de pedir mais.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Reel processo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#066</div><div class="idea-body"><div class="idea-title">O ano em ímãs — uma geladeira diferente a cada estação</div><div class="idea-desc">Janeiro: virada. Março: Dia das Mães chegando. Julho: viagem. Dezembro: Natal. A geladeira acompanha as estações da vida.</div><div class="idea-meta"><span class="badge b-fw">⭕ Story Circle</span><span class="badge b-net">Carrossel sazonal</span></div></div></div>
+    </div>
+
+    <!-- 2+2 -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">➕ Framework 2+2 — Deixe o público somar</div>
+      <p style="font-size:0.83rem;color:var(--muted);">Não explique tudo. Mostre A+B e deixe o público chegar à conclusão C sozinho. Cria envolvimento e comentários.</p>
+    </div>
+
+    <div class="count-box">➕ 2+2 · Ideias #067–#130</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#067</div><div class="idea-body"><div class="idea-title">Ela abriu a geladeira às 7h. Ficou 5 minutos parada.</div><div class="idea-desc">Não explique. Mostre o ímã novo. Deixe a audiência somar o que aconteceu. Os comentários vão contar a história por você.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">TikTok</span><span class="badge b-prio">Alto engajamento</span></div></div></div>
+      <div class="idea"><div class="idea-num">#068</div><div class="idea-body"><div class="idea-title">Ele escolheu a foto mais antiga que achou. Ela reconheceu na hora.</div><div class="idea-desc">Foto de memória de infância. Ele não disse de onde era. A reação dela explica tudo sem precisar de palavras.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">TikTok curto</span></div></div></div>
+      <div class="idea"><div class="idea-num">#069</div><div class="idea-body"><div class="idea-title">Foto tirada em 2018. Chegou na geladeira em 2025.</div><div class="idea-desc">A data fala mais do que qualquer descrição. O público entende o salto temporal e o significado sem explicação.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#070</div><div class="idea-body"><div class="idea-title">Caixinha chegou. Ela leu o cartão. Não falou nada por 10 minutos.</div><div class="idea-desc">O silêncio como máxima emoção. Deixa o público imaginar o que estava escrito. "Comenta o que você teria escrito."</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">#071</div><div class="idea-body"><div class="idea-title">2019 ela tirou. 2024 ela finalmente colocou na geladeira.</div><div class="idea-desc">5 anos entre a foto e o ímã. O público soma a procrastinação afetiva e a resolução. Altamente identificável.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">Post estático</span></div></div></div>
+      <div class="idea"><div class="idea-num">#072</div><div class="idea-body"><div class="idea-title">O kit que eu enviei tinha 8 ímãs. Ela pediu mais 12.</div><div class="idea-desc">O número fala sozinho. O público soma a satisfação, a recompra e a escala. Mostra sucesso sem precisar explicar.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">#073</div><div class="idea-body"><div class="idea-title">Ela perguntou quem tinha comprado. Ninguém respondeu — mas todo mundo sorriu.</div><div class="idea-desc">Presente surpresa coletivo. A confusão e o amor misturados. Deixa o público somar a cena.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">#074</div><div class="idea-body"><div class="idea-title">Antes: geladeira com ímã de pizzaria. Depois: essa foto.</div><div class="idea-desc">Mostra a troca sem precisar dizer nada. A imagem faz todo o trabalho. Humor leve + afeto.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">TikTok humor</span></div></div></div>
+      <div class="idea"><div class="idea-num">#075</div><div class="idea-body"><div class="idea-title">Ela não tem muitos seguidores. Mas tem 1 ímã que vale tudo.</div><div class="idea-desc">Contraste entre mundo digital (seguidores) e mundo físico (ímã com memória real). O público soma o que importa de verdade.</div><div class="idea-meta"><span class="badge b-fw">➕ 2+2</span><span class="badge b-net">Post estático</span></div></div></div>
+    </div>
+
+    <!-- PAS -->
+    <div class="rule"></div>
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.5rem;">🔥 PAS — Problema, Agitação, Solução</div>
+      <p style="font-size:0.83rem;color:var(--muted);">O framework mais direto ao ponto. 1. Apresenta o problema. 2. Agita a dor. 3. Apresenta a solução. Altamente eficaz para conversão.</p>
+    </div>
+
+    <div class="count-box">🔥 PAS · Ideias #076–#180</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#076</div><div class="idea-body"><div class="idea-title">P: foto no celular. A: você sabe que vai esquecer. S: fottu.br.</div><div class="idea-desc">PAS clássico em 15 segundos. P — mostra galeria cheia. A — "daqui 5 anos esse celular vai sumir". S — ímã na geladeira.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">TikTok 15s</span><span class="badge b-prio">Conversão alta</span></div></div></div>
+      <div class="idea"><div class="idea-num">#077</div><div class="idea-body"><div class="idea-title">P: presente genérico. A: reação morna. S: presente com memória.</div><div class="idea-desc">O constrangimento de ver a reação apagada de quem recebe algo sem significado. Agitar essa dor. Resolver com ímã personalizado.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Reel relatable</span></div></div></div>
+      <div class="idea"><div class="idea-num">#078</div><div class="idea-body"><div class="idea-title">P: gastei R$80 num presente que ela usou uma semana. A: 52 semanas desperdiçadas. S: ímã que dura 10 anos.</div><div class="idea-desc">Agitar a dor financeira e emocional de um presente perecível.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">TikTok</span><span class="badge b-bias">Enquadramento</span></div></div></div>
+      <div class="idea"><div class="idea-num">#079</div><div class="idea-body"><div class="idea-title">P: a data chegou. A: você ainda não tem o presente. S: fottu.br entrega em 5 dias.</div><div class="idea-desc">Urgência real como problema + agitação do tempo passando + solução com prazo claro.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Story urgência</span></div></div></div>
+      <div class="idea"><div class="idea-num">#080</div><div class="idea-body"><div class="idea-title">P: 300 fotos da viagem. A: nenhuma saiu do celular. S: ímã como diário de viagem.</div><div class="idea-desc">A ironia de viajar tanto, fotografar tudo e não ter nada físico para mostrar.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Reel viagem</span></div></div></div>
+      <div class="idea"><div class="idea-num">#081</div><div class="idea-body"><div class="idea-title">P: memória digital tem prazo de validade. A: você não sabe quando vai perder. S: ímã físico e permanente.</div><div class="idea-desc">Celulares quebram, HDDs morrem, iCloud cobra. A vulnerabilidade da memória digital como agitação poderosa.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Carrossel</span><span class="badge b-bias">Aversão à Perda</span></div></div></div>
+      <div class="idea"><div class="idea-num">#082</div><div class="idea-body"><div class="idea-title">P: você fotografa tudo. A: revive quase nada. S: geladeira como galeria viva.</div><div class="idea-desc">O paradoxo da era digital. Hiperfotografar e ter acesso zero às memórias no cotidiano.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">TikTok provocativo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#083</div><div class="idea-body"><div class="idea-title">P: ela vai crescer. A: essa fase não volta. S: registra agora.</div><div class="idea-desc">Para mães de bebês e crianças. A urgência emocional de eternizar uma fase que é literalmente temporária.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Reel</span><span class="badge b-bias">Aversão à Perda</span></div></div></div>
+      <div class="idea"><div class="idea-num">#084</div><div class="idea-body"><div class="idea-title">P: caneca esquecida. Almofada na gaveta. Quadro no corredor. A: presente que ninguém usa. S: ímã que está na geladeira todo dia.</div><div class="idea-desc">Agitar a frustração com presentes que somem. A presença diária como diferencial inegável.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">Carrossel comparativo</span></div></div></div>
+      <div class="idea"><div class="idea-num">#085</div><div class="idea-body"><div class="idea-title">P: 5 anos sem eternizar aquela foto especial. A: cada dia que passa é uma chance a menos. S: 5 minutos hoje mudam isso.</div><div class="idea-desc">Agitar a procrastinação afetiva. Mostrar que a solução é imediata e simples.</div><div class="idea-meta"><span class="badge b-fw">🔥 PAS</span><span class="badge b-net">TikTok</span><span class="badge b-bias">Status Quo</span></div></div></div>
+    </div>
+
+    <!-- MAIS 200+ IDEIAS COMBINADAS -->
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cream);font-size:1.3rem;margin-bottom:1rem;">📦 Banco de Ideias — Todos os Formatos e Redes (#086–#500)</h3>
+    <div class="count-box">Banco completo · Ideias #086–#500 — Todos os frameworks</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">#086–100</div><div class="idea-body"><div class="idea-title">📸 INSTAGRAM — Posts Estáticos (Série completa)</div><div class="idea-desc">86: Foto do produto em cozinha real + legenda emocional. 87: Grid com 4 fotos de kits diferentes + preços. 88: Depoimento em fundo de marca com citação da cliente. 89: Comparativo visual: ímã vs caneca vs quadro. 90: "O que a sua geladeira diz sobre você?" — texto em fundo creme. 91: Foto de unboxing elegante. 92: Antes/depois da geladeira. 93: Kit especial datas comemorativas. 94: Foto do processo de produção. 95: Citação motivacional sobre memória + produto discreto. 96: Carrossel "7 fotos que ficam lindas em ímã". 97: Post "Como pedir — 3 passos". 98: Collage de depoimentos com 5 estrelas. 99: Foto de geladeira de cliente real (com permissão). 100: Post comemorativo de marcos (100 pedidos, etc).</div><div class="idea-meta"><span class="badge b-fw">StoryBrand + PAS</span><span class="badge b-net">Instagram</span><span class="badge b-fmt">Post Estático</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#101–130</div><div class="idea-body"><div class="idea-title">🎵 TIKTOK — Formatos específicos que convertem</div><div class="idea-desc">101: POV "você está escolhendo a foto pra virar ímã" — simula a galeria do celular. 102: "Vou mostrar o que faço todo dia de manhã antes de abrir pra vocês" — processo. 103: "Me pediram a foto mais estranha" — humor + produto. 104: Reagindo a comentário de hater "isso é frescura" — dar volta por cima. 105: Mostrando o erro que cometi num pedido — transparência. 106: "Qual era a foto que você mais queria eternizar?" — CTA nos comentários. 107: Antes/depois de geladeiras de clientes. 108: Unboxing próprio de materiais. 109: Trend de "sinal que você é..." adaptada: "sinal que você guarda memórias". 110: "Recebi esse pedido e precisei parar tudo" — narrativa de impacto emocional. 111-130: Variações dos formatos acima com diferentes nichos — pet, bebê, casamento, viagem, família, avós, casais de longa data, irmãs, melhores amigas.</div><div class="idea-meta"><span class="badge b-fw">Todos os frameworks</span><span class="badge b-net">TikTok</span><span class="badge b-fmt">Vídeo nativo</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#131–160</div><div class="idea-body"><div class="idea-title">📱 STORIES — Estratégia semanal completa</div><div class="idea-desc">131: Segunda — bastidor da semana (caixa de perguntas). 132: Terça — produto do dia em foto natural. 133: Quarta — depoimento de cliente repostado. 134: Quinta — enquete: "Qual kit você escolheria?" A ou B. 135: Sexta — CTA direto: "Últimas vagas essa semana". 136: Sábado — processo de produção em boomerang. 137: Domingo — frase inspiradora sobre memória. 138: Story de contagem regressiva para data especial. 139: Quiz: "Qual foto da sua vida merece virar ímã?" 140-160: Stories específicos por data — Dia das Mães, Namorados, Pais, Natal, Black Friday.</div><div class="idea-meta"><span class="badge b-fw">StoryBrand</span><span class="badge b-net">Instagram Stories</span><span class="badge b-fmt">Stories</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#161–200</div><div class="idea-body"><div class="idea-title">🎬 REELS — 40 ideias de vídeo estruturadas</div><div class="idea-desc">161: "3 coisas que aprendi fazendo ímãs pra mais de X clientes". 162: "Qual foi o pedido mais especial que já recebi". 163: Processo acelerado de 60s do início ao fim. 164: "Porque a geladeira é o melhor lugar do lar". 165: Série de bastidores: compra de insumos, produção, embalagem. 166: "Fiz um kit de 8 ímãs como surpresa pra minha própria mãe". 167: Collab com fotógrafa mostrando como a foto vira ímã. 168: "Os 5 tipos de foto que NUNCA ficam boas em ímã" — educativo. 169: "Os 5 tipos de foto que sempre ficam perfeitos" — positivo. 170: Timelapse da geladeira vazia enchendo de ímãs. 171-200: Reels temáticos por nicho — bebês, pets, viagens, casamentos, formaturas, aniversários, amizades, avós.</div><div class="idea-meta"><span class="badge b-fw">Todos</span><span class="badge b-net">Instagram Reels</span><span class="badge b-fmt">Vídeo</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#201–250</div><div class="idea-body"><div class="idea-title">💬 WHATSAPP — Comunicação e sequências</div><div class="idea-desc">201: Sequência de boas-vindas em 3 mensagens. 202: Lembrete de data especial para leads que não fecharam. 203: Mensagem de pós-venda 3 dias após entrega. 204: Pedido de avaliação com link direto. 205: Broadcast de lançamento de data comemorativa. 206: Mensagem de "você sabia que pode fazer ímã de..." (educativa). 207: Envio de conteúdo de bastidores (status exclusivo). 208: Oferta exclusiva para lista VIP. 209: Recuperação de carrinhos abandonados. 210-250: Templates de conversa para cada objeção comum — preço, prazo, qualidade da foto, tamanho, entrega.</div><div class="idea-meta"><span class="badge b-fw">StoryBrand</span><span class="badge b-net">WhatsApp</span><span class="badge b-fmt">Mensagem</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#251–300</div><div class="idea-body"><div class="idea-title">🗂️ CARROSSÉIS — 50 temas completos</div><div class="idea-desc">251: "5 motivos pelos quais ímã é melhor que quadro". 252: "Como cuidar do seu ímã pra durar anos". 253: "O que acontece com suas fotos daqui a 10 anos". 254: "7 ocasiões em que ímã é o presente ideal". 255: "Como escolher a foto certa: resolução, enquadramento, iluminação". 256: "Conheça a fottu.br: origem, valores, o que fazemos". 257: "Kit para Dia das Mães: guia completo de escolha". 258: "Depoimentos: o que as clientes dizem". 259: "Geladeiras que amamos — mostre a sua". 260: "Materiais que usamos e por que são premium". 261-300: Carrosséis educativos sobre memória afetiva, fotografia, decoração, psicologia dos objetos com significado.</div><div class="idea-meta"><span class="badge b-fw">StoryBrand + Autoridade</span><span class="badge b-net">Instagram</span><span class="badge b-fmt">Carrossel</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#301–350</div><div class="idea-body"><div class="idea-title">📅 CAMPANHAS SAZONAIS — Uma por data</div><div class="idea-desc">301: Campanha Dia dos Namorados completa (6 peças). 302: Campanha Dia das Mães (10 peças). 303: Campanha Dia dos Pais (6 peças). 304: Campanha Natal (12 peças). 305: Black Friday fottu.br (4 peças). 306: Dia das Crianças (4 peças). 307: Páscoa (3 peças). 308: Carnaval — foto de Carnaval virou ímã. 309: Virada do ano — kit dos melhores momentos. 310-350: Conteúdo de apoio para cada campanha — stories, reels, posts estáticos, mensagem de WhatsApp.</div><div class="idea-meta"><span class="badge b-fw">PAS + StoryBrand</span><span class="badge b-net">Todos</span><span class="badge b-fmt">Campanha</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#351–400</div><div class="idea-body"><div class="idea-title">🤝 COLLAB E UGC — Conteúdo gerado por outros</div><div class="idea-desc">351: Parceria com fotógrafa de newborn. 352: Collab com blogueira de decoração. 353: Collab com loja de papelaria. 354: Collab com floricultural — presente combinado. 355: Repost de cliente com ímã na geladeira. 356: Repost de reação em vídeo. 357: Dueto TikTok com cliente mostrando o produto. 358: Pedido ativo para clientes mandarem foto da geladeira. 359: Concurso "Geladeira mais linda" com prêmio. 360-400: Templates de pedido de UGC, instruções para clientes postarem, incentivos para geração de conteúdo espontâneo.</div><div class="idea-meta"><span class="badge b-fw">Conformidade + Halo</span><span class="badge b-net">Todos</span><span class="badge b-fmt">UGC</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#401–450</div><div class="idea-body"><div class="idea-title">🎓 CONTEÚDO EDUCATIVO — Autoridade e autoridade</div><div class="idea-desc">401: "Por que a geladeira é o centro do lar". 402: "A psicologia por trás dos objetos com memória afetiva". 403: "Como a decoração com fotos afeta a saúde emocional". 404: "Por que presentes personalizados têm mais valor percebido". 405: "A ciência das memórias físicas vs digitais". 406: "Como a saudade se transforma em objeto". 407: "O que a decoração da geladeira diz sobre uma pessoa". 408: "Por que celebrar os pequenos momentos importa". 409-450: Conteúdo educativo mais leve — como cuidar da foto pra ficam linda no ímã, quais momentos mais combinam com ímã, como montar um kit presente, etc.</div><div class="idea-meta"><span class="badge b-fw">Autoridade + StoryBrand</span><span class="badge b-net">Instagram + TikTok</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">#451–500</div><div class="idea-body"><div class="idea-title">🔮 CONTEÚDO DE COMUNIDADE E MARCA PESSOAL</div><div class="idea-desc">451: "Um dia na rotina de produção da fottu.br". 452: "O pedido mais difícil que já recebi e o que aprendi". 453: "Erro que cometi e como resolvi". 454: "Por que escolhi trabalhar com memórias". 455: "Minha geladeira — mostrando os ímãs da minha própria casa". 456: "Bastidores do Dia das Mães — produção máxima". 457: "Recebi essa mensagem de cliente às 2h da manhã". 458: "Marcos da fottu.br: primeiro pedido, 50, 100, 500". 459: "O que eu mudaria se começasse de novo". 460: "Por que trabalhar com afeto me transforma todo dia". 461-500: Conteúdo de transparência, bastidores, humanização da fundadora, storytelling pessoal, valores da marca em ação, celebração de marcos, erros e aprendizados.</div><div class="idea-meta"><span class="badge b-fw">Jornada do Herói + Pixar</span><span class="badge b-net">TikTok + Instagram</span><span class="badge b-fmt">Fundadora</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  VIESES COGNITIVOS — 500+ IDEIAS
+══════════════════════════════════ -->
+<section id="vieses" class="sec dark">
+  <div class="container">
+    <div class="stk"><span class="stk-t">500+ Ideias com Vieses Cognitivos</span><span class="stk-n">04</span></div>
+    <br>
+    <div class="ey">04 — 500+ Ideias · Vieses Cognitivos</div>
+    <h2 class="tt">Conectando com a psicologia<br>do consumidor de forma ética.</h2>
+    <p class="lead">Use vieses cognitivos para comunicar com mais inteligência emocional — nunca para manipular, mas para ressoar genuinamente.</p>
+
+    <div class="quote">"A diferença entre manipulação e persuasão está na autenticidade. Use vieses para amplificar o que é real — não para criar o que não é."</div>
+
+    <!-- DISPONIBILIDADE -->
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.4rem;">⚡ Viés de Disponibilidade</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Quanto mais frequentemente algo aparece, mais familiar e desejável parece. Frequência cria normalidade.</p>
+    </div>
+    <div class="count-box">Disponibilidade · V001–V040</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V001</div><div class="idea-body"><div class="idea-title">Série "Geladeira da Semana" — toda semana, uma geladeira nova</div><div class="idea-desc">Poste toda semana uma geladeira de cliente real. Em 3 meses, o público começa a normalizar geladeiras cheias de ímãs — e querer a sua igual.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Instagram</span><span class="badge b-fmt">Série semanal</span></div></div></div>
+      <div class="idea"><div class="idea-num">V002</div><div class="idea-body"><div class="idea-title">Post diário de produto em contexto real</div><div class="idea-desc">Cada vez que o público vê um ímã numa cozinha real, a memória "esse produto existe e é comum" fica mais forte. Frequência = familiaridade = desejo.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Stories</span></div></div></div>
+      <div class="idea"><div class="idea-num">V003</div><div class="idea-body"><div class="idea-title">"Todo mundo que conheço já tem" — amplificar percepção de volume</div><div class="idea-desc">Mostrar depoimentos em quantidade, repostes em sequência, prints de avaliações em série. Percepção de que muita gente já compra.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V004</div><div class="idea-body"><div class="idea-title">Repostar toda marcação de cliente, mesmo as pequenas</div><div class="idea-desc">Cada repost aumenta a "disponibilidade mental" do produto. Pessoas que seguem veem o ímã aparecendo recorrentemente na vida de outros.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Stories</span></div></div></div>
+      <div class="idea"><div class="idea-num">V005</div><div class="idea-body"><div class="idea-title">Publicar em múltiplas redes no mesmo dia</div><div class="idea-desc">Quando o seguidor vê a fottu.br no Instagram e depois no TikTok no mesmo dia, a sensação de que a marca está em todo lugar amplifica disponibilidade e credibilidade.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V006</div><div class="idea-body"><div class="idea-title">Incluir o produto em cenas cotidianas familiares</div><div class="idea-desc">Ímã na geladeira enquanto se prepara café, na hora de pegar agua, ao abrir para cozinhar. Conectar o produto a ações que o público faz 10x por dia.</div><div class="idea-meta"><span class="badge b-bias">Disponibilidade</span><span class="badge b-net">Reel</span></div></div></div>
+    </div>
+
+    <!-- ANCORAGEM -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">⚓ Viés de Ancoragem</div>
+      <p style="font-size:0.82rem;color:var(--muted);">A primeira informação recebida se torna referência para todas as decisões seguintes.</p>
+    </div>
+    <div class="count-box">Ancoragem · V007–V040</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V007</div><div class="idea-body"><div class="idea-title">Apresente o Kit 8 antes do Kit 4 — sempre</div><div class="idea-desc">Ao mostrar o Kit 8 (R$129) primeiro, o Kit 4 (R$79) parece muito mais acessível. A âncora do preço maior facilita a decisão pelo menor.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem</span><span class="badge b-net">WhatsApp</span></div></div></div>
+      <div class="idea"><div class="idea-num">V008</div><div class="idea-body"><div class="idea-title">Comparação com alternativas mais caras no carrossel</div><div class="idea-desc">"Quadro personalizado: R$200. Álbum de fotos: R$150. Kit fottu.br: R$79 — e fica na geladeira todo dia." Ancora no valor alto para fazer o seu parecer excelente.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V009</div><div class="idea-body"><div class="idea-title">Crie um Kit 12 como âncora de luxo</div><div class="idea-desc">Mesmo que poucas comprem o kit de 12, ele âncora os outros como "mais razoáveis". O preço máximo disponível define a percepção dos outros preços.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem</span><span class="badge b-net">Catálogo</span></div></div></div>
+      <div class="idea"><div class="idea-num">V010</div><div class="idea-body"><div class="idea-title">"De R$89 por R$69" — sempre mostrar preço original</div><div class="idea-desc">Em datas especiais, o preço riscado cria âncora que faz o desconto parecer maior do que é em termos absolutos.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V011</div><div class="idea-body"><div class="idea-title">Mostre o kit mais completo no primeiro slide do carrossel</div><div class="idea-desc">Ao ver o kit premium primeiro, o público ancora naquele valor. Os próximos slides (opções menores) parecem oportunidades, não gastos.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V012</div><div class="idea-body"><div class="idea-title">"Custo por dia" como reframing de preço</div><div class="idea-desc">R$79 / 365 dias = R$0,21/dia. "Por menos de 1 real por dia, você tem a memória da sua filha na geladeira pra sempre." Âncora no valor diário.</div><div class="idea-meta"><span class="badge b-bias">Ancoragem + Enquadramento</span><span class="badge b-net">Story / WhatsApp</span></div></div></div>
+    </div>
+
+    <!-- EFEITO HALO -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">✨ Efeito Halo</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Uma impressão positiva em um aspecto contamina positivamente todos os outros aspectos percebidos.</p>
+    </div>
+    <div class="count-box">Efeito Halo · V013–V040</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V013</div><div class="idea-body"><div class="idea-title">Embalagem premium → produto percebido como premium</div><div class="idea-desc">Caixinha bonita, papel seda, cartão escrito à mão. Cada elemento de embalagem de qualidade eleva a percepção do produto ANTES de ser visto.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Unboxing</span></div></div></div>
+      <div class="idea"><div class="idea-num">V014</div><div class="idea-body"><div class="idea-title">Fotos de produto em contextos elegantes</div><div class="idea-desc">Produto em cozinha bem decorada, luz natural, flores ao fundo. O contexto premium eleva a percepção do produto sem mudar o produto em si.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Feed</span></div></div></div>
+      <div class="idea"><div class="idea-num">V015</div><div class="idea-body"><div class="idea-title">Parceria com fotógrafa respeitada — halo de credibilidade</div><div class="idea-desc">Associação com alguém reconhecido transfere credibilidade. Se a fotógrafa que todos admiram indica a fottu.br, a marca ganha o halo dela.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Collab</span></div></div></div>
+      <div class="idea"><div class="idea-num">V016</div><div class="idea-body"><div class="idea-title">Linguagem refinada = produto percebido como mais caro</div><div class="idea-desc">Copy bem escrita, sem erros, com personalidade. A qualidade da comunicação cria halo de qualidade no produto percebido pelo público.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V017</div><div class="idea-body"><div class="idea-title">Feed visualmente consistente = marca confiável</div><div class="idea-desc">Um feed bonito e coerente cria halo de profissionalismo e qualidade. A pessoa que chega ao perfil pela primeira vez usa o visual para julgar o produto.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Instagram</span></div></div></div>
+      <div class="idea"><div class="idea-num">V018</div><div class="idea-body"><div class="idea-title">Mostrar o cuidado no processo de produção</div><div class="idea-desc">Quando o público vê você ajustando cada detalhe com atenção, o produto todo passa a ser percebido como feito com cuidado — mesmo as partes não vistas.</div><div class="idea-meta"><span class="badge b-bias">Efeito Halo</span><span class="badge b-net">Bastidores</span></div></div></div>
+    </div>
+
+    <!-- AVERSÃO À PERDA -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">😰 Viés de Aversão à Perda</div>
+      <p style="font-size:0.82rem;color:var(--muted);">A dor de perder algo é 2x mais forte do que o prazer de ganhar. Use com ética e honestidade.</p>
+    </div>
+    <div class="count-box">Aversão à Perda · V019–V055</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V019</div><div class="idea-body"><div class="idea-title">"Essas vagas de Dia das Mães fecham em X dias"</div><div class="idea-desc">A possibilidade de perder a chance de dar o presente ideal é mais motivadora do que ganhar algo bom. Use com prazo REAL e honesto.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V020</div><div class="idea-body"><div class="idea-title">"Você pode perder essas fotos para sempre"</div><div class="idea-desc">Celulares quebram, HDDs morrem, iCloud cobra. A perda de memórias digitais é real e inesperada. O ímã é proteção contra essa perda irreversível.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V021</div><div class="idea-body"><div class="idea-title">"Últimos 5 pedidos aceitos essa semana"</div><div class="idea-desc">Limitação real de capacidade de produção cria urgência genuína. Nunca minta sobre escassez — use apenas quando for real.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V022</div><div class="idea-body"><div class="idea-title">"Ela vai crescer. Essa fase vai passar. Registra agora."</div><div class="idea-desc">Para mães de bebês. A fase é temporária — a foto física é permanente. A urgência emocional da temporalidade.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V023</div><div class="idea-body"><div class="idea-title">"Falta 1 semana pra data. Não vai ter tempo depois."</div><div class="idea-desc">Countdown real. A data existe. O prazo de produção existe. A urgência é genuína e está do lado do cliente tanto quanto da marca.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">Stories diários</span></div></div></div>
+      <div class="idea"><div class="idea-num">V024</div><div class="idea-body"><div class="idea-title">"Embalagem especial de Natal disponível só até dia X"</div><div class="idea-desc">Escassez de item especial. Quando a embalagem temática acaba, acaba. Quem não pedir cedo, perde o detalhe especial.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V025</div><div class="idea-body"><div class="idea-title">"Não deixa a memória morrer no celular"</div><div class="idea-desc">Framing de perda permanente. Não "compre um ímã" — "não perca essa memória para sempre". Ativa prevenção de perda como motivação primária.</div><div class="idea-meta"><span class="badge b-bias">Aversão à Perda</span><span class="badge b-net">TikTok / Reel</span></div></div></div>
+    </div>
+
+    <!-- CONFORMIDADE / PROVA SOCIAL -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">👥 Viés de Conformidade (Prova Social)</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Pessoas seguem o que outros fazem. Quanto mais pessoas fazem algo, mais seguro e desejável parece.</p>
+    </div>
+    <div class="count-box">Conformidade · V026–V065</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V026</div><div class="idea-body"><div class="idea-title">Marco de clientes: "X pessoas já transformaram memórias com a fottu.br"</div><div class="idea-desc">Volume de clientes como prova social. Atualize sempre. "Mais de 500 clientes" → "Mais de 1.000 clientes". O número crescendo cria FOMO.</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">Bio / Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V027</div><div class="idea-body"><div class="idea-title">Carrossel mensal de avaliações 5 estrelas</div><div class="idea-desc">Prints de avaliações reais do Elo7, ML, WhatsApp. A maioria aprova — isso cria pressão social positiva para quem ainda não comprou.</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V028</div><div class="idea-body"><div class="idea-title">Dueto TikTok ou collab com cliente mostrando o produto</div><div class="idea-desc">Peer-to-peer é mais confiável que marca. Quando uma pessoa real (não a marca) mostra o produto, a credibilidade aumenta 3x.</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">TikTok dueto</span></div></div></div>
+      <div class="idea"><div class="idea-num">V029</div><div class="idea-body"><div class="idea-title">"Produto mais pedido por mães em [sua cidade]"</div><div class="idea-desc">Territorialidade e conformidade local. Pessoas confiam mais em tendências da própria comunidade do que em tendências globais.</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V030</div><div class="idea-body"><div class="idea-title">Mostrar fila de espera real na agenda</div><div class="idea-desc">"Agenda de Dia das Mães: X vagas restantes." Ver outros reservando cria urgência por conformidade — "se as outras estão reservando, eu também devo."</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">Stories</span></div></div></div>
+      <div class="idea"><div class="idea-num">V031</div><div class="idea-body"><div class="idea-title">Série de reações de quem recebeu — compilado mensal</div><div class="idea-desc">Juntar 5-10 reações reais de clientes recebendo em 1 vídeo. Volume de satisfação visível cria conformidade poderosa.</div><div class="idea-meta"><span class="badge b-bias">Conformidade</span><span class="badge b-net">Reel</span></div></div></div>
+    </div>
+
+    <!-- NOSTALGIA -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">📷 Viés de Nostalgia</div>
+      <p style="font-size:0.82rem;color:var(--muted);">O passado parece sempre melhor. Nostalgia cria conexão emocional imediata e poderosa.</p>
+    </div>
+    <div class="count-box">Nostalgia · V032–V060</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V032</div><div class="idea-body"><div class="idea-title">"A geladeira da vovó sempre teve fotos da família. A sua, tem?"</div><div class="idea-desc">A memória afetiva de infância das geladeiras cheias de fotos de família. Nostalgia + solução moderna. A fottu.br é continuidade de uma tradição.</div><div class="idea-meta"><span class="badge b-bias">Nostalgia</span><span class="badge b-net">TikTok / Reel</span><span class="badge b-prio">Alto potencial</span></div></div></div>
+      <div class="idea"><div class="idea-num">V033</div><div class="idea-body"><div class="idea-title">Álbum de fotos físico vs ímã moderno</div><div class="idea-desc">A nostalgia do álbum de fotos físico + o inconveniente de guardá-lo + a solução moderna do ímã. Tradição reinventada para o cotidiano.</div><div class="idea-meta"><span class="badge b-bias">Nostalgia</span><span class="badge b-net">Reel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V034</div><div class="idea-body"><div class="idea-title">A sensação de ter uma foto em mãos — evocar memória sensorial</div><div class="idea-desc">Para quem cresceu revelando fotos: o cheiro de foto revelada, o peso da foto na mão, a textura. Evocar isso para criar desejo pelo físico.</div><div class="idea-meta"><span class="badge b-bias">Nostalgia</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V035</div><div class="idea-body"><div class="idea-title">"Quando você era criança, a geladeira da sua casa tinha fotos?"</div><div class="idea-desc">Pergunta que ativa nostalgia imediata. Comentários explodem. Cada resposta é uma memória — e um potencial cliente que quer recriar aquilo.</div><div class="idea-meta"><span class="badge b-bias">Nostalgia</span><span class="badge b-net">Post + TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V036</div><div class="idea-body"><div class="idea-title">Comparar fotos antigas (reveladas) com ímã moderno</div><div class="idea-desc">Foto física da era pré-digital vs ímã fottu.br. A continuidade da tradição. O físico que nunca morreu — só evoluiu.</div><div class="idea-meta"><span class="badge b-bias">Nostalgia</span><span class="badge b-net">Carrossel</span></div></div></div>
+    </div>
+
+    <!-- IDENTIDADE / REPRESENTATIVIDADE -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">🪞 Viés de Representatividade & Identidade</div>
+      <p style="font-size:0.82rem;color:var(--muted);">As pessoas compram produtos que confirmam e expressam sua identidade. "Eu sou daquelas que..."</p>
+    </div>
+    <div class="count-box">Identidade · V037–V070</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V037</div><div class="idea-body"><div class="idea-title">"Sinal que você é daquelas que guarda memória com carinho"</div><div class="idea-desc">Criar pertencimento à identidade de "guardiã de memórias". Quem compra confirma que é essa pessoa — e quer ser essa pessoa.</div><div class="idea-meta"><span class="badge b-bias">Identidade</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V038</div><div class="idea-body"><div class="idea-title">"Tipo de pessoa que tem ímã fottu.br na geladeira"</div><div class="idea-desc">Criar o perfil: sentimental, gosto refinado, valoriza família, cuida dos detalhes. Quem se identifica, quer pertencer ao grupo.</div><div class="idea-meta"><span class="badge b-bias">Identidade</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V039</div><div class="idea-body"><div class="idea-title">"Você se considera uma pessoa que cuida das memórias?"</div><div class="idea-desc">Pergunta de identidade que força a reflexão. Quem responde "sim" internaliza o comportamento — e o produto que acompanha esse comportamento.</div><div class="idea-meta"><span class="badge b-bias">Identidade</span><span class="badge b-net">Story enquete</span></div></div></div>
+      <div class="idea"><div class="idea-num">V040</div><div class="idea-body"><div class="idea-title">"Mãe que fottu.br" — identidade de nicho</div><div class="idea-desc">Criar micro-identidade: "sou mãe da fottu.br". As clientes se identificam com a marca como parte da própria identidade materna.</div><div class="idea-meta"><span class="badge b-bias">Identidade</span><span class="badge b-net">Instagram</span></div></div></div>
+      <div class="idea"><div class="idea-num">V041</div><div class="idea-body"><div class="idea-title">"A diferença entre quem cuida das memórias e quem só fotografa"</div><div class="idea-desc">Identidade de classe: você é de qual grupo? A resposta desejada leva naturalmente à compra.</div><div class="idea-meta"><span class="badge b-bias">Identidade</span><span class="badge b-net">TikTok provocativo</span></div></div></div>
+    </div>
+
+    <!-- RECIPROCIDADE -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">🎁 Viés de Reciprocidade</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Quando recebemos algo de valor, sentimos vontade de retribuir. Dar antes de pedir cria lealdade genuína.</p>
+    </div>
+    <div class="count-box">Reciprocidade · V042–V065</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V042</div><div class="idea-body"><div class="idea-title">Cartão escrito à mão em TODO pedido</div><div class="idea-desc">Gera reciprocidade imediata. Quando você dá algo inesperado e gratuito, a cliente sente vontade de retribuir — indicando, recomprando, deixando avaliação.</div><div class="idea-meta"><span class="badge b-bias">Reciprocidade</span><span class="badge b-net">Experiência</span></div></div></div>
+      <div class="idea"><div class="idea-num">V043</div><div class="idea-body"><div class="idea-title">Guia gratuito "10 fotos que ficam incríveis em ímã"</div><div class="idea-desc">Conteúdo de valor gratuito no carrossel ou stories. Quem recebe algo útil sem pagar se sente em dívida positiva — mais propensa a comprar.</div><div class="idea-meta"><span class="badge b-bias">Reciprocidade</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V044</div><div class="idea-body"><div class="idea-title">Bônus surpresa: ímã extra para pedidos acima de X</div><div class="idea-desc">Surpresa positiva cria reciprocidade profunda. Ela não vai esquecer quem surpreendeu. A história do "veio mais do que eu pedi" é contada a todos.</div><div class="idea-meta"><span class="badge b-bias">Reciprocidade</span><span class="badge b-net">Experiência</span></div></div></div>
+      <div class="idea"><div class="idea-num">V045</div><div class="idea-body"><div class="idea-title">Responder TODOS os comentários sempre</div><div class="idea-desc">Quando a marca responde, o seguidor sente que recebeu atenção pessoal. Isso cria micro-reciprocidade que se acumula em lealdade.</div><div class="idea-meta"><span class="badge b-bias">Reciprocidade</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V046</div><div class="idea-body"><div class="idea-title">Tutorial gratuito de como fotografar melhor para o ímã</div><div class="idea-desc">Valor gratuito que ajuda a cliente a ter um resultado melhor. Ela recebe conhecimento → retribui com compra, indicação e lealdade.</div><div class="idea-meta"><span class="badge b-bias">Reciprocidade + Autoridade</span><span class="badge b-net">Carrossel</span></div></div></div>
+    </div>
+
+    <!-- ENQUADRAMENTO -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">🖼️ Efeito de Enquadramento</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Como a informação é apresentada muda a decisão, mesmo que os dados sejam os mesmos.</p>
+    </div>
+    <div class="count-box">Enquadramento · V047–V075</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V047</div><div class="idea-body"><div class="idea-title">"Por R$0,21 por dia você tem uma memória na geladeira para sempre"</div><div class="idea-desc">Dividir o preço em custo diário. R$79 / 365 dias = R$0,21. Mesmo valor, percepção completamente diferente.</div><div class="idea-meta"><span class="badge b-bias">Enquadramento</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V048</div><div class="idea-body"><div class="idea-title">"100% das fotos que chegaram aqui ficaram perfeitas"</div><div class="idea-desc">Enquadramento positivo de 100% em vez de "nunca tivemos problema". Mesmo dado, percepção de resultado garantido.</div><div class="idea-meta"><span class="badge b-bias">Enquadramento</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V049</div><div class="idea-body"><div class="idea-title">Ímã que dura 10 anos vs presente que dura 1 semana</div><div class="idea-desc">Enquadrar o ímã como investimento de longo prazo vs gasto de curto prazo. Mesmo preço, ROI emocional incomparável.</div><div class="idea-meta"><span class="badge b-bias">Enquadramento</span><span class="badge b-net">Carrossel</span></div></div></div>
+      <div class="idea"><div class="idea-num">V050</div><div class="idea-body"><div class="idea-title">"Não é comprar um ímã. É eternizar um momento."</div><div class="idea-desc">Reframing do produto. Não vende ímã de geladeira — vende eternização de memória. Mesmo objeto, proposta de valor completamente diferente.</div><div class="idea-meta"><span class="badge b-bias">Enquadramento</span><span class="badge b-net">Todos</span></div></div></div>
+      <div class="idea"><div class="idea-num">V051</div><div class="idea-body"><div class="idea-title">"Geladeira que você vê 15x por dia vs álbum que você vê 1x por ano"</div><div class="idea-desc">Enquadrar em frequência de exposição. A geladeira ganha de qualquer outro suporte por frequência de contato emocional diário.</div><div class="idea-meta"><span class="badge b-bias">Enquadramento</span><span class="badge b-net">Post</span></div></div></div>
+    </div>
+
+    <!-- STATUS QUO -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">🔄 Viés de Status Quo & Inércia</div>
+      <p style="font-size:0.82rem;color:var(--muted);">As pessoas preferem manter as coisas como estão. Para vencer, é preciso nomear a inércia e remover fricção.</p>
+    </div>
+    <div class="count-box">Status Quo · V052–V075</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V052</div><div class="idea-body"><div class="idea-title">"A foto que você fica dizendo que vai fazer algo com ela"</div><div class="idea-desc">Identificar a intenção não realizada. Ela já tem a foto. Já quer fazer algo. A fottu.br é o empurrão para sair da inércia.</div><div class="idea-meta"><span class="badge b-bias">Status Quo</span><span class="badge b-net">Story / TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V053</div><div class="idea-body"><div class="idea-title">"Só manda a foto no WhatsApp. O resto é com a gente."</div><div class="idea-desc">Remover fricção ao máximo. Quanto mais simples a ação pedida, mais fácil vencer o status quo. Um passo, não dez.</div><div class="idea-meta"><span class="badge b-bias">Status Quo</span><span class="badge b-net">WhatsApp / Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V054</div><div class="idea-body"><div class="idea-title">"5 minutos agora = memória física pra sempre"</div><div class="idea-desc">Comparar o custo da ação (5 minutos) com o benefício (resultado permanente). Torna o esforço parecer insignificante.</div><div class="idea-meta"><span class="badge b-bias">Status Quo</span><span class="badge b-net">TikTok</span></div></div></div>
+      <div class="idea"><div class="idea-num">V055</div><div class="idea-body"><div class="idea-title">"Não importa quantas vezes você deixou pra depois. Agora é a hora."</div><div class="idea-desc">Validar a inércia passada sem julgamento e oferecer saída imediata. A aceitação da procrastinação remove vergonha e abre espaço para ação.</div><div class="idea-meta"><span class="badge b-bias">Status Quo</span><span class="badge b-net">TikTok</span></div></div></div>
+    </div>
+
+    <!-- COMPLETUDE -->
+    <div class="hl" style="margin-top:1.5rem;">
+      <div class="ey" style="margin-bottom:0.4rem;">🧩 Viés de Completude & Coleção</div>
+      <p style="font-size:0.82rem;color:var(--muted);">Pessoas sentem desconforto com coisas incompletas. Uma série, coleção ou conjunto sempre motiva recompra.</p>
+    </div>
+    <div class="count-box">Completude · V056–V080</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V056</div><div class="idea-body"><div class="idea-title">"Você tem o de 2024. Falta o de 2025."</div><div class="idea-desc">Para clientes recorrentes. A coleção incompleta cria desejo de completar. Um ímã por ano como tradição.</div><div class="idea-meta"><span class="badge b-bias">Completude</span><span class="badge b-net">WhatsApp</span></div></div></div>
+      <div class="idea"><div class="idea-num">V057</div><div class="idea-body"><div class="idea-title">"Kit viagem: um ímã por destino importante"</div><div class="idea-desc">A geladeira como mapa de viagens. Cada destino merece um ímã. A coleção de viagens nunca está completa — sempre há o próximo destino.</div><div class="idea-meta"><span class="badge b-bias">Completude</span><span class="badge b-net">Instagram</span></div></div></div>
+      <div class="idea"><div class="idea-num">V058</div><div class="idea-body"><div class="idea-title">"Linha do tempo do bebê: 1 ímã por fase"</div><div class="idea-desc">Bebê no hospital → 3 meses → 1 ano → 2 anos. A linha do tempo incompleta motiva a compra a cada nova fase.</div><div class="idea-meta"><span class="badge b-bias">Completude</span><span class="badge b-net">Instagram</span></div></div></div>
+      <div class="idea"><div class="idea-num">V059</div><div class="idea-body"><div class="idea-title">"A família completa na geladeira — falta só o avô"</div><div class="idea-desc">Mostrar kit de família com espaço "faltando" alguém. A incompletude visual cria impulso para completar.</div><div class="idea-meta"><span class="badge b-bias">Completude</span><span class="badge b-net">Story</span></div></div></div>
+      <div class="idea"><div class="idea-num">V060</div><div class="idea-body"><div class="idea-title">Kit 4 → "Sabe que vai querer mais 4" → Kit 8</div><div class="idea-desc">Usar a completude como upsell. "A maioria das clientes que compra o Kit 4 volta para o Kit 8 — porque uma vez que começa, é difícil parar."</div><div class="idea-meta"><span class="badge b-bias">Completude</span><span class="badge b-net">WhatsApp</span></div></div></div>
+    </div>
+
+    <!-- BANCO FINAL DE VIESES -->
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cream);font-size:1.2rem;margin-bottom:1rem;">📊 Banco Completo de Vieses — V061–V500+</h3>
+    <div class="count-box">Banco completo · V061–V500 — Todos os vieses</div>
+    <div class="ideas-container">
+      <div class="idea"><div class="idea-num">V061–V100</div><div class="idea-body"><div class="idea-title">Efeito Dunning-Kruger & Autoridade — Posicionamento como especialista</div><div class="idea-desc">V061: Eduque sobre qualidade de foto — resolução, compressão, enquadramento. V062: "Você sabia que foto muito comprimida perde qualidade no ímã?" V063: Diferença entre sublimação e impressão comum. V064: Por que usamos película protetora. V065: Por que estrutura metálica e não plástica. V066: Materiais premium vs materiais genéricos — comparativo visual. V067: "O que toda pessoa deve saber antes de pedir um ímã personalizado". V068: Bastidores técnicos da máquina de impressão. V069: A importância do acabamento vitrificado para durabilidade. V070-V100: Série "Educação sobre memória afetiva" — psicologia dos objetos físicos, neurociência da nostalgia, como objetos com significado afetam bem-estar.</div><div class="idea-meta"><span class="badge b-bias">Autoridade</span><span class="badge b-net">Carrossel + TikTok</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V101–V140</div><div class="idea-body"><div class="idea-title">Viés de Sobrevivência — Mostre apenas os melhores resultados</div><div class="idea-desc">V101-V120: Galeria somente com os ímãs mais bonitos produzidos. V121: Compilado das reações mais emocionantes. V122: As histórias mais tocantes dos clientes. V123: Os kits mais elegantes que já fizemos. V124: As fotos mais lindas que já viraram ímã. V125: As cozinhas mais bonitas onde os ímãs foram parar. V126: As mensagens mais especiais que recebemos. V127: Os presentes mais criativos feitos com nossos ímãs. V128-V140: Conteúdo "best of" mensal — melhor ímã do mês, melhor reação, melhor kit.</div><div class="idea-meta"><span class="badge b-bias">Sobrevivência</span><span class="badge b-net">Feed + Destaques</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V141–V180</div><div class="idea-body"><div class="idea-title">Viés de Projeção — Faça a cliente imaginar o futuro</div><div class="idea-desc">V141: "Imagina ela abrindo a geladeira todo dia e vendo essa foto." V142: "Como vai ser o rosto dela quando abrir a caixinha?" V143: "Daqui 10 anos, ela ainda vai ter esse ímã." V144: "Imagina a avó mostrando pra toda visita." V145: "Pensa em como vai ser quando a filha crescer e ver a foto de bebê." V146: "Como vai ser a reação dele quando chegar?" V147: "Imagina o pet olhando pra própria foto na geladeira." V148: "Como vai ser o primeiro café da manhã depois que o ímã chegar?" V149-V180: Projeção futura para cada nicho — casais, mães, pais, avós, filhos, pets. Fazer a cliente viver mentalmente o resultado antes de comprar.</div><div class="idea-meta"><span class="badge b-bias">Projeção</span><span class="badge b-net">TikTok / Reel / Story</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V181–V220</div><div class="idea-body"><div class="idea-title">Viés de Autoatribuição — Faça a cliente se sentir inteligente</div><div class="idea-desc">V181: "Você escolheu bem essa foto — ela é perfeita pra virar ímã." V182: "Que ideia incrível a sua de fazer um kit pra toda a família." V183: "Você sempre soube que suas memórias merecem mais." V184: "Gosto do seu gosto." V185: "Essa foto que você escolheu vai ficar linda, pode confiar." V186: "Você já sabia que ia amar antes mesmo de receber." V187: "Que olho você tem pra escolher foto." V188: "Essa ideia de presente foi genial." V189-V220: Validar a decisão da cliente como inteligente, criativa e especial. A autoatribuição do sucesso da escolha faz ela se sentir bem consigo mesma — e associar esse sentimento à fottu.br.</div><div class="idea-meta"><span class="badge b-bias">Autoatribuição</span><span class="badge b-net">WhatsApp + Stories</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V221–V260</div><div class="idea-body"><div class="idea-title">Falácia dos Custos Irrecuperáveis — O investimento já foi feito</div><div class="idea-desc">V221: "Você já viveu esse momento. Já tirou a foto. Só falta eternizá-la." V222: "Você investiu na viagem, no evento, no dia especial. O ímã é só o último passo." V223: "Tudo que você viveu nessa foto já aconteceu. Não deixa a memória ficar só no celular." V224: "Você já fez a parte difícil — estar presente. A fottu.br faz o resto." V225: "Você já pagou pelo momento. Esse ímã é barato perto disso." V226-V260: Conectar o custo emocional já pago (estar no momento, tirar a foto, viver a experiência) como justificativa lógica para o custo financeiro do ímã.</div><div class="idea-meta"><span class="badge b-bias">Custos Irrecuperáveis</span><span class="badge b-net">TikTok / Story</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V261–V300</div><div class="idea-body"><div class="idea-title">Ilusão de Controle — A cliente controla tudo</div><div class="idea-desc">V261: "Você escolhe a foto, o tamanho, o kit. Nós fazemos o resto." V262: "Manda a prévia antes de produzir — zero surpresa." V263: "Quer trocar a foto? Antes de produzir, é só falar." V264: "Tem controle total — fotos, quantidade, prazo." V265: "A memória é sua. Você decide como fica." V266-V300: Sempre comunicar o controle que a cliente tem em cada etapa do processo. Pessoa que se sente no controle tem menos resistência à decisão de compra.</div><div class="idea-meta"><span class="badge b-bias">Ilusão de Controle</span><span class="badge b-net">WhatsApp + Story</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V301–V350</div><div class="idea-body"><div class="idea-title">Viés de Novidade — Cada novidade é conteúdo</div><div class="idea-desc">V301: Novo tamanho disponível — anúncio. V302: Nova embalagem para presente. V303: Novo cartão premium. V304: Nova opção de formato. V305: Kit temático novo. V306: Material novo de embalagem. V307: Nova forma de personalização (texto no ímã). V308: Primeira vez que fiz pedido corporativo. V309: Primeira feira de artesanato. V310: Primeira parceria com fotógrafa. V311-V350: Qualquer novidade, por menor que seja, merece anúncio. Novidade ativa o viés de novidade e cria razão para reengajamento de quem já segue mas não comprou ainda.</div><div class="idea-meta"><span class="badge b-bias">Novidade</span><span class="badge b-net">Stories + TikTok</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V351–V400</div><div class="idea-body"><div class="idea-title">Viés de Afinidade — Criar identificação profunda</div><div class="idea-desc">V351: "Se você chora com final de filme..." V352: "Se você tem pet e entende o amor que é..." V353: "Se você ainda tem foto do ex na geladeira, a gente resolve." V354: "Pra quem a geladeira é mais do que guardar comida." V355: "Se decorar a casa é forma de amor..." V356: "Pra quem guarda cartão de aniversário há 10 anos." V357: "Se você fotografa tudo e nunca imprime nada." V358: "Pra quem ainda tem álbum de fotos da infância." V359-V400: Uma identificação por nicho — mãe, pet owner, viajante, romântica, nostálgica, colecionadora de memórias, presenteadora de coração. Cada post faz a pessoa dizer "isso é comigo".</div><div class="idea-meta"><span class="badge b-bias">Afinidade</span><span class="badge b-net">Stories / Reel</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V401–V450</div><div class="idea-body"><div class="idea-title">Viés de Retrospecto — "Eu sabia que ia amar"</div><div class="idea-desc">V401: Depoimentos no formato "eu sabia que ia ser incrível, mas mesmo assim fiquei surpresa." V402: "Depois que recebi, era óbvio que ia ser bom." V403: "Eu deveria ter pedido antes — é muito mais bonito do que imaginei." V404: "Era claro desde o início que ia ficar lindo." V405-V450: Usar retrospecto nos depoimentos de forma natural. A cliente que diz "eu já sabia" reforça a decisão de outros que ainda hesitam. Se até quem comprou sabia que era bom, quem ainda não comprou também "sabe".</div><div class="idea-meta"><span class="badge b-bias">Retrospecto</span><span class="badge b-net">Carrossel depoimentos</span></div></div></div>
+
+      <div class="idea"><div class="idea-num">V451–V500+</div><div class="idea-body"><div class="idea-title">Viés de Ação + Múltiplos Vieses Combinados</div><div class="idea-desc">V451: "Cada dia que passa sem eternizar essa foto é um dia a mais que ela pode se perder." (Ação + Perda) V452: "Uma ação de 5 minutos hoje = memória que dura 10 anos." (Ação + Enquadramento) V453: "Não espera — manda já a foto." (Ação + Status Quo) V454: "A inação tem custo. A foto some; o ímã não." (Ação + Perda) V455: "Você vai se perguntar por que não fez isso antes." (Retrospecto + Ação) V456: Combinação de Conformidade + Nostalgia: "100 mães já fizeram isso esse mês. Sua mãe também merece." V457: Ancoragem + Enquadramento: "Quadros custam R$200. Ímãs fottu.br: R$79 — e ficam onde você vê todo dia." V458: Identidade + Reciprocidade: "Você cuida das memórias. A gente cuida de você — com carinho em cada detalhe." V459: Halo + Autoridade: "A embalagem já diz: isso foi feito com cuidado." V460-V500+: Combinações criativas de 2-3 vieses em um mesmo conteúdo para máximo impacto emocional e cognitivo.</div><div class="idea-meta"><span class="badge b-bias">Múltiplos Vieses</span><span class="badge b-net">Todos</span><span class="badge b-prio">Máximo impacto</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  POSTS ESTÁTICOS
+══════════════════════════════════ -->
+<section id="static" class="sec alt">
+  <div class="container">
+    <div class="stk"><span class="stk-t">Posts Estáticos & Stories — Por Rede</span><span class="stk-n">05</span></div>
+    <br>
+    <div class="ey">05 — Posts Estáticos por Rede</div>
+    <h2 class="tt">O que postar quando<br>não é vídeo.</h2>
+
+    <h3 style="color:var(--cream);font-family:'Fraunces',serif;margin-bottom:1rem;">📸 Instagram — Posts Estáticos</h3>
+    <div class="g3">
+      <div class="card"><div class="card-ico">🖼️</div><h3>Foto de produto em contexto</h3><p>Ímã na geladeira com cozinha real ao fundo. Luz natural. Mão feminina segurando. Legenda emocional com 1 pergunta CTA nos comentários.</p></div>
+      <div class="card"><div class="card-ico">💬</div><h3>Depoimento visual</h3><p>Print ou texto de avaliação real em fundo da marca. Creme ou vinho como fundo. Nome da cliente (com permissão). CTA: "Quer fazer o seu?"</p></div>
+      <div class="card"><div class="card-ico">🧲</div><h3>Comparativo de kits</h3><p>Kit 1, Kit 4 e Kit 8 side-by-side. Preços visíveis. Legenda: "Qual faz mais sentido pra você?" Salvar = intenção de compra.</p></div>
+      <div class="card"><div class="card-ico">📅</div><h3>Post de data comemorativa</h3><p>Arte temática para cada data. Visual da marca + produto. Headline emocional. CTA com urgência de prazo.</p></div>
+      <div class="card"><div class="card-ico">✨</div><h3>Frase de afeto sobre memória</h3><p>Tipografia elegante com frase sobre memória, saudade ou afeto. Produto discreto ao fundo. Alto compartilhamento e salvamento.</p></div>
+      <div class="card"><div class="card-ico">📸</div><h3>Antes e depois — geladeira</h3><p>Foto da geladeira antes dos ímãs + depois. Transformação visual que vende sem precisar de copy.</p></div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="color:var(--cream);font-family:'Fraunces',serif;margin:0 0 1rem;">📌 Pinterest — Posts que Geram Tráfego</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Tipo de Pin</th><th>Título (SEO)</th><th>Descrição</th></tr></thead>
+        <tbody>
+          <tr><td><b>Produto</b></td><td>Ímã de geladeira personalizado com foto 5x5cm</td><td>"Presente personalizado com suas fotos favoritas. Acabamento premium, entrega para todo o Brasil."</td></tr>
+          <tr><td><b>Inspiração</b></td><td>Ideias de decoração de geladeira com ímãs personalizados</td><td>"Transforme sua geladeira em galeria afetiva com ímãs personalizados. Memórias que ficam para sempre."</td></tr>
+          <tr><td><b>Presente</b></td><td>Presente personalizado Dia das Mães com foto</td><td>"Presente único e emocionante pra sua mãe: ímã personalizado com a foto mais especial de vocês."</td></tr>
+          <tr><td><b>Tutorial</b></td><td>Como escolher a melhor foto para ímã personalizado</td><td>"Guia completo: resolução ideal, enquadramento, iluminação. Faça seu ímã perfeito."</td></tr>
+          <tr><td><b>Inspiração</b></td><td>Geladeira decorada com ímãs de família</td><td>"Inspire-se: como decorar sua geladeira com memórias da família usando ímãs personalizados."</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  STORIES
+══════════════════════════════════ -->
+<section id="stories" class="sec dark">
+  <div class="container">
+    <div class="ey">06 — Estratégia de Stories</div>
+    <h2 class="tt">Stories que engajam<br>e convertem.</h2>
+
+    <div class="g2">
+      <div>
+        <h3 style="color:var(--cream);font-family:'Fraunces',serif;margin-bottom:1rem;">📱 Estrutura Semanal de Stories</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Dia</th><th>Tipo</th><th>Objetivo</th></tr></thead>
+            <tbody>
+              <tr><td><b>Seg</b></td><td>Caixinha de perguntas</td><td>Engajamento</td></tr>
+              <tr><td><b>Ter</b></td><td>Produto do dia em foto real</td><td>Vitrine</td></tr>
+              <tr><td><b>Qua</b></td><td>Depoimento repostado</td><td>Prova social</td></tr>
+              <tr><td><b>Qui</b></td><td>Enquete A vs B</td><td>Engajamento</td></tr>
+              <tr><td><b>Sex</b></td><td>CTA direto — vagas / pedido</td><td>Conversão</td></tr>
+              <tr><td><b>Sab</b></td><td>Bastidores produção</td><td>Confiança</td></tr>
+              <tr><td><b>Dom</b></td><td>Inspiração emocional</td><td>Conexão</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="color:var(--cream);font-family:'Fraunces',serif;margin-bottom:1rem;">✅ 30 Ideias de Stories</h3>
+        <div class="ideas-container">
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S01</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Enquete: "Qual kit você escolheria?" A ou B</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S02</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Countdown para data especial + CTA</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S03</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Print de avaliação 5 estrelas + pergunta</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S04</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Bastidor: máquina funcionando (boomerang)</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S05</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Quiz: "Qual foto sua merece virar ímã?"</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S06</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Repost de cliente com geladeira + comentário afetivo</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S07</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">"Restam X vagas essa semana" — urgência real</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S08</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Processo de embalagem em vídeo</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S09</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Caixinha de perguntas: "Me conta uma memória especial"</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S10</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Bastidor: mostrando a caixinha sendo preparada</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S11</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Link direto para WhatsApp com CTA emocional</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S12</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Enquete: "Já eternizou uma memória com a fottu.br?"</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S13</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Dica de como tirar melhor foto pra virar ímã</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S14</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Sequência de 5 stories contando história de pedido especial</div></div></div>
+          <div class="idea" style="padding:0.5rem 0;"><div class="idea-num" style="width:30px;">#S15</div><div class="idea-body"><div class="idea-title" style="font-size:0.82rem;">Pedido de repostagem: "Me marca se você tem ímã fottu.br"</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+  FERRAMENTAS
+══════════════════════════════════ -->
+<section id="tools" class="sec alt">
+  <div class="container">
+    <div class="stk"><span class="stk-t">Kit de Ferramentas Completo</span><span class="stk-n">07</span></div>
+    <br>
+    <div class="ey">07 — Ferramentas</div>
+    <h2 class="tt">O arsenal digital<br>da fottu.br.</h2>
+
+    <h3 style="color:var(--ember2);margin-bottom:1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">🎨 Design & Criação Visual</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">🎨</div><div><h4>Canva Pro</h4><p>Posts, stories, carrosséis, artes para datas. App no celular. Indispensável.</p><span class="free">Grátis</span><span class="paid">Pro R$55/mês — recomendado</span></div></div>
+      <div class="tool"><div class="tool-em">📱</div><div><h4>CapCut</h4><p>Edição de Reels e TikTok no celular. Templates virais, legendas automáticas.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">🎬</div><div><h4>InShot</h4><p>Edição rápida de vídeo para Stories e Reels. Corte, música, formato.</p><span class="free">Grátis</span><span class="paid">Pro sem anúncios</span></div></div>
+      <div class="tool"><div class="tool-em">✂️</div><div><h4>Adobe Express</h4><p>Criação de assets de marca com integração Adobe. Alternativa premium ao Canva.</p><span class="free">Plano grátis</span></div></div>
+    </div>
+
+    <h3 style="color:var(--ember2);margin:1.5rem 0 1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">📊 Gestão & Agendamento</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">📅</div><div><h4>Meta Business Suite</h4><p>Agendamento gratuito de posts e stories para Instagram e Facebook. Métricas completas e gratuitas.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">📆</div><div><h4>Later</h4><p>Agendamento visual com pré-visualização do grid. Planejamento de estética do feed.</p><span class="free">Plano grátis</span><span class="paid">Plano pago para recursos extras</span></div></div>
+      <div class="tool"><div class="tool-em">🗂️</div><div><h4>Notion</h4><p>Calendário editorial, banco de ideias, controle de pedidos. Tudo centralizado.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">💬</div><div><h4>WhatsApp Business</h4><p>Catálogo, respostas automáticas, etiquetas, listas de transmissão segmentadas.</p><span class="free">Grátis</span></div></div>
+    </div>
+
+    <h3 style="color:var(--ember2);margin:1.5rem 0 1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">🔍 Pesquisa & Tendências</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">🎵</div><div><h4>TikTok Creative Center</h4><p>Sons em alta, hashtags trending, conteúdo de maior performance por nicho. Indispensável para TikTok.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">📊</div><div><h4>Google Trends</h4><p>Sazonalidade de buscas. Veja quando "presente dia das mães" sobe — e antecipe.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">🌐</div><div><h4>Answer The Public</h4><p>Perguntas que as pessoas fazem sobre presentes personalizados. Pautas de conteúdo infinitas.</p><span class="free">Grátis limitado</span></div></div>
+      <div class="tool"><div class="tool-em">📌</div><div><h4>Pinterest Trends</h4><p>Tendências de decoração com meses de antecedência. Ótimo para planejamento sazonal.</p><span class="free">Grátis</span></div></div>
+    </div>
+
+    <h3 style="color:var(--ember2);margin:1.5rem 0 1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">🤖 Inteligência Artificial para Conteúdo</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">🤖</div><div><h4>Claude / ChatGPT</h4><p>Geração de ideias de conteúdo, legendas, copy para anúncios, respostas de WhatsApp, roteiros de vídeo.</p><span class="free">Plano grátis</span><span class="paid">Pro para uso intensivo</span></div></div>
+      <div class="tool"><div class="tool-em">🖼️</div><div><h4>Canva AI Magic Write</h4><p>Geração de textos dentro do Canva. Rápido para criar legendas e textos para posts.</p><span class="paid">Incluído no Canva Pro</span></div></div>
+      <div class="tool"><div class="tool-em">🎵</div><div><h4>Suno AI / Udio</h4><p>Criar músicas originais para vídeos sem problema de copyright. Importante para Reels e TikTok.</p><span class="free">Plano grátis</span></div></div>
+      <div class="tool"><div class="tool-em">📝</div><div><h4>Copy.ai / Writesonic</h4><p>Copy de anúncios, descrições de produto, e-mails de cliente, mensagens de WhatsApp.</p><span class="free">Plano grátis</span></div></div>
+    </div>
+
+    <h3 style="color:var(--ember2);margin:1.5rem 0 1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">💰 Vendas & Presença Online</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">🛒</div><div><h4>Elo7</h4><p>Maior marketplace de presentes personalizados do Brasil. Seu público ideal. Otimize palavras-chave.</p><span class="paid">Comissão por venda</span></div></div>
+      <div class="tool"><div class="tool-em">📦</div><div><h4>Mercado Livre</h4><p>Volume e alcance amplo. Pessoas chegam com intenção de compra. Invista em fotos e título.</p><span class="paid">Comissão por venda</span></div></div>
+      <div class="tool"><div class="tool-em">🔗</div><div><h4>Linktree / Beacons</h4><p>Link de bio com todos os canais: WhatsApp, Elo7, ML, cardápio digital.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">💳</div><div><h4>Mercado Pago</h4><p>Link de pagamento profissional com parcelamento. Complementa o Pix.</p><span class="free">Grátis para receber</span></div></div>
+    </div>
+
+    <h3 style="color:var(--ember2);margin:1.5rem 0 1rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;">📈 Analytics & Monitoramento</h3>
+    <div class="g2">
+      <div class="tool"><div class="tool-em">📊</div><div><h4>Instagram Insights (nativo)</h4><p>Métricas de alcance, engajamento, salvamentos, cliques no link. Use semanalmente para ajustar estratégia.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">🎵</div><div><h4>TikTok Analytics (nativo)</h4><p>Visualizações, retenção, compartilhamentos, fonte de tráfego. Crucial para entender o que viraliza.</p><span class="free">Grátis</span></div></div>
+      <div class="tool"><div class="tool-em">🔎</div><div><h4>Social Blade</h4><p>Monitorar crescimento de seguidores ao longo do tempo. Identificar picos relacionados a conteúdos.</p><span class="free">Grátis básico</span></div></div>
+      <div class="tool"><div class="tool-em">💡</div><div><h4>Metricool</h4><p>Dashboard unificado de todas as redes + agendamento + relatórios de performance.</p><span class="free">Plano grátis básico</span><span class="paid">Plano completo R$22/mês</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--bg2);border-top:1px solid rgba(212,98,58,0.12);padding:3rem;text-align:center;">
+  <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:2rem;color:var(--ember2);margin-bottom:0.4rem;">fottu.br</div>
+  <div style="font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);">Estratégia de Conteúdo & Comunicação 2026</div>
+  <div style="font-family:'Fraunces',serif;font-style:italic;color:rgba(232,226,220,0.2);margin-top:0.8rem;">1000+ ideias. Uma marca. Lembranças que ficam para sempre.</div>
+</footer>
+
+</main>
+
+<script>
+// Progress bar (raf + passive para scroll suave)
+const pf = document.getElementById('pf');
+let progressTicking = false;
+
+function updateProgress() {
+  const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const progress = Math.min(1, Math.max(0, window.scrollY / max));
+  if (pf) pf.style.transform = `scaleX(${progress})`;
+  progressTicking = false;
+}
+
+function requestProgressUpdate() {
+  if (progressTicking) return;
+  progressTicking = true;
+  requestAnimationFrame(updateProgress);
+}
+
+window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+window.addEventListener('resize', requestProgressUpdate, { passive: true });
+requestProgressUpdate();
+
+// Sidebar retratil + item ativo
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebarItems = Array.from(document.querySelectorAll('.sb-item'));
+const observedSections = Array.from(document.querySelectorAll('main section[id]'));
+
+function setSidebarCollapsed(collapsed) {
+  document.body.classList.toggle('sidebar-collapsed', collapsed);
+  if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+
+if (window.matchMedia('(max-width: 980px)').matches) {
+  setSidebarCollapsed(true);
+}
+
+sidebarToggle?.addEventListener('click', () => {
+  const collapsed = document.body.classList.contains('sidebar-collapsed');
+  setSidebarCollapsed(!collapsed);
+});
+
+sidebarOverlay?.addEventListener('click', () => setSidebarCollapsed(true));
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 980) {
+    setSidebarCollapsed(true);
+  } else {
+    setSidebarCollapsed(false);
+  }
+}, { passive: true });
+
+sidebarItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 980) setSidebarCollapsed(true);
+  });
+});
+
+let activeSectionId = '';
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    let nextId = activeSectionId;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) nextId = entry.target.id;
+    });
+
+    if (!nextId || nextId === activeSectionId) return;
+    activeSectionId = nextId;
+
+    sidebarItems.forEach((item) => item.classList.remove('active'));
+    const activeItem = document.querySelector(`.sb-item[href="#${activeSectionId}"]`);
+    if (activeItem) activeItem.classList.add('active');
+  }, {
+    rootMargin: '-24% 0px -58% 0px',
+    threshold: [0, 0.15, 0.6]
+  });
+
+  observedSections.forEach((section) => observer.observe(section));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fottu.br — Calendário Editorial 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07050A;--bg2:#0F0C14;--bg3:#181220;
+  --s:rgba(255,255,255,0.04);--b:rgba(255,255,255,0.07);
+  --em:#C8582E;--em2:#E8785A;--em3:#A84020;
+  --go:#C49028;--go2:#E0B850;--go3:#A07018;
+  --pl:#5A2848;--pl2:#7A3860;--pl3:#38182C;
+  --gr:#1E5C40;--gr2:#28845A;
+  --te:#1A4858;--te2:#246878;
+  --cr:#FBF5EE;--tx:#E4DCD4;--mu:rgba(228,220,212,0.42);
+  --r:13px;--rl:20px;--rs:8px;
+  --sidebar-w:260px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scrollbar-gutter:stable;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--tx);
+  line-height:1.65;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--em);border-radius:4px;}
+
+/* TOP PROGRESS */
+#prog-bar{position:fixed;top:0;left:var(--sidebar-w);right:0;height:2px;z-index:915;background:rgba(255,255,255,0.05);transition:left 0.25s ease;}
+#prog-fill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,var(--em),var(--go));
+  transform-origin:left center;
+  transform:scaleX(0);
+  will-change:transform;
+}
+
+/* SIDEBAR NAV */
+#sidebarToggle{
+  position:fixed;top:14px;left:14px;z-index:930;
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid rgba(200,88,46,0.3);
+  background:rgba(15,12,20,0.95);
+  color:var(--cr);font-size:1rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:left 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+#sidebarToggle:hover{background:rgba(200,88,46,0.14);border-color:rgba(200,88,46,0.45);}
+
+#sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:var(--sidebar-w);
+  background:var(--bg2);border-right:1px solid rgba(200,88,46,0.15);
+  overflow-y:auto;z-index:920;padding-bottom:1.2rem;
+  transition:transform 0.25s ease;
+}
+.sb-brand{
+  padding:1.35rem 1.1rem 1.1rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:0.6rem;
+}
+.sb-logo{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:2rem;
+  line-height:1;
+  background:linear-gradient(135deg,var(--cr),var(--em2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sb-sub{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.34);margin-top:0.45rem;
+}
+.sb-version{
+  display:inline-block;margin-top:0.65rem;
+  padding:0.16rem 0.62rem;border-radius:20px;
+  border:1px solid rgba(196,144,40,0.25);background:rgba(196,144,40,0.1);
+  font-size:0.62rem;letter-spacing:0.11em;text-transform:uppercase;color:var(--go2);
+}
+.sb-item{
+  display:block;padding:0.48rem 1.1rem;
+  color:rgba(228,220,212,0.56);text-decoration:none;font-size:0.8rem;
+  border-left:2px solid transparent;transition:all 0.18s;
+}
+.sb-item:hover,.sb-item.active{
+  color:var(--cr);
+  background:rgba(200,88,46,0.08);
+  border-left-color:var(--em);
+}
+.sidebar-overlay{
+  position:fixed;inset:0;z-index:910;
+  background:rgba(7,5,10,0.45);opacity:0;pointer-events:none;
+  transition:opacity 0.2s ease;
+}
+#mainContent{margin-left:var(--sidebar-w);min-height:100vh;transition:margin-left 0.25s ease;}
+
+body.sidebar-collapsed #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+body.sidebar-collapsed #mainContent{margin-left:0;}
+body.sidebar-collapsed #prog-bar{left:0;}
+body.sidebar-collapsed #sidebarToggle{left:14px;}
+body:not(.sidebar-collapsed) #sidebarToggle{left:calc(var(--sidebar-w) - 18px);}
+
+/* COVER */
+#cover{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:5.8rem 2rem 4.2rem;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 35%,rgba(200,88,46,0.09),transparent 60%),
+    radial-gradient(ellipse 55% 60% at 80% 70%,rgba(90,40,72,0.12),transparent 55%),
+    radial-gradient(ellipse 40% 40% at 60% 20%,rgba(196,144,40,0.06),transparent 50%),
+    var(--bg);
+  position:relative;overflow:hidden;
+}
+.cover-pill{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(200,88,46,0.1);border:1px solid rgba(200,88,46,0.25);
+  border-radius:30px;padding:0.3rem 1rem;
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--em2);
+  margin-bottom:2.2rem;animation:up 0.7s ease both;
+}
+.cover-h1{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:900;
+  font-size:clamp(2.5rem,7vw,5.8rem);line-height:1.0;
+  color:var(--cr);animation:up 0.8s 0.1s ease both;
+}
+.cover-h1 .year{
+  background:linear-gradient(135deg,var(--go2),var(--em2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cover-sub{font-size:1rem;color:var(--mu);margin-top:1rem;max-width:520px;animation:up 0.9s 0.2s ease both;}
+.cover-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:1px;background:rgba(200,88,46,0.18);
+  border-radius:var(--rl);overflow:hidden;
+  width:100%;max-width:780px;margin-top:3.5rem;
+  animation:up 1s 0.3s ease both;
+}
+.cg-item{background:var(--bg2);padding:1.3rem 0.8rem;text-align:center;}
+.cg-n{font-family:'Fraunces',serif;font-style:italic;font-size:1.8rem;font-weight:900;color:var(--em2);display:block;}
+.cg-l{font-size:0.6rem;color:var(--mu);letter-spacing:0.06em;}
+@keyframes up{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:650px){.cover-grid{grid-template-columns:1fr 1fr;}}
+
+/* LAYOUT */
+.sec{padding:5rem 2.5rem;}
+.sec.alt{background:var(--bg2);}
+.container{max-width:1080px;margin:0 auto;}
+.stky{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,5,10,0.95);backdrop-filter:blur(12px);
+  padding:0.75rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.stky-t{font-family:'Fraunces',serif;font-style:italic;font-size:0.92rem;color:var(--cr);}
+.stky-n{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--em);}
+.ey{display:inline-flex;align-items:center;gap:0.55rem;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--em);font-weight:700;margin-bottom:0.55rem;}
+.ey::before{content:'';width:18px;height:1.5px;background:var(--em);}
+h2.h{font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:clamp(1.7rem,3.5vw,2.6rem);color:var(--cr);line-height:1.1;margin-bottom:0.6rem;}
+.lead{font-size:0.97rem;color:var(--mu);max-width:540px;margin-bottom:2.2rem;}
+.rule{width:100%;height:1px;background:linear-gradient(90deg,var(--em),rgba(200,88,46,0.05),transparent);margin:2.5rem 0;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media(max-width:900px){.g3{grid-template-columns:1fr 1fr;}.g4{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+/* CARDS */
+.card{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:1.4rem;transition:border-color 0.2s;}
+.card:hover{border-color:rgba(200,88,46,0.28);}
+.card h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--cr);margin-bottom:0.45rem;}
+.card p{font-size:0.81rem;color:var(--mu);line-height:1.65;}
+.card-ic{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--em3),var(--pl));display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:0.85rem;}
+.card.gold{border-color:rgba(196,144,40,0.2);background:rgba(196,144,40,0.04);}
+.card.gold h3{color:var(--go2);}
+.card.em{border-color:rgba(200,88,46,0.22);}
+
+/* TABLE */
+.tbl{overflow-x:auto;border-radius:var(--r);overflow:hidden;margin:1.4rem 0;}
+table{width:100%;border-collapse:collapse;}
+thead{background:rgba(200,88,46,0.1);}
+thead th{padding:0.75rem 0.9rem;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--em2);font-weight:700;text-align:left;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);}
+tbody tr:hover{background:rgba(255,255,255,0.02);}
+tbody td{padding:0.7rem 0.9rem;font-size:0.8rem;color:rgba(228,220,212,0.72);}
+tbody td b{color:var(--cr);}
+
+/* MONTH CARDS */
+.month-card{border-radius:var(--rl);overflow:hidden;margin-bottom:2rem;border:1px solid var(--b);}
+.mc-header{
+  padding:1.5rem 2rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.mc-num{font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:4rem;line-height:1;opacity:0.12;color:var(--cr);flex-shrink:0;}
+.mc-info{flex:1;}
+.mc-name{font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:1.6rem;color:var(--cr);}
+.mc-temp{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.2rem;}
+.mc-dates{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.7rem;}
+.mc-date{
+  padding:0.2rem 0.7rem;border-radius:20px;font-size:0.72rem;
+  border:1px solid rgba(200,88,46,0.2);color:var(--tx);
+  display:flex;align-items:center;gap:0.3rem;
+}
+.mc-fire{font-size:0.8rem;}
+.mc-body{padding:0 2rem 1.8rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+@media(max-width:800px){.mc-body{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.mc-body{grid-template-columns:1fr;}}
+.mc-col h4{font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;font-weight:700;}
+.mc-col ul{padding-left:1.1rem;font-size:0.78rem;color:var(--mu);line-height:1.9;}
+.mc-col li{margin-bottom:0.1rem;}
+.mc-tags{padding:0 2rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.35rem;}
+.mc-bottom{padding:1rem 2rem;border-top:1px solid rgba(255,255,255,0.05);font-size:0.78rem;color:var(--mu);font-style:italic;}
+
+/* HOT LEVELS */
+.hot0{background:var(--bg2);}
+.hot1{background:linear-gradient(160deg,rgba(15,12,20,1),rgba(30,22,38,1));}
+.hot2{background:linear-gradient(160deg,rgba(15,12,20,1),rgba(50,20,30,1));}
+.hot3{background:linear-gradient(160deg,rgba(15,12,20,1),rgba(70,18,25,1));}
+.hot4{background:linear-gradient(160deg,rgba(50,18,20,0.6),rgba(15,8,10,1));}
+
+/* TEMP BADGES */
+.t-baixa{color:var(--mu);border-color:rgba(255,255,255,0.1);}
+.t-media{color:var(--go2);border-color:rgba(196,144,40,0.3);}
+.t-alta{color:var(--em2);border-color:rgba(200,88,46,0.4);}
+.t-max{color:#FF8070;border-color:rgba(255,128,112,0.4);}
+.badge{display:inline-block;padding:0.12rem 0.55rem;border-radius:10px;font-size:0.6rem;font-weight:700;margin:0.15rem;}
+.b-e{background:rgba(200,88,46,0.12);color:var(--em2);}
+.b-g{background:rgba(196,144,40,0.12);color:var(--go2);}
+.b-p{background:rgba(90,40,72,0.25);color:#D09AB8;}
+.b-s{background:rgba(255,255,255,0.06);color:var(--mu);}
+.b-gr{background:rgba(30,92,64,0.2);color:#78CFA8;}
+
+/* PLATFORM CARDS */
+.plt-card{border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem;}
+.plt-stripe{height:5px;}
+.plt-body{padding:1.8rem 2rem;background:var(--bg2);}
+.plt-icon{font-size:2rem;margin-bottom:0.7rem;}
+.plt-name{font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:1.4rem;color:var(--cr);margin-bottom:0.3rem;}
+.plt-sub{font-size:0.72rem;color:var(--mu);margin-bottom:1.2rem;letter-spacing:0.04em;}
+.plt-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+.plt-item{background:var(--s);border:1px solid var(--b);border-radius:var(--rs);padding:0.9rem;}
+.plt-item h5{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--em);margin-bottom:0.4rem;font-weight:700;}
+.plt-item p{font-size:0.78rem;color:var(--mu);line-height:1.55;}
+
+/* MIX PIE VISUAL */
+.mix-bar{display:flex;height:10px;border-radius:10px;overflow:hidden;margin:0.8rem 0;}
+.mix-row{display:flex;align-items:center;gap:0.7rem;margin:0.4rem 0;font-size:0.8rem;}
+.mix-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* WEEK PLANNER */
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:1.2rem 0;}
+.day-cell{border-radius:var(--rs);padding:0.5rem 0.4rem;text-align:center;font-size:0.62rem;}
+.day-name{font-weight:700;color:var(--mu);letter-spacing:0.06em;text-transform:uppercase;font-size:0.55rem;display:block;margin-bottom:0.3rem;}
+.day-type{display:block;font-size:0.65rem;line-height:1.4;}
+.day-sell{background:rgba(200,88,46,0.15);border:1px solid rgba(200,88,46,0.25);}
+.day-auth{background:rgba(196,144,40,0.1);border:1px solid rgba(196,144,40,0.2);}
+.day-conn{background:rgba(90,40,72,0.2);border:1px solid rgba(90,40,72,0.3);}
+.day-brand{background:rgba(30,72,88,0.2);border:1px solid rgba(30,72,88,0.3);}
+.day-rest{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);}
+
+/* TREND CARDS */
+.trend-card{
+  display:flex;gap:1rem;background:var(--s);border:1px solid var(--b);
+  border-radius:var(--r);padding:1.1rem;margin-bottom:0.7rem;
+  transition:border-color 0.2s;
+}
+.trend-card:hover{border-color:rgba(200,88,46,0.25);}
+.trend-icon{font-size:1.4rem;flex-shrink:0;}
+.trend-body h4{font-size:0.88rem;font-weight:700;color:var(--cr);margin-bottom:0.2rem;}
+.trend-body p{font-size:0.77rem;color:var(--mu);line-height:1.55;}
+.trend-tags{margin-top:0.4rem;}
+
+/* CONTENT BLOCKS */
+.cb{background:var(--s);border-left:3px solid var(--em);border-radius:0 var(--r) var(--r) 0;padding:1.1rem 1.4rem;margin:0.55rem 0;}
+.cb-label{font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--em);margin-bottom:0.3rem;font-weight:700;}
+.cb-text{font-size:0.85rem;color:var(--cr);font-weight:600;}
+.cb-sub{font-size:0.75rem;color:var(--mu);margin-top:0.2rem;}
+.cb.gold{border-left-color:var(--go);}
+.cb.gold .cb-label{color:var(--go2);}
+
+/* QUOTE */
+.qt{
+  border-left:3px solid var(--em);padding:1rem 1.6rem;
+  background:rgba(200,88,46,0.05);border-radius:0 var(--r) var(--r) 0;
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:1.1rem;color:var(--cr);margin:1.4rem 0;line-height:1.5;
+}
+.hl{
+  background:linear-gradient(135deg,rgba(90,40,72,0.2),rgba(200,88,46,0.08));
+  border:1px solid rgba(200,88,46,0.15);border-radius:var(--rl);padding:1.8rem;margin:1.4rem 0;
+}
+.tags-row{display:flex;flex-wrap:wrap;gap:0.35rem;margin:1rem 0;}
+
+/* CONTENT CALENDAR TABLE */
+.cal-tbl{overflow-x:auto;margin:1.5rem 0;}
+.cal-tbl table{width:100%;border-collapse:collapse;min-width:700px;}
+.cal-tbl thead th{
+  padding:0.7rem 0.7rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--go2);font-weight:700;text-align:left;
+  background:rgba(196,144,40,0.08);
+}
+.cal-tbl tbody tr{border-bottom:1px solid rgba(255,255,255,0.03);}
+.cal-tbl tbody tr:hover{background:rgba(255,255,255,0.015);}
+.cal-tbl tbody td{padding:0.6rem 0.7rem;font-size:0.77rem;color:var(--mu);vertical-align:top;}
+.cal-tbl tbody td b{color:var(--cr);}
+.cal-tbl .week{
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  color:var(--em);padding:0.35rem 0.6rem;background:rgba(200,88,46,0.08);
+  border-radius:6px;display:inline-block;
+}
+
+/* PLATFORM MIX SECTION */
+.plat-compare{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-radius:var(--r);overflow:hidden;background:rgba(200,88,46,0.15);margin:1.5rem 0;}
+.pc-col{background:var(--bg2);padding:1.2rem 0.8rem;}
+.pc-col h4{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cr);font-weight:700;margin-bottom:0.8rem;}
+.pc-row{font-size:0.72rem;color:var(--mu);padding:0.3rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.pc-row b{color:var(--cr);}
+.pc-row:last-child{border-bottom:none;}
+@media(max-width:800px){.plat-compare{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.plat-compare{grid-template-columns:1fr;}}
+
+/* SYSTEM POLISH & PERFORMANCE */
+.sec{
+  padding-block:clamp(3.5rem,7vw,5rem);
+  padding-inline:clamp(1rem,3vw,2.5rem);
+  content-visibility:auto;
+  contain-intrinsic-size:900px;
+}
+#cover{
+  content-visibility:visible;
+  contain-intrinsic-size:auto;
+}
+.container{width:min(1080px,100%);}
+.g2,.g3,.g4{align-items:stretch;}
+.g2>*,.g3>*,.g4>*{min-width:0;}
+.card,.hl,.plt-card,.month-card,.cal-month{height:100%;}
+.tbl,.cal-tbl{
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.stky{
+  top:52px;
+  padding-inline:clamp(1rem,2.8vw,2.5rem);
+  border-radius:12px;
+}
+@media(max-width:700px){
+  .sec{padding-inline:1rem;}
+  .stky{padding-inline:1rem;}
+}
+@media(max-width:980px){
+  #mainContent{margin-left:0;}
+  #sidebar{transform:translateX(calc(-1 * var(--sidebar-w)));}
+  body:not(.sidebar-collapsed) #sidebar{transform:translateX(0);}
+  body:not(.sidebar-collapsed) .sidebar-overlay{opacity:1;pointer-events:auto;}
+  body:not(.sidebar-collapsed) #sidebarToggle{left:14px;}
+  #prog-bar{left:0;}
+}
+@media(min-width:981px){
+  .sidebar-overlay{display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="prog-bar"><div id="prog-fill"></div></div>
+
+<button id="sidebarToggle" type="button" aria-label="Expandir ou recolher menu lateral" aria-controls="sidebar" aria-expanded="true">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+<nav id="sidebar" aria-label="Menu lateral do calendario 2026">
+  <div class="sb-brand">
+    <div class="sb-logo">fottu.br</div>
+    <div class="sb-sub">calendario 2026</div>
+    <span class="sb-version">v2.0 • 2026</span>
+  </div>
+  <a class="sb-item active" href="#cover">Capa</a>
+  <a class="sb-item" href="#platforms">1.0 Plataformas</a>
+  <a class="sb-item" href="#mix">2.0 Mix</a>
+  <a class="sb-item" href="#calendar">3.0 Calendário</a>
+  <a class="sb-item" href="#week">4.0 Semana Padrão</a>
+  <a class="sb-item" href="#trends">5.0 Trends</a>
+  <a class="sb-item" href="#events">6.0 Eventos</a>
+</nav>
+
+<main id="mainContent">
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-pill">Calendário Editorial Completo</div>
+  <h1 class="cover-h1">fottu.br<br><span class="year">2026</span></h1>
+  <p class="cover-sub">12 meses. 4 plataformas. Cada formato, linguagem e estratégia mapeada para você vender, conectar e construir marca com consistência.</p>
+  <div class="cover-grid">
+    <div class="cg-item"><span class="cg-n">12</span><span class="cg-l">Meses planejados</span></div>
+    <div class="cg-item"><span class="cg-n">4</span><span class="cg-l">Plataformas</span></div>
+    <div class="cg-item"><span class="cg-n">52</span><span class="cg-l">Semanas de conteúdo</span></div>
+    <div class="cg-item"><span class="cg-n">8</span><span class="cg-l">Datas de pico</span></div>
+    <div class="cg-item"><span class="cg-n">4</span><span class="cg-l">Pilares de conteúdo</span></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  PLATAFORMAS — O QUE FUNCIONA
+════════════════════════════════ -->
+<section id="platforms" class="sec alt">
+  <div class="container">
+    <div class="stky"><span class="stky-t">O que funciona em cada plataforma</span><span class="stky-n">01</span></div><br>
+    <div class="ey">01 — Plataformas</div>
+    <h2 class="h">Cada rede tem<br>sua própria língua.</h2>
+    <p class="lead">Não é o mesmo conteúdo repostado. É a mesma mensagem traduzida para cada linguagem específica.</p>
+
+    <!-- COMPARATIVO GERAL -->
+    <div class="plat-compare">
+      <div class="pc-col">
+        <h4>📸 Instagram</h4>
+        <div class="pc-row"><b>Função primária:</b> Vitrine + Conversão</div>
+        <div class="pc-row"><b>Formato top:</b> Reels + Stories</div>
+        <div class="pc-row"><b>Alcance:</b> Rede própria + discovery</div>
+        <div class="pc-row"><b>Linguagem:</b> Emocional elegante</div>
+        <div class="pc-row"><b>CTA ideal:</b> "Link na bio" / DM</div>
+        <div class="pc-row"><b>Freq. ideal:</b> 1× post + 5× stories/dia</div>
+        <div class="pc-row"><b>Melhor hora:</b> 18h–21h + 8h–10h</div>
+        <div class="pc-row"><b>Pilar top:</b> Conexão + Venda</div>
+      </div>
+      <div class="pc-col">
+        <h4>🎵 TikTok</h4>
+        <div class="pc-row"><b>Função primária:</b> Descoberta + Awareness</div>
+        <div class="pc-row"><b>Formato top:</b> Vídeo nativo 15–45s</div>
+        <div class="pc-row"><b>Alcance:</b> Algorítmico — ilimitado</div>
+        <div class="pc-row"><b>Linguagem:</b> Direta, humana, real</div>
+        <div class="pc-row"><b>CTA ideal:</b> "Link na bio" / comentário</div>
+        <div class="pc-row"><b>Freq. ideal:</b> 1–2×/dia</div>
+        <div class="pc-row"><b>Melhor hora:</b> 19h–22h</div>
+        <div class="pc-row"><b>Pilar top:</b> Awareness + Conexão</div>
+      </div>
+      <div class="pc-col">
+        <h4>💬 WhatsApp</h4>
+        <div class="pc-row"><b>Função primária:</b> Fechamento + Fidelização</div>
+        <div class="pc-row"><b>Formato top:</b> Mensagem + Status + Lista</div>
+        <div class="pc-row"><b>Alcance:</b> Base própria de leads</div>
+        <div class="pc-row"><b>Linguagem:</b> Pessoal, próxima, direta</div>
+        <div class="pc-row"><b>CTA ideal:</b> Resposta, pedido, Pix</div>
+        <div class="pc-row"><b>Freq. ideal:</b> Status 2×/dia + broadcast mensal</div>
+        <div class="pc-row"><b>Melhor hora:</b> 9h–11h e 19h–21h</div>
+        <div class="pc-row"><b>Pilar top:</b> Venda + Fidelização</div>
+      </div>
+      <div class="pc-col">
+        <h4>📌 Pinterest</h4>
+        <div class="pc-row"><b>Função primária:</b> Tráfego perene</div>
+        <div class="pc-row"><b>Formato top:</b> Pin vertical 2:3</div>
+        <div class="pc-row"><b>Alcance:</b> Busca — SEO visual</div>
+        <div class="pc-row"><b>Linguagem:</b> Inspiracional + Descritiva</div>
+        <div class="pc-row"><b>CTA ideal:</b> "Ver mais" → link</div>
+        <div class="pc-row"><b>Freq. ideal:</b> 5–10 pins/semana</div>
+        <div class="pc-row"><b>Melhor hora:</b> Qualquer (é busca)</div>
+        <div class="pc-row"><b>Pilar top:</b> Autoridade + Tráfego</div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM DETALHADO -->
+    <div class="rule"></div>
+    <div class="plt-card">
+      <div class="plt-stripe" style="background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);"></div>
+      <div class="plt-body">
+        <div class="plt-icon">📸</div>
+        <div class="plt-name">Instagram</div>
+        <div class="plt-sub">Sua vitrine emocional — onde você é julgada antes do produto</div>
+        <div class="plt-grid">
+          <div class="plt-item">
+            <h5>Formatos e performance</h5>
+            <p><b style="color:var(--cr);">Reels:</b> 70% do alcance orgânico. 15–30s ideais. Hook nos 3s.<br><b style="color:var(--cr);">Stories:</b> Maior conversão. 5+ por dia.<br><b style="color:var(--cr);">Carrossel:</b> 3× mais salvamentos. 5–10 slides.<br><b style="color:var(--cr);">Post único:</b> Feed/vitrine. Depoimentos.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Linguagem que funciona</h5>
+            <p>Emocional mas refinada. Não grita, provoca. Usa segunda pessoa ("você"). Frases curtas + impacto. Emojis com parcimônia. Evita: técnico, genérico, autopromoção explícita.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Conteúdo que performa</h5>
+            <p>Antes/depois visual. Reação de quem recebeu. Processo com emoção. Depoimentos reais. Bastidores. Datas comemorativas. POV de cliente.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Métricas de sucesso</h5>
+            <p>Salvamentos (indica interesse). Compartilhamentos (alcance). Comentários (engajamento real). Cliques no link (intenção de compra). Visitas ao perfil (awareness).</p>
+          </div>
+          <div class="plt-item">
+            <h5>Destaques obrigatórios</h5>
+            <p>📦 Produtos · ✍️ Como Pedir · ⭐ Depoimentos · 🔄 Antes&Depois · 🎁 Presentes · 🏭 Bastidores · 📅 Datas</p>
+          </div>
+          <div class="plt-item">
+            <h5>Como adaptar conteúdo</h5>
+            <p>Reels do TikTok: reposte, mas com texto menos informal. Stories do dia a dia: mais espontâneos que feed. Carrossel: mesmo conteúdo de TikTok em formato estático educativo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIKTOK DETALHADO -->
+    <div class="plt-card">
+      <div class="plt-stripe" style="background:linear-gradient(90deg,#010101,#ff0050,#00f2ea);"></div>
+      <div class="plt-body">
+        <div class="plt-icon">🎵</div>
+        <div class="plt-name">TikTok</div>
+        <div class="plt-sub">Motor de descoberta — onde uma desconhecida pode alcançar 1 milhão de pessoas em 24h</div>
+        <div class="plt-grid">
+          <div class="plt-item">
+            <h5>A regra dos 3 segundos</h5>
+            <p>O gancho vai: 1. No título do vídeo. 2. Nas primeiras palavras ditas. 3. No primeiro frame visual. Tudo ao mesmo tempo. Se não parar nos primeiros 3s, perdeu.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Linguagem que funciona</h5>
+            <p>Direta, humana, sem filtro aparente. Parece conversa, não propaganda. "Deixa eu te mostrar", "não acredito que aconteceu", "esse foi diferente". Real &gt; polido.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Formatos que performam</h5>
+            <p><b style="color:var(--cr);">POV:</b> perspectiva imersiva. <b style="color:var(--cr);">Resposta a comentário:</b> engajamento alto. <b style="color:var(--cr);">Série (Parte 1/2):</b> retenção. <b style="color:var(--cr);">Trend adaptada:</b> alcance explosivo. <b style="color:var(--cr);">Bastidor honesto:</b> confiança.</p>
+          </div>
+          <div class="plt-item">
+            <h5>O que NUNCA fazer</h5>
+            <p>Começar com logo da empresa. Vídeo lento e bonitinho sem gancho. Texto enorme na tela. Fundo branco de estúdio. Voz engessada lendo roteiro. Musiquinha de escritório.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Adaptar trends corretamente</h5>
+            <p>Teste: 1. O áudio tem emoção? 2. O formato se encaixa no produto? 3. Dá pra adaptar em menos de 30 min? Se "sim" para 2 dos 3: vai. Se "não" para 2: pula.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Construindo audiência</h5>
+            <p>Responda TODOS os comentários nas primeiras 2h. Responda com vídeo as perguntas mais comuns. Faça séries. Use dueto com clientes. Apareça no comentário de outros criadores do nicho.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP DETALHADO -->
+    <div class="plt-card">
+      <div class="plt-stripe" style="background:linear-gradient(90deg,#25D366,#128C7E);"></div>
+      <div class="plt-body">
+        <div class="plt-icon">💬</div>
+        <div class="plt-name">WhatsApp Business</div>
+        <div class="plt-sub">Canal de fechamento — onde o pedido acontece de verdade</div>
+        <div class="plt-grid">
+          <div class="plt-item">
+            <h5>Status (= Stories) diário</h5>
+            <p>Taxa de abertura: 60–80% (muito maior que feed). Poste 2× por dia: manhã (bastidor/produto) e noite (CTA/urgência). Status desaparecem em 24h — crie urgência natural.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Listas de transmissão</h5>
+            <p>Crie 3 listas segmentadas: 1. Leads (nunca compraram). 2. Clientes ativos. 3. VIPs (compraram 2+). Cada lista recebe mensagem diferente. Nunca use grupo geral.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Linguagem ideal</h5>
+            <p>Pessoal como amiga. Usa nome quando sabe. Não é formal nem muito gíria. Tom: "Oi [nome]! 💛 Tomando um café e lembrei de você..." — parece conversa real.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Sequência de fechamento</h5>
+            <p>1. Lead pede info → responde com emoção + produto. 2. Envia foto + preço. 3. Aguarda 1h → "Ficou com alguma dúvida?". 4. Aguarda 24h → "Vou ter prazo pra essa semana ainda". 5. Fecha.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Conteúdo para Status</h5>
+            <p>Segunda: "Mais um dia cheio de pedidos especiais 💛". Terça-Qua: produto sendo feito. Quinta: depoimento de cliente. Sexta: "Últimas vagas da semana". Fim de semana: bastidores pessoais.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Automações básicas</h5>
+            <p>Boas-vindas automáticas. Ausência com pergunta ("que memória você quer eternizar?"). Catálogo sempre atualizado. Respostas rápidas para FAQ (prazo, preço, como funciona).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PINTEREST DETALHADO -->
+    <div class="plt-card">
+      <div class="plt-stripe" style="background:linear-gradient(90deg,#e60023,#8c0014);"></div>
+      <div class="plt-body">
+        <div class="plt-icon">📌</div>
+        <div class="plt-name">Pinterest</div>
+        <div class="plt-sub">Tráfego perene — um Pin criado hoje pode gerar cliques por 2 anos</div>
+        <div class="plt-grid">
+          <div class="plt-item">
+            <h5>Pinterest é busca, não social</h5>
+            <p>Pessoas buscam ideias, não seguem marcas. Seu Pin precisa aparecer nas buscas certas. Palavras-chave no título, na descrição e no board name são fundamentais.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Palavras-chave essenciais</h5>
+            <p>"imã de geladeira personalizado" · "presente com foto" · "decoração geladeira" · "presente dia das mães" · "lembrança personalizada" · "presente romantico foto" · "decoração afetiva"</p>
+          </div>
+          <div class="plt-item">
+            <h5>Boards obrigatórios</h5>
+            <p>📸 Ímãs Personalizados | 🎁 Ideias de Presente | 🏠 Decoração de Cozinha | 💕 Dia das Mães | 🧲 Fotos na Geladeira | ✨ Memorias Afetivas</p>
+          </div>
+          <div class="plt-item">
+            <h5>Formato ideal do Pin</h5>
+            <p>Vertical 1000×1500px. Foto de produto limpa com contexto. Título SEO no topo da imagem. Descrição com 200+ palavras. Link direto para WhatsApp ou Elo7.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Frequência e consistência</h5>
+            <p>5–10 Pins por semana (pode ser reaproveitamento de fotos do feed). Consistência importa mais que volume. Use Tailwind para agendar. Pique Pins nas datas comemorativas.</p>
+          </div>
+          <div class="plt-item">
+            <h5>Reaproveitamento de conteúdo</h5>
+            <p>Toda foto bonita do Instagram → vira Pin. Cada slide de carrossel → Pin separado. Toda foto de cliente → Pin com permissão. Pinterest é o destino final de todo conteúdo visual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  MIX DE CONTEÚDO — OS 4 PILARES
+════════════════════════════════ -->
+<section id="mix" class="sec dark">
+  <div class="container">
+    <div class="stky"><span class="stky-t">Mix de Conteúdo — Os 4 Pilares</span><span class="stky-n">02</span></div><br>
+    <div class="ey">02 — Mix de Conteúdo</div>
+    <h2 class="h">Não viva só de Reels.<br>Não viva só de venda.</h2>
+    <p class="lead">O segredo do crescimento sustentável é o equilíbrio entre 4 pilares. Cada um tem um papel diferente na jornada da cliente.</p>
+
+    <div class="g4">
+      <div class="card em">
+        <div class="card-ic">🔥</div>
+        <h3 style="color:var(--em2);">Venda</h3>
+        <p>Converte. CTA direto. Produto em destaque. Urgência. Prova social. <b style="color:var(--cr);">30% do conteúdo.</b></p>
+      </div>
+      <div class="card gold">
+        <div class="card-ic" style="background:linear-gradient(135deg,var(--go3),var(--pl));">🏆</div>
+        <h3>Autoridade</h3>
+        <p>Educa. Constrói confiança. Mostra expertise. Bastidores técnicos. <b style="color:var(--cr);">20% do conteúdo.</b></p>
+      </div>
+      <div class="card" style="border-color:rgba(90,40,72,0.3);">
+        <div class="card-ic" style="background:linear-gradient(135deg,var(--pl2),var(--te));">💛</div>
+        <h3 style="color:#D09AB8;">Conexão</h3>
+        <p>Humaniza. Emociona. Gera salvamentos e compartilhamentos. Histórias reais. <b style="color:var(--cr);">35% do conteúdo.</b></p>
+      </div>
+      <div class="card" style="border-color:rgba(30,72,88,0.3);">
+        <div class="card-ic" style="background:linear-gradient(135deg,var(--te2),var(--gr));">🌱</div>
+        <h3 style="color:#78CFA8;">Marca</h3>
+        <p>Posiciona. Cria identidade. Valores. História. Bastidores. <b style="color:var(--cr);">15% do conteúdo.</b></p>
+      </div>
+    </div>
+
+    <div class="hl">
+      <div style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--em);margin-bottom:0.8rem;">DISTRIBUIÇÃO VISUAL POR SEMANA</div>
+      <div class="mix-bar">
+        <div style="width:35%;background:var(--pl2);"></div>
+        <div style="width:30%;background:var(--em);"></div>
+        <div style="width:20%;background:var(--go);"></div>
+        <div style="width:15%;background:var(--te2);"></div>
+      </div>
+      <div class="g2" style="margin-top:0.8rem;">
+        <div>
+          <div class="mix-row"><div class="mix-dot" style="background:var(--pl2);"></div><span style="color:var(--mu);">35% Conexão — histórias, emoção, depoimentos</span></div>
+          <div class="mix-row"><div class="mix-dot" style="background:var(--em);"></div><span style="color:var(--mu);">30% Venda — produto, CTA, urgência, prova social</span></div>
+        </div>
+        <div>
+          <div class="mix-row"><div class="mix-dot" style="background:var(--go);"></div><span style="color:var(--mu);">20% Autoridade — processo, educação, bastidores técnicos</span></div>
+          <div class="mix-row"><div class="mix-dot" style="background:var(--te2);"></div><span style="color:var(--mu);">15% Marca — valores, história, fundadora, propósito</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">Como distribuir os 4 pilares por plataforma</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Pilar</th><th>Instagram Feed</th><th>Instagram Stories</th><th>TikTok</th><th>WhatsApp</th><th>Pinterest</th></tr></thead>
+        <tbody>
+          <tr><td><b>🔥 Venda</b></td><td>30% — post produto + depoimento</td><td>50% — CTA, link, vagas, urgência</td><td>20% — CTA no final do vídeo</td><td>70% — close, pedido, follow-up</td><td>10% — Pin de produto direto</td></tr>
+          <tr><td><b>🏆 Autoridade</b></td><td>25% — carrossel educativo</td><td>10% — dicas rápidas</td><td>25% — processo, material, expertise</td><td>10% — dica de foto/produto</td><td>40% — tutoriais, como escolher</td></tr>
+          <tr><td><b>💛 Conexão</b></td><td>35% — reel emocional, história</td><td>30% — bastidores pessoais, repost</td><td>45% — narrativa, depoimento, reação</td><td>15% — pós-venda, mensagem carinhosa</td><td>35% — inspiração, memória afetiva</td></tr>
+          <tr><td><b>🌱 Marca</b></td><td>10% — valores, origem, propósito</td><td>10% — bastidores autênticos</td><td>10% — história da fundadora</td><td>5% — mensagem de brand</td><td>15% — boards de identidade</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">Formatos além do Reel — para não depender de um só formato</h3>
+    <div class="g3">
+      <div class="card"><div class="card-ic">🃏</div><h3>Carrossel educativo</h3><p>Slide 1: hook forte (o que vai aprender). Slides 2–8: conteúdo de valor. Slide final: CTA. Gera 3× mais salvamentos que post simples. Ideal para autoridade.</p></div>
+      <div class="card"><div class="card-ic">📱</div><h3>Stories interativos</h3><p>Enquete, quiz, caixinha de perguntas, slider de reação. Alto engajamento, cria diálogo real. Converte mais que qualquer outro formato no longo prazo.</p></div>
+      <div class="card"><div class="card-ic">🖼️</div><h3>Post estático de impacto</h3><p>Foto de produto excepcional + legenda de 3 linhas + pergunta. Não subestime: ainda tem alcance e funciona muito para vitrine.</p></div>
+      <div class="card"><div class="card-ic">📡</div><h3>Live mensal</h3><p>20–30 min. Tema: processo ao vivo, bastidores, Q&A. Gera notificação para seguidores. Cria confiança e humaniza muito a marca.</p></div>
+      <div class="card"><div class="card-ic">🔄</div><h3>Conteúdo UGC (gerado por clientes)</h3><p>Repostar marcações. Pedir foto da geladeira em troca de desconto. Fazer dueto. O cliente vendendo pra você — a prova social mais poderosa.</p></div>
+      <div class="card"><div class="card-ic">📖</div><h3>Série de conteúdo</h3><p>"Parte 1 de X" cria expectativa e fidelização. Séries sobre: pedidos especiais, bastidores, datas comemorativas. Gera seguidores novos a cada episódio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  CALENDÁRIO 2026 — MÊS A MÊS
+════════════════════════════════ -->
+<section id="calendar" class="sec alt">
+  <div class="container">
+    <div class="stky"><span class="stky-t">Calendário Editorial 2026 — Mês a Mês</span><span class="stky-n">03</span></div><br>
+    <div class="ey">03 — Calendário 2026</div>
+    <h2 class="h">12 meses.<br>12 estratégias diferentes.</h2>
+    <p class="lead">Cada mês tem temperatura de venda, datas estratégicas, pilares prioritários e ideias prontas por canal.</p>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--mu);">
+        <div style="width:12px;height:12px;background:rgba(255,80,50,0.4);border-radius:3px;"></div>Alta temporada
+      </div>
+      <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--mu);">
+        <div style="width:12px;height:12px;background:rgba(200,88,46,0.3);border-radius:3px;"></div>Média temporada
+      </div>
+      <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--mu);">
+        <div style="width:12px;height:12px;background:rgba(30,72,88,0.4);border-radius:3px;"></div>Construção de marca
+      </div>
+    </div>
+
+    <!-- JANEIRO -->
+    <div class="month-card hot1">
+      <div class="mc-header">
+        <div class="mc-num">01</div>
+        <div class="mc-info">
+          <div class="mc-name">Janeiro</div>
+          <div class="mc-temp t-media" style="border:1px solid rgba(196,144,40,0.3);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌡️ Média temporada</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🆕</span>01/Jan — Virada</div>
+            <div class="mc-date"><span class="mc-fire">🎓</span>Meses marcantes de 2025</div>
+            <div class="mc-date"><span class="mc-fire">💌</span>Pré-aquecimento Namorados</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Posicionar como "início com memórias"</li>
+            <li>Kit "Melhores de 2025" — quem quer eternizar</li>
+            <li>Capturar leads para Namorados (14/fev)</li>
+            <li>Foco em conteúdo de marca e conexão</li>
+            <li>Começar lista de espera corporativo</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "Renova a geladeira, renova a energia"</li>
+            <li><b>Carrossel:</b> "O que fazer com as fotos de 2025"</li>
+            <li><b>Stories:</b> Enquete — "melhor momento do seu ano"</li>
+            <li><b>TikTok:</b> "Era uma vez uma geladeira vazia..."</li>
+            <li><b>WA:</b> Broadcast "Que memória quer eternizar em 2026?"</li>
+            <li><b>Pinterest:</b> Pins de inspiração de geladeiras</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ideias Extras</h4>
+          <ul>
+            <li>Live: "Como vai ser 2026 para a fottu.br"</li>
+            <li>Post: manifesto de marca — por que existimos</li>
+            <li>Série TikTok: bastidores do primeiro pedido do ano</li>
+            <li>Início de lista de transmissão segmentada WA</li>
+            <li>Criar board de Pinterest para 2026</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-p">💛 Conexão 40%</span><span class="badge b-g">🏆 Autoridade 30%</span>
+        <span class="badge b-s">🌱 Marca 20%</span><span class="badge b-e">🔥 Venda 10%</span>
+      </div>
+      <div class="mc-bottom">💡 Meta do mês: capturar pelo menos 30 novos leads no WA e criar base de conteúdo para o ano.</div>
+    </div>
+
+    <!-- FEVEREIRO -->
+    <div class="month-card hot3">
+      <div class="mc-header">
+        <div class="mc-num">02</div>
+        <div class="mc-info">
+          <div class="mc-name">Fevereiro</div>
+          <div class="mc-temp t-alta" style="border:1px solid rgba(200,88,46,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥 Alta temporada — Namorados</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🔥🔥</span>14/Fev — Dia dos Namorados (INT)</div>
+            <div class="mc-date"><span class="mc-fire">🎭</span>Carnaval (semana variável)</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Campanha começa 20/Jan</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Campanha principal: "Melhor foto de vocês dois"</li>
+            <li>Kit casal: 2 ímãs em caixinha especial</li>
+            <li>Urgência crescente a partir de 7/fev</li>
+            <li>Corte de pedidos: 10/fev para garantir entrega</li>
+            <li>Pós-Carnaval: "Foto de Carnaval virou ímã"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "A melhor foto de vocês dois — agora na geladeira"</li>
+            <li><b>TikTok:</b> "Presente de namorados que ela guarda pra sempre"</li>
+            <li><b>Stories:</b> Countdown 14/fev + CTA link WA</li>
+            <li><b>WA:</b> Broadcast leads + broadcast clientes c/ recompra</li>
+            <li><b>Carrossel:</b> "5 tipos de foto que ficam lindas em casal"</li>
+            <li><b>Pinterest:</b> Pins "presente namorados personalizado"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Embalagem temática (papel seda rosa/terracota)</li>
+            <li>Cartão especial de Namorados incluso</li>
+            <li>Foto do processo com "casal" no fundo</li>
+            <li>Repost de clientes que receberam (+prova social)</li>
+            <li>Story "quanto tempo juntos?" — enquete viral</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 50%</span><span class="badge b-p">💛 Conexão 35%</span>
+        <span class="badge b-g">🏆 Autoridade 10%</span><span class="badge b-s">🌱 Marca 5%</span>
+      </div>
+      <div class="mc-bottom">🚨 Regra de ouro: campanha começa em 20/Jan — 25 dias antes. Corte de pedidos 4 dias antes da data.</div>
+    </div>
+
+    <!-- MARÇO -->
+    <div class="month-card hot1">
+      <div class="mc-header">
+        <div class="mc-num">03</div>
+        <div class="mc-info">
+          <div class="mc-name">Março</div>
+          <div class="mc-temp t-media" style="border:1px solid rgba(196,144,40,0.3);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌡️ Média + pré-aquecimento Mães</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">👩</span>08/Mar — Dia da Mulher</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Início pré-venda Dia das Mães</div>
+            <div class="mc-date"><span class="mc-fire">🍂</span>Final de verão</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>08/Mar: campanha "presenteia a mulher que você admira"</li>
+            <li>Iniciar lista de espera para Dia das Mães (maio)</li>
+            <li>Conteúdo sobre público: "mulheres que guardam memórias"</li>
+            <li>Foco em construção de comunidade</li>
+            <li>Mês de autoridade e posicionamento premium</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "Histórias de mulheres que guardam memórias"</li>
+            <li><b>TikTok:</b> Série sobre o que significa ser guardiã de memórias</li>
+            <li><b>Stories:</b> "Qual mulher da sua vida merece ter a melhor foto?"</li>
+            <li><b>WA:</b> "Dia das Mães chegando — reserve já sua vaga"</li>
+            <li><b>Carrossel:</b> "5 formas de homenagear a mulher especial"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Post de manifesto feminino + produto discreto</li>
+            <li>Collab com fotógrafa mulher da cidade</li>
+            <li>Lista de espera Dia das Mães no WA</li>
+            <li>Live sobre "memória afetiva feminina"</li>
+            <li>Série TikTok: "tipos de mãe e a foto certa"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-p">💛 Conexão 40%</span><span class="badge b-g">🏆 Autoridade 25%</span>
+        <span class="badge b-e">🔥 Venda 20%</span><span class="badge b-s">🌱 Marca 15%</span>
+      </div>
+      <div class="mc-bottom">📋 Início de março: abrir lista de espera para Dia das Mães e criar urgência antecipada.</div>
+    </div>
+
+    <!-- ABRIL -->
+    <div class="month-card hot2">
+      <div class="mc-header">
+        <div class="mc-num">04</div>
+        <div class="mc-info">
+          <div class="mc-name">Abril</div>
+          <div class="mc-temp t-media" style="border:1px solid rgba(196,144,40,0.3);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌡️ Média + aquecimento Mães</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🐰</span>Páscoa (data variável)</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Campanha Mães começa AGORA</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Páscoa: "Kit ímã no lugar do chocolate" (provocativo)</li>
+            <li>Campanha Dia das Mães inicia semana 2 de abril</li>
+            <li>Topo de funil: "o presente mais especial pra sua mãe"</li>
+            <li>Coletar conteúdo de clientes para usar em maio</li>
+            <li>Criar embalagem especial Mães</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "Geladeiras de mãe que a gente amou" — série</li>
+            <li><b>TikTok:</b> "O presente que sua mãe vai mostrar pra todo mundo"</li>
+            <li><b>Carrossel:</b> "Por que ímã é melhor que caixa de chocolate"</li>
+            <li><b>Stories:</b> "Qual foto você tem com sua mãe que ela amaria?"</li>
+            <li><b>WA:</b> "Agenda Dia das Mães — restam X vagas"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Pedir fotos de geladeiras de mães para clientes</li>
+            <li>Criar destaques específicos de Mães no Instagram</li>
+            <li>Parcerias com fotógrafas de newborn/família</li>
+            <li>Post: "Como escolher a foto da mãe"</li>
+            <li>Criar urgência: "vagas limitadas para entrega em maio"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 40%</span><span class="badge b-p">💛 Conexão 35%</span>
+        <span class="badge b-g">🏆 Autoridade 15%</span><span class="badge b-s">🌱 Marca 10%</span>
+      </div>
+      <div class="mc-bottom">🚀 Semana 2 de abril: começa a campanha Dia das Mães com 4+ semanas de antecedência.</div>
+    </div>
+
+    <!-- MAIO -->
+    <div class="month-card hot4">
+      <div class="mc-header">
+        <div class="mc-num">05</div>
+        <div class="mc-info">
+          <div class="mc-name">Maio</div>
+          <div class="mc-temp t-max" style="border:1px solid rgba(255,128,112,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥🔥🔥 MÁXIMA TEMPORADA — Dia das Mães</div>
+          <div class="mc-dates">
+            <div class="mc-date" style="border-color:rgba(255,80,50,0.5);color:#FF8070;"><span class="mc-fire">🔥🔥🔥</span>2° Domingo — DIA DAS MÃES</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Corte de pedidos: 5 dias antes</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>🚨 Máxima produção — defina limite de pedidos</li>
+            <li>"A geladeira dela vai ter você pra sempre"</li>
+            <li>Kit especial: embalagem + cartão temático</li>
+            <li>Stories diários de countdown e reações</li>
+            <li>Corte de pedidos 5 dias antes da data</li>
+            <li>Pós-Mães: coletar UGC de quem recebeu</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels DIÁRIOS:</b> Reações, processo, histórias de mães</li>
+            <li><b>TikTok:</b> Série "pedidos que me emocionaram"</li>
+            <li><b>Stories:</b> Countdown diário + repostagens + CTA urgente</li>
+            <li><b>WA:</b> Broadcast de urgência + confirmações + pós-entrega</li>
+            <li><b>Post:</b> "Restam X vagas para Dia das Mães"</li>
+            <li><b>Live:</b> "Bastidores do maior mês da fottu.br"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Embalagem especial de Mães (cor diferente)</li>
+            <li>Cartão escrito à mão em TODOS os pedidos</li>
+            <li>Repost de toda marcação de cliente</li>
+            <li>Compilado de reações pós-data para TikTok</li>
+            <li>Pós-Mães: "próximo é Dia dos Pais — já pensa"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 60%</span><span class="badge b-p">💛 Conexão 30%</span>
+        <span class="badge b-s">🌱 Marca 5%</span><span class="badge b-g">🏆 Autoridade 5%</span>
+      </div>
+      <div class="mc-bottom">🏆 O maior mês do ano. Qualidade > Quantidade. É melhor recusar pedidos que entregar mal feito.</div>
+    </div>
+
+    <!-- JUNHO -->
+    <div class="month-card hot2">
+      <div class="mc-header">
+        <div class="mc-num">06</div>
+        <div class="mc-info">
+          <div class="mc-name">Junho</div>
+          <div class="mc-temp t-alta" style="border:1px solid rgba(200,88,46,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥 Alta temporada — Namorados BR</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🔥🔥</span>12/Jun — Namorados Brasil</div>
+            <div class="mc-date"><span class="mc-fire">🌽</span>Festas Juninas</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Campanha começa 25/mai</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Campanha namorados BR começa em 25/mai</li>
+            <li>"O presente que ela vai mostrar pra mãe, pra amiga e pra todo mundo"</li>
+            <li>Kit casal diferenciado de Fevereiro (tema São João?)</li>
+            <li>Festa junina: conteúdo descontraído e sazonal</li>
+            <li>Recolher UGC de Dia das Mães para usar no feed</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "12/jun — de longe a data que mais surpreende"</li>
+            <li><b>TikTok:</b> POV de quem está procurando presente de última hora</li>
+            <li><b>Stories:</b> Countdown + resposta a dúvidas ao vivo</li>
+            <li><b>WA:</b> Broadcast leads com oferta especial casal</li>
+            <li><b>Post junino:</b> "Foto de forró virou ímã" — leveza</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Kit 2 ímãs em embalagem de casal</li>
+            <li>Story: "Quantos anos juntos?" — enquete viral</li>
+            <li>Trend junina adaptada ao produto</li>
+            <li>Parcerias com perfis de casamento/relacionamento</li>
+            <li>Início do aquecimento para Dia dos Pais (agosto)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 45%</span><span class="badge b-p">💛 Conexão 35%</span>
+        <span class="badge b-g">🏆 Autoridade 10%</span><span class="badge b-s">🌱 Marca 10%</span>
+      </div>
+      <div class="mc-bottom">💡 Dois momentos: namorados (urgência) + Festa Junina (conteúdo leve e sazonal).</div>
+    </div>
+
+    <!-- JULHO -->
+    <div class="month-card hot1">
+      <div class="mc-header">
+        <div class="mc-num">07</div>
+        <div class="mc-info">
+          <div class="mc-name">Julho</div>
+          <div class="mc-temp t-media" style="border:1px solid rgba(196,144,40,0.3);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌡️ Média — Férias & Viagens</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🏖️</span>Férias escolares — mês inteiro</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Pré-aquecimento Pais começa aqui</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Nicho viagem: "voltou de férias? Eterniza a melhor foto"</li>
+            <li>"Geladeira como diário de viagens — 1 ímã por destino"</li>
+            <li>Nicho família: "férias com as crianças merecem ficar pra sempre"</li>
+            <li>Início leve do aquecimento para Dia dos Pais</li>
+            <li>Mês de construção de comunidade</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>TikTok:</b> "Quais fotos das suas férias merecem sair do celular?"</li>
+            <li><b>Carrossel:</b> "Como fotografar nas férias pra ter imagens que viram ímãs"</li>
+            <li><b>Stories:</b> "Conta pra gente: onde você foi esse julho?"</li>
+            <li><b>Pinterest:</b> Pins de geladeiras decoradas com viagens</li>
+            <li><b>WA:</b> "Voltou de viagem? Vem eternizar!"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Live de bastidores: "o que acontece na fottu.br nas férias"</li>
+            <li>Série TikTok: "de cada viagem, um ímã" — inspire clientes</li>
+            <li>Collab com influenciadora de viagens</li>
+            <li>Conteúdo de marca pessoal — as suas próprias férias</li>
+            <li>Parcerias com fotógrafas de família</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-p">💛 Conexão 45%</span><span class="badge b-g">🏆 Autoridade 25%</span>
+        <span class="badge b-e">🔥 Venda 20%</span><span class="badge b-s">🌱 Marca 10%</span>
+      </div>
+      <div class="mc-bottom">💡 Mês de respirar e construir. Priorize comunidade, UGC e conteúdo de marca.</div>
+    </div>
+
+    <!-- AGOSTO -->
+    <div class="month-card hot3">
+      <div class="mc-header">
+        <div class="mc-num">08</div>
+        <div class="mc-info">
+          <div class="mc-name">Agosto</div>
+          <div class="mc-temp t-alta" style="border:1px solid rgba(200,88,46,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥 Alta temporada — Dia dos Pais</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🔥🔥</span>2° Dom/Ago — Dia dos Pais</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Campanha começa 20/Jul</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>"Ele não pede nada. Você sabe o que dar."</li>
+            <li>Foto de pai com filhos — nicho mais emocional</li>
+            <li>Kit especial pais: embalagem diferente de Mães</li>
+            <li>Urgência crescente a partir de semana 2</li>
+            <li>Corte de pedidos 5 dias antes</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "A reação do pai quando viu a foto do filho pequeno"</li>
+            <li><b>TikTok:</b> "Presente que faz o pai chorar (de emoção)"</li>
+            <li><b>Stories:</b> "Qual é a foto mais especial que você tem com seu pai?"</li>
+            <li><b>Carrossel:</b> "5 fotos de pai que ficam lindas em ímã"</li>
+            <li><b>WA:</b> Urgência: "últimas vagas para Dia dos Pais"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Nichos dentro de pais: pais de pets, pais de primeira viagem</li>
+            <li>Collab com perfis de paternidade</li>
+            <li>Embalagem temática masculina (mais sóbria)</li>
+            <li>Série "pedidos especiais de Dia dos Pais"</li>
+            <li>Pós-data: coleta de UGC + depoimentos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 50%</span><span class="badge b-p">💛 Conexão 35%</span>
+        <span class="badge b-g">🏆 Autoridade 10%</span><span class="badge b-s">🌱 Marca 5%</span>
+      </div>
+      <div class="mc-bottom">💡 Segundo maior mês para presentes masculinos. Tom diferente de Mães: mais discreto e impactante.</div>
+    </div>
+
+    <!-- SETEMBRO -->
+    <div class="month-card hot0">
+      <div class="mc-header">
+        <div class="mc-num">09</div>
+        <div class="mc-info">
+          <div class="mc-name">Setembro</div>
+          <div class="mc-temp t-baixa" style="border:1px solid rgba(255,255,255,0.1);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌱 Construção — Comunidade</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🌸</span>22/Set — Primavera</div>
+            <div class="mc-date"><span class="mc-fire">📋</span>Início pré-lista Natal e BF</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Mês de descanso estratégico — menos venda, mais marca</li>
+            <li>Série "Geladeiras da comunidade fottu.br"</li>
+            <li>Bastidores autênticos — transparência de processo</li>
+            <li>Início de lista de espera para Novembro/Dezembro</li>
+            <li>Parcerias e collab — crescimento de audiência</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>TikTok:</b> "Bastidores — o que ninguém vê na fottu.br"</li>
+            <li><b>Carrossel:</b> "A psicologia por trás dos objetos com memória"</li>
+            <li><b>Stories:</b> Série de Q&A — responder dúvidas da comunidade</li>
+            <li><b>Pinterest:</b> Intensificar Pins para colher no Natal</li>
+            <li><b>WA:</b> "Lista early bird — Black Friday fottu.br"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Live: "Marco de clientes — celebrando juntos"</li>
+            <li>Criar destaques novos no Instagram</li>
+            <li>Workshop ou guia gratuito de escolha de foto</li>
+            <li>Parcerias com papelarias e floriculturas</li>
+            <li>Criar nova embalagem especial para Natal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-p">💛 Conexão 40%</span><span class="badge b-s">🌱 Marca 30%</span>
+        <span class="badge b-g">🏆 Autoridade 20%</span><span class="badge b-e">🔥 Venda 10%</span>
+      </div>
+      <div class="mc-bottom">💡 Mês para recarregar e construir base para o grande final de ano.</div>
+    </div>
+
+    <!-- OUTUBRO -->
+    <div class="month-card hot2">
+      <div class="mc-header">
+        <div class="mc-num">10</div>
+        <div class="mc-info">
+          <div class="mc-name">Outubro</div>
+          <div class="mc-temp t-media" style="border:1px solid rgba(196,144,40,0.3);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🌡️ Média — Crianças + Pré-Natal</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">👶</span>12/Out — Dia das Crianças</div>
+            <div class="mc-date"><span class="mc-fire">🎃</span>31/Out — Halloween</div>
+            <div class="mc-date"><span class="mc-fire">⚠️</span>Pré-Natal começa AGORA</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>12/Out: "A foto mais fofa do seu filho merece geladeira"</li>
+            <li>Nicho bebê: primeira foto, primeiros meses</li>
+            <li>Halloween: "foto de fantasia de criança fica linda em ímã"</li>
+            <li>⚠️ Início da campanha Natal: lista de espera</li>
+            <li>Early bird: desconto para quem reserva em outubro</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> Bebês / crianças nos ímãs — conteúdo explosivo</li>
+            <li><b>TikTok:</b> "Foto de criança antes e depois de virar ímã"</li>
+            <li><b>Halloween:</b> Conteúdo leve de fantasia → ímã</li>
+            <li><b>Stories:</b> Countdown para lista Natal + early bird</li>
+            <li><b>WA:</b> "Reserve já para o Natal — vagas limitadas"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Embalagem especial Crianças (colorida)</li>
+            <li>Collab com fotógrafas de bebê/newborn</li>
+            <li>Criar urgência de Natal sem parecer cedo demais</li>
+            <li>Planejar logística de Natal (insumos, capacidade)</li>
+            <li>Criar arte especial de Natal para testar</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 40%</span><span class="badge b-p">💛 Conexão 35%</span>
+        <span class="badge b-g">🏆 Autoridade 15%</span><span class="badge b-s">🌱 Marca 10%</span>
+      </div>
+      <div class="mc-bottom">⚠️ Outubro é quando o Natal começa. Quem captura lead agora tem vantagem em dezembro.</div>
+    </div>
+
+    <!-- NOVEMBRO -->
+    <div class="month-card hot3">
+      <div class="mc-header">
+        <div class="mc-num">11</div>
+        <div class="mc-info">
+          <div class="mc-name">Novembro</div>
+          <div class="mc-temp t-alta" style="border:1px solid rgba(200,88,46,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥 Alta — Black Friday + Pré-Natal</div>
+          <div class="mc-dates">
+            <div class="mc-date"><span class="mc-fire">🔥🔥</span>Última 6ª — Black Friday</div>
+            <div class="mc-date"><span class="mc-fire">🎄</span>Todo mês — Pré-Natal aquecimento</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>Black Friday: Kit 8 pelo preço do Kit 4 — 24h apenas</li>
+            <li>Framing: "compra agora, dá no Natal"</li>
+            <li>Lista VIP de clientes anteriores com oferta exclusiva</li>
+            <li>⚠️ Preparar logística Natal: insumos, limite de pedidos</li>
+            <li>Campanha Natal inicia semana 3 de novembro</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels:</b> "A Black Friday dos presentes que ficam pra sempre"</li>
+            <li><b>TikTok:</b> "Compra agora sem pressa, dá no Natal"</li>
+            <li><b>Stories BF:</b> Countdown 24h + urgência real</li>
+            <li><b>WA VIP:</b> Oferta exclusiva para clientes anteriores</li>
+            <li><b>Após BF:</b> início campanha Natal em alto astral</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Lista de transmissão BF: todos os leads + clientes</li>
+            <li>Story de "bastidores do Black Friday" — humanizar</li>
+            <li>Teaser de embalagem especial Natal no BF</li>
+            <li>Parcerias BF com lojas complementares</li>
+            <li>Criar urgência Natal: "agenda enchendo rápido"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 60%</span><span class="badge b-p">💛 Conexão 25%</span>
+        <span class="badge b-s">🌱 Marca 10%</span><span class="badge b-g">🏆 Autoridade 5%</span>
+      </div>
+      <div class="mc-bottom">🛒 BF fottu.br: oferta real, por tempo limitado, com comunicação honesta sobre o limite.</div>
+    </div>
+
+    <!-- DEZEMBRO -->
+    <div class="month-card hot4">
+      <div class="mc-header">
+        <div class="mc-num">12</div>
+        <div class="mc-info">
+          <div class="mc-name">Dezembro</div>
+          <div class="mc-temp t-max" style="border:1px solid rgba(255,128,112,0.4);display:inline-block;padding:0.2rem 0.8rem;border-radius:20px;font-size:0.65rem;">🔥🔥🔥 MÁXIMA — Natal</div>
+          <div class="mc-dates">
+            <div class="mc-date" style="border-color:rgba(255,80,50,0.5);color:#FF8070;"><span class="mc-fire">🎄</span>25/Dez — NATAL</div>
+            <div class="mc-date"><span class="mc-fire">🥂</span>31/Dez — Virada</div>
+            <div class="mc-date"><span class="mc-fire">🚨</span>Corte pedidos: 8 dias antes</div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-body">
+        <div class="mc-col">
+          <h4 style="color:var(--em);">🎯 Estratégia do Mês</h4>
+          <ul>
+            <li>🚨 Corte absoluto de pedidos 8 dias antes do Natal</li>
+            <li>Embalagem especial Natal: caixinha + papel temático + cartão</li>
+            <li>"O presente debaixo da árvore que vai pra geladeira pra sempre"</li>
+            <li>Reações de Natal: colete UGC urgente</li>
+            <li>Virada: "qual memória de 2026 você quer eternizar?" → semente 2027</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--go2);">📸 Conteúdo por Canal</h4>
+          <ul>
+            <li><b>Reels DIÁRIOS:</b> Processo, pedidos, reações</li>
+            <li><b>TikTok:</b> Série "pedidos de Natal que me emocionaram"</li>
+            <li><b>Stories:</b> Countdown diário + "faltam X dias" + CTA urgente</li>
+            <li><b>WA:</b> Urgência máxima: prazo, corte, confirmações</li>
+            <li><b>Post 26/Dez:</b> "Compilado das reações de Natal"</li>
+          </ul>
+        </div>
+        <div class="mc-col">
+          <h4 style="color:var(--pl2);">💡 Ações Específicas</h4>
+          <ul>
+            <li>Kit família: foto de Natal da família toda</li>
+            <li>Embalagem mais especial do ano (investir nisso)</li>
+            <li>Live pré-Natal: bastidores da produção máxima</li>
+            <li>Compilado de reações 26/27/28 de Dezembro</li>
+            <li>Virada: post de gratidão + semente 2027</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mc-tags">
+        <span class="badge b-e">🔥 Venda 65%</span><span class="badge b-p">💛 Conexão 25%</span>
+        <span class="badge b-s">🌱 Marca 7%</span><span class="badge b-g">🏆 Autoridade 3%</span>
+      </div>
+      <div class="mc-bottom">🎄 Segundo maior mês do ano. A qualidade da entrega de Natal define a reputação de 2027.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  SEMANA PADRÃO
+════════════════════════════════ -->
+<section id="week" class="sec dark">
+  <div class="container">
+    <div class="stky"><span class="stky-t">Semana Padrão de Conteúdo</span><span class="stky-n">04</span></div><br>
+    <div class="ey">04 — Semana Padrão</div>
+    <h2 class="h">O ritmo semanal<br>que mantém a consistência.</h2>
+    <p class="lead">Consistência bate criatividade no longo prazo. Uma semana bem estruturada se repete 52 vezes por ano.</p>
+
+    <div class="week-grid">
+      <div class="day-cell day-conn">
+        <span class="day-name">SEG</span>
+        <span class="day-type">💛 Conexão<br>Story bastidor<br>TikTok narrativa</span>
+      </div>
+      <div class="day-cell day-auth">
+        <span class="day-name">TER</span>
+        <span class="day-type">🏆 Autoridade<br>Carrossel educativo<br>Pinterest pins</span>
+      </div>
+      <div class="day-cell day-sell">
+        <span class="day-name">QUA</span>
+        <span class="day-type">🔥 Venda<br>Reel produto<br>Story CTA</span>
+      </div>
+      <div class="day-cell day-conn">
+        <span class="day-name">QUI</span>
+        <span class="day-type">💛 Conexão<br>TikTok história<br>Repost cliente</span>
+      </div>
+      <div class="day-cell day-sell">
+        <span class="day-name">SEX</span>
+        <span class="day-type">🔥 Venda<br>Story vagas<br>WA broadcast</span>
+      </div>
+      <div class="day-cell day-brand">
+        <span class="day-name">SÁB</span>
+        <span class="day-type">🌱 Marca<br>Bastidor real<br>TikTok fundadora</span>
+      </div>
+      <div class="day-cell day-rest">
+        <span class="day-name">DOM</span>
+        <span class="day-type">😮‍💨 Descanso<br>Stories leve<br>Planejamento</span>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-top:2rem;">
+      <div>
+        <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.1rem;margin-bottom:1rem;">📊 Volume por Plataforma/Semana</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Plataforma</th><th>Volume</th><th>Formato</th></tr></thead>
+            <tbody>
+              <tr><td><b>📸 Instagram Stories</b></td><td>5–7 por dia</td><td>Fotos, vídeos, enquetes, reposts</td></tr>
+              <tr><td><b>📸 Instagram Feed</b></td><td>4–5 por semana</td><td>Reel (3×) + Carrossel (1×) + Post (1×)</td></tr>
+              <tr><td><b>🎵 TikTok</b></td><td>7–10 por semana</td><td>Vídeo nativo 15–45s</td></tr>
+              <tr><td><b>💬 WA Status</b></td><td>2 por dia</td><td>Foto/vídeo curto + texto</td></tr>
+              <tr><td><b>💬 WA Broadcast</b></td><td>1–2 por semana</td><td>Mensagem segmentada</td></tr>
+              <tr><td><b>📌 Pinterest</b></td><td>5–10 pins por semana</td><td>Imagem vertical + SEO</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.1rem;margin-bottom:1rem;">⏰ Rotina Diária Mínima</h3>
+        <div class="cb"><div class="cb-label">MANHÃ (8h–9h)</div><div class="cb-text">Responder comentários e DMs do dia anterior</div><div class="cb-sub">15 min · Instagram + TikTok · prioridade máxima</div></div>
+        <div class="cb"><div class="cb-label">MEIO-DIA (12h)</div><div class="cb-text">Postar Stories do dia + interagir com respostas</div><div class="cb-sub">10 min · Instagram + WA Status</div></div>
+        <div class="cb"><div class="cb-label">TARDE (15h–16h)</div><div class="cb-text">Criar/editar conteúdo do dia seguinte</div><div class="cb-sub">30–45 min · Produção de conteúdo</div></div>
+        <div class="cb"><div class="cb-label">NOITE (19h–20h)</div><div class="cb-text">Postar conteúdo principal do dia + responder</div><div class="cb-sub">20 min · Reel / TikTok / Post</div></div>
+        <div class="cb gold"><div class="cb-label">DOMINGO (planejamento)</div><div class="cb-text">Planejar a semana: temas, datas, conteúdo</div><div class="cb-sub">30 min · Notion + Canva · consistência garantida</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  CALENDÁRIO SEMANAL DETALHADO
+════════════════════════════════ -->
+<section class="sec alt">
+  <div class="container">
+    <div class="ey">05 — Calendário Semanal por Tipo</div>
+    <h2 class="h">52 semanas.<br>O que fazer em cada uma.</h2>
+    <p class="lead">Tipo de semana define o tom, o volume e a ênfase. Varie ao longo do mês.</p>
+
+    <div class="g2">
+      <div class="card em">
+        <h3>Semana de Venda Intensa</h3>
+        <p style="margin-bottom:0.8rem;">Para: semanas antes de datas grandes.</p>
+        <ul style="padding-left:1.1rem;font-size:0.79rem;color:var(--mu);line-height:1.9;">
+          <li>Seg: Reel antes/depois + CTA direto</li>
+          <li>Ter: Story countdown + link WA</li>
+          <li>Qua: TikTok urgência + "vagas restantes"</li>
+          <li>Qui: Depoimentos em sequência (3 stories)</li>
+          <li>Sex: "Última chamada" — urgência máxima</li>
+          <li>Sáb: Agradecimento + última oferta</li>
+          <li>Dom: Resultado da semana + teaser próximo</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <h3>Semana de Construção</h3>
+        <p style="margin-bottom:0.8rem;">Para: semanas sem data grande, meses de baixa.</p>
+        <ul style="padding-left:1.1rem;font-size:0.79rem;color:var(--mu);line-height:1.9;">
+          <li>Seg: TikTok história da fundadora</li>
+          <li>Ter: Carrossel educativo (autoridade)</li>
+          <li>Qua: Post inspiracional + produto discreto</li>
+          <li>Qui: Bastidores reais — processo</li>
+          <li>Sex: Depoimento longo de cliente</li>
+          <li>Sáb: Story pessoal — humanização</li>
+          <li>Dom: Live ou Q&A nos stories</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(90,40,72,0.3);">
+        <h3>Semana de Comunidade</h3>
+        <p style="margin-bottom:0.8rem;">Para: setembro, meses pós-pico.</p>
+        <ul style="padding-left:1.1rem;font-size:0.79rem;color:var(--mu);line-height:1.9;">
+          <li>Seg: Repost de clientes (5 stories)</li>
+          <li>Ter: Caixinha de perguntas + respostas</li>
+          <li>Qua: TikTok dueto com cliente</li>
+          <li>Qui: "Geladeira da semana" — UGC</li>
+          <li>Sex: Enquete: "próximo conteúdo — você decide"</li>
+          <li>Sáb: Compilado de marcações da semana</li>
+          <li>Dom: Marco de seguidores / clientes (celebração)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(30,72,88,0.3);">
+        <h3>Semana Mista (Padrão)</h3>
+        <p style="margin-bottom:0.8rem;">Para: maioria das semanas do ano.</p>
+        <ul style="padding-left:1.1rem;font-size:0.79rem;color:var(--mu);line-height:1.9;">
+          <li>Seg: Conexão — história ou depoimento</li>
+          <li>Ter: Autoridade — carrossel ou TikTok educativo</li>
+          <li>Qua: Venda — reel produto + CTA</li>
+          <li>Qui: Conexão — bastidor ou UGC</li>
+          <li>Sex: Venda — stories urgência ou vagas</li>
+          <li>Sáb: Marca — fundadora ou valores</li>
+          <li>Dom: Descanso + planejamento da próxima</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  TRENDS — COMO AGIR
+════════════════════════════════ -->
+<section id="trends" class="sec dark">
+  <div class="container">
+    <div class="stky"><span class="stky-t">Trends — Como Aproveitar sem Perder Identidade</span><span class="stky-n">06</span></div><br>
+    <div class="ey">06 — Tendências</div>
+    <h2 class="h">Aproveite trends sem<br>virar trend.</h2>
+    <p class="lead">A fottu.br tem uma identidade clara. Ela aproveita trends que amplificam quem ela é — nunca as que contradizem.</p>
+
+    <div class="qt">"A trend é uma onda. Não mude a sua prancha pra pegar qualquer onda. Espere as que vão te levar mais longe."</div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Tipo de Trend</th><th>Fazer?</th><th>Como adaptar</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><b>Música sentimental em alta</b></td><td><span style="color:#78CFA8;">✅ Sempre</span></td><td>Processo/produto com a música. Before/after emocional</td><td>Áudio de despedida ou saudade → ímã do pet falecido</td></tr>
+          <tr><td><b>Trend de família/maternidade</b></td><td><span style="color:#78CFA8;">✅ Sempre</span></td><td>Mostrar foto de mãe/filho virando ímã no ritmo da trend</td><td>Trend "first vs last" → foto do filho bebê vs hoje</td></tr>
+          <tr><td><b>Trend de pets</b></td><td><span style="color:#78CFA8;">✅ Sempre</span></td><td>Pet virando ímã. Natural, direto, sem forçar</td><td>Qualquer trend de pet viraliza com nosso produto</td></tr>
+          <tr><td><b>Trend de antes/depois</b></td><td><span style="color:#78CFA8;">✅ Sempre</span></td><td>Foto no celular → ímã na geladeira. É o nosso formato natural</td><td>Qualquer "glow up" adaptado ao produto</td></tr>
+          <tr><td><b>Trend de nostalgia/memória</b></td><td><span style="color:#78CFA8;">✅ Sempre</span></td><td>Produto encaixa perfeitamente. Use sem adaptação</td><td>"Quando você olha essa foto..." → ímã na geladeira</td></tr>
+          <tr><td><b>Trend de humor leve</b></td><td><span style="color:var(--go2);">🟡 Às vezes</span></td><td>Humor sobre "geladeira genérica vs fottu.br" ou "ímã de pizzaria vs ímã afetivo"</td><td>Trend de "expectativa vs realidade" dos presentes</td></tr>
+          <tr><td><b>Trend de rotina/produtividade</b></td><td><span style="color:var(--go2);">🟡 Às vezes</span></td><td>Rotina da empreendedora, dia de produção em cheio</td><td>"meu dia como dona de negócio afetivo"</td></tr>
+          <tr><td><b>Trend de dança</b></td><td><span style="color:#FF8070);">🔴 Raramente</span></td><td>Só se fizer 100% de sentido. Não force jamais</td><td>Se a dança tiver relação com afeto — avalie</td></tr>
+          <tr><td><b>Trend política/polêmica</b></td><td><span style="color:#FF8070;">❌ Nunca</span></td><td>Marca afetiva fica fora de qualquer polarização</td><td>Nenhum exemplo — simplesmente não fazer</td></tr>
+          <tr><td><b>Trend de humor pesado</b></td><td><span style="color:#FF8070;">❌ Nunca</span></td><td>Desalinha com o tom emocional da fottu.br</td><td>Nenhum exemplo — não combina com a marca</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">⚡ Protocolo de Decisão de Trend (30 minutos)</h3>
+    <div class="g2">
+      <div>
+        <div class="cb"><div class="cb-label">PASSO 1 — Identificar</div><div class="cb-text">O áudio/formato está em alta agora?</div><div class="cb-sub">Use TikTok Creative Center para confirmar. Se não está trending, pula.</div></div>
+        <div class="cb"><div class="cb-label">PASSO 2 — Filtrar</div><div class="cb-text">Tem emoção? Tem relação com memória/afeto?</div><div class="cb-sub">Sim a 2 das 3: vai. Não a 2: pula. Não force.</div></div>
+        <div class="cb"><div class="cb-label">PASSO 3 — Adaptar</div><div class="cb-text">Como encaixar sem perder identidade?</div><div class="cb-sub">O produto precisa aparecer de forma natural. Nunca jogar o produto por cima de uma trend que não combina.</div></div>
+      </div>
+      <div>
+        <div class="cb gold"><div class="cb-label">PASSO 4 — Criar</div><div class="cb-text">Consegue fazer em menos de 1h?</div><div class="cb-sub">Trend tem janela de 24–72h. Se vai demorar mais, pula. Velocidade > perfeição em trends.</div></div>
+        <div class="cb gold"><div class="cb-label">PASSO 5 — Publicar</div><div class="cb-text">Poste com o áudio original + hashtags da trend</div><div class="cb-sub">Use o mesmo áudio viral. Adicione caption com personalidade fottu.br. Não perca o áudio — ele é o que carrega o algoritmo.</div></div>
+        <div class="cb gold"><div class="cb-label">PASSO 6 — Avaliar</div><div class="cb-text">Dentro de 2h, a trend está performando?</div><div class="cb-sub">Muitas visualizações nas primeiras 2h = sinal positivo. Se não, não force mais.</div></div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">📅 Tendências Previsíveis de 2026 — Como se Posicionar</h3>
+    <div class="trend-card">
+      <div class="trend-icon">🎵</div>
+      <div class="trend-body">
+        <h4>Áudios virais sentimentais — Todo mês</h4>
+        <p>Instagram e TikTok sempre têm músicas emocionais em alta. Prepare-se para agir rápido quando aparecerem. Tenha um estoque de cenas de produto filmadas para montar em 20 minutos.</p>
+        <div class="trend-tags"><span class="badge b-gr">✅ Usar sempre</span><span class="badge b-e">TikTok + Reels</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-icon">👶</div>
+      <div class="trend-body">
+        <h4>Trends de maternidade e primeira infância</h4>
+        <p>Conteúdo de mãe vira viral organicamente. Qualquer trend de maternidade tem sinergia total com fottu.br. Prepare versões de produto com bebê para usar nessas trends.</p>
+        <div class="trend-tags"><span class="badge b-gr">✅ Usar sempre</span><span class="badge b-e">TikTok</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-icon">🐾</div>
+      <div class="trend-body">
+        <h4>Trends de pets — Todo mês</h4>
+        <p>Comunidade de pet owners é uma das mais engajadas do Brasil. Qualquer trend de pet se encaixa naturalmente — pet virando ímã, pet vendo a própria foto, etc.</p>
+        <div class="trend-tags"><span class="badge b-gr">✅ Usar sempre</span><span class="badge b-e">TikTok + Instagram</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-icon">🔄</div>
+      <div class="trend-body">
+        <h4>Trends de "antes e depois" — Recorrente</h4>
+        <p>O formato before/after é eterno no TikTok. Sempre haverá versões dele em alta. Foto no celular → ímã na geladeira é o before/after mais natural do produto.</p>
+        <div class="trend-tags"><span class="badge b-gr">✅ Usar sempre</span><span class="badge b-e">TikTok + Reels</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-icon">🤖</div>
+      <div class="trend-body">
+        <h4>IA gerando arte/fotos — Trend crescente</h4>
+        <p>A contratendência natural é o físico e o artesanal. Posicionar o ímã como "real e permanente" em contraste com o digital e o gerado por IA é uma oportunidade única em 2026.</p>
+        <div class="trend-tags"><span class="badge b-g">🟡 Usar com cuidado</span><span class="badge b-e">Carrossel + TikTok</span></div>
+      </div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-icon">🏠</div>
+      <div class="trend-body">
+        <h4>Decoração de cozinha e home styling</h4>
+        <p>Conteúdo de decoração cresce consistentemente. Inserir o ímã em contexto de "cozinha aconchegante" e "decoração afetiva" aproveita essa tendência sem precisar de trend específica.</p>
+        <div class="trend-tags"><span class="badge b-g">🟡 Adaptar</span><span class="badge b-e">Instagram + Pinterest</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  EVENTOS — COMO SE POSICIONAR
+════════════════════════════════ -->
+<section id="events" class="sec alt">
+  <div class="container">
+    <div class="stky"><span class="stky-t">Eventos — Presença Física e Digital</span><span class="stky-n">07</span></div><br>
+    <div class="ey">07 — Eventos & Feiras</div>
+    <h2 class="h">Eventos não são só vendas.<br>São construção de marca.</h2>
+    <p class="lead">Uma feira bem executada pode gerar conteúdo para 2 semanas, novos seguidores, parcerias e clientes recorrentes.</p>
+
+    <div class="g3">
+      <div class="card">
+        <div class="card-ic">📅</div>
+        <h3>2 Semanas Antes</h3>
+        <p>Anunciar a participação. Stories: "Vou estar em [Evento]". Reels: "vem me encontrar pessoalmente". Criar expectativa e capturar interesse. Pedir quem vai aparecer nos comentários.</p>
+      </div>
+      <div class="card">
+        <div class="card-ic">📸</div>
+        <h3>1 Semana Antes</h3>
+        <p>Mostrar a preparação: estoque, embalagens, montagem da mesa. Criar FOMO: "vai ter produtos exclusivos no evento". Confirmar horário, local e como chegar.</p>
+      </div>
+      <div class="card">
+        <div class="card-ic">🎪</div>
+        <h3>Dia do Evento</h3>
+        <p>Stories em tempo real: chegada, montagem, primeiros clientes, movimento. Reels curtos no intervalo. Peça clientes para te marcarem. Crie conteúdo de valor, não só propaganda.</p>
+      </div>
+      <div class="card">
+        <div class="card-ic">🌟</div>
+        <h3>Noite do Evento</h3>
+        <p>Resultado do dia: quantas pessoas, histórias especiais, pedidos que vieram. Agradeça individualmente quem foi. TikTok de bastidores ao final. Anuncie o próximo.</p>
+      </div>
+      <div class="card">
+        <div class="card-ic">🔄</div>
+        <h3>3 Dias Depois</h3>
+        <p>Compilado de fotos e vídeos do evento. Depoimentos de quem compareceu. Fotos com clientes (com permissão). Conteúdo de "como foi" — humaniza muito a marca.</p>
+      </div>
+      <div class="card">
+        <div class="card-ic">💡</div>
+        <h3>1 Semana Depois</h3>
+        <p>Transformar aprendizados em conteúdo: "o que aprendi na feira X". Fazer follow-up com leads coletados. Conteúdo sobre o próximo evento para criar expectativa.</p>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">🏪 Como Montar a Mesa do Evento</h3>
+    <div class="g2">
+      <div>
+        <div class="cb"><div class="cb-label">VISUAL DA MESA</div><div class="cb-text">Geladeira real de demonstração com ímãs expostos</div><div class="cb-sub">Isso atrai atenção de longe e demonstra o produto in loco. Deixe as pessoas tocar.</div></div>
+        <div class="cb"><div class="cb-label">IDENTIDADE</div><div class="cb-text">Banner com logo + tagline + QR Code para WhatsApp</div><div class="cb-sub">QR Code é a captura de lead mais eficiente em eventos. Todo visitante que escaneia é um potencial cliente.</div></div>
+        <div class="cb"><div class="cb-label">AMOSTRAS</div><div class="cb-text">Ímãs de demonstração com fotos da marca (não de clientes)</div><div class="cb-sub">Deixe as pessoas pegar, sentir o acabamento, ver a qualidade ao vivo. O toque vende o que a foto não consegue.</div></div>
+      </div>
+      <div>
+        <div class="cb gold"><div class="cb-label">CAPTAÇÃO DE LEADS</div><div class="cb-text">QR Code para WA + lista física com nome e contato</div><div class="cb-sub">Duas formas de captura. Nunca dependa só de uma. Contato manual para quem não usa QR.</div></div>
+        <div class="cb gold"><div class="cb-label">OFERTA EXCLUSIVA</div><div class="cb-text">Desconto especial "só quem veio ao evento" com prazo</div><div class="cb-sub">Cria urgência e exclusividade. "Só até domingo". Gera pedidos imediatos no evento e nos dias seguintes.</div></div>
+        <div class="cb gold"><div class="cb-label">CONTEÚDO AO VIVO</div><div class="cb-text">Gravar vídeos no evento: processo, clientes, bastidores</div><div class="cb-sub">Uma hora de evento bem gravado = 2 semanas de conteúdo de TikTok e Instagram.</div></div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">📍 Tipos de Evento para a fottu.br</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Evento</th><th>Potencial</th><th>Estratégia</th><th>Quando</th></tr></thead>
+        <tbody>
+          <tr><td><b>Feira de artesanato/presentes</b></td><td><span style="color:#78CFA8;">Alto</span></td><td>Geladeira de demo + kit especial de evento</td><td>Meses: Mar, Mai, Jun, Set, Nov, Dez</td></tr>
+          <tr><td><b>Bazar de escola</b></td><td><span style="color:#78CFA8;">Alto</span></td><td>Produto de presente infantil + kit família</td><td>Mai (Mães), Out (Crianças), Dez (Natal)</td></tr>
+          <tr><td><b>Feira de casamento</b></td><td><span style="color:var(--go2);">Médio</span></td><td>Kit casal + ímãs de casamento como lembrança</td><td>Fev, Jun, Set, Nov</td></tr>
+          <tr><td><b>Eventos de maternidade</b></td><td><span style="color:#78CFA8;">Alto</span></td><td>Nicho de mãe — produto perfeito para o contexto</td><td>Todo o ano</td></tr>
+          <tr><td><b>Marketplace online local</b></td><td><span style="color:var(--go2);">Médio</span></td><td>Live de vendas no Instagram da plataforma</td><td>Todo o ano</td></tr>
+          <tr><td><b>Collab em pop-up store</b></td><td><span style="color:var(--go2);">Médio</span></td><td>Parceria com loja local — produto em consignação</td><td>Dez (Natal)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  EQUILÍBRIO ANUAL
+════════════════════════════════ -->
+<section class="sec dark">
+  <div class="container">
+    <div class="ey">08 — Equilíbrio Anual</div>
+    <h2 class="h">Como equilibrar venda, autoridade,<br>conexão e marca ao longo de 2026.</h2>
+    <p class="lead">O ano tem fases. Respeitar essas fases é o que diferencia quem cresce de quem esgota.</p>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Período</th><th>Meses</th><th>🔥 Venda</th><th>🏆 Autor.</th><th>💛 Conexão</th><th>🌱 Marca</th><th>Foco principal</th></tr></thead>
+        <tbody>
+          <tr><td><b>Início de ano</b></td><td>Jan</td><td>10%</td><td>30%</td><td>40%</td><td>20%</td><td>Plantar sementes, construir audiência</td></tr>
+          <tr><td><b>Alta 1</b></td><td>Fev</td><td>50%</td><td>10%</td><td>35%</td><td>5%</td><td>Converter — Namorados</td></tr>
+          <tr><td><b>Construção</b></td><td>Mar</td><td>20%</td><td>25%</td><td>40%</td><td>15%</td><td>Engajar e preparar Mães</td></tr>
+          <tr><td><b>Preparação</b></td><td>Abr</td><td>40%</td><td>15%</td><td>35%</td><td>10%</td><td>Aquecer para Mães</td></tr>
+          <tr><td><b>Pico máximo</b></td><td>Mai</td><td>60%</td><td>5%</td><td>30%</td><td>5%</td><td>Entregar e converter ao máximo</td></tr>
+          <tr><td><b>Alta 2</b></td><td>Jun</td><td>45%</td><td>10%</td><td>35%</td><td>10%</td><td>Namorados BR + leveza junina</td></tr>
+          <tr><td><b>Respirar</b></td><td>Jul</td><td>20%</td><td>25%</td><td>45%</td><td>10%</td><td>Comunidade e férias</td></tr>
+          <tr><td><b>Alta 3</b></td><td>Ago</td><td>50%</td><td>10%</td><td>35%</td><td>5%</td><td>Converter — Pais</td></tr>
+          <tr><td><b>Recarga</b></td><td>Set</td><td>10%</td><td>20%</td><td>40%</td><td>30%</td><td>Marca e comunidade</td></tr>
+          <tr><td><b>Retomada</b></td><td>Out</td><td>40%</td><td>15%</td><td>35%</td><td>10%</td><td>Crianças + pré-Natal</td></tr>
+          <tr><td><b>Alta 4</b></td><td>Nov</td><td>60%</td><td>5%</td><td>25%</td><td>10%</td><td>Black Friday + aquecimento Natal</td></tr>
+          <tr><td><b>Pico máximo</b></td><td>Dez</td><td>65%</td><td>3%</td><td>25%</td><td>7%</td><td>Natal — máxima conversão</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hl">
+      <div class="ey" style="margin-bottom:0.6rem;">PRINCÍPIOS ANUAIS — Os 5 mandamentos do conteúdo fottu.br</div>
+      <div class="g2">
+        <div>
+          <div class="cb"><div class="cb-label">01</div><div class="cb-text">Consistência > Viralização</div><div class="cb-sub">1 post todo dia < 7 posts na segunda e silêncio por uma semana. Regularidade constrói algoritmo e confiança.</div></div>
+          <div class="cb"><div class="cb-label">02</div><div class="cb-text">Emoção antes de produto</div><div class="cb-sub">Comece sempre com a história, o sentimento ou a memória. O produto aparece como solução, não como ponto de partida.</div></div>
+          <div class="cb"><div class="cb-label">03</div><div class="cb-text">Antecipação > Reatividade</div><div class="cb-sub">Sempre 3–4 semanas antes de cada data grande. Quem chega na última semana disputa com todos. Quem chega primeiro, educa e converte.</div></div>
+        </div>
+        <div>
+          <div class="cb gold"><div class="cb-label">04</div><div class="cb-text">Qualidade de entrega > Quantidade de pedidos</div><div class="cb-sub">Em picos de venda, limite os pedidos antes de comprometer a qualidade. Reputação é o ativo mais valioso de uma marca pequena.</div></div>
+          <div class="cb gold"><div class="cb-label">05</div><div class="cb-text">Clientes são conteúdo vivo</div><div class="cb-sub">Cada cliente satisfeito é um criador em potencial. Facilite a marcação, o repost e o depoimento. UGC é o conteúdo mais barato e mais eficaz que existe.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <h3 style="font-family:'Fraunces',serif;color:var(--cr);font-size:1.2rem;margin-bottom:1.2rem;">🗓️ Pré-visualização Trimestral 2026</h3>
+    <div class="g4">
+      <div class="card">
+        <h3 style="color:var(--go2);">Q1 — Jan/Fev/Mar</h3>
+        <p><b style="color:var(--cr);">Tom:</b> Novo começo + Namorados</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Foco:</b> Construir base, capturar leads, converter Namorados</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Meta:</b> 50+ novos clientes</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--em2);">Q2 — Abr/Mai/Jun</h3>
+        <p><b style="color:var(--cr);">Tom:</b> Pico máximo — Mães + Namorados</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Foco:</b> Máxima conversão, qualidade de entrega</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Meta:</b> Maior faturamento do semestre</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--te2);">Q3 — Jul/Ago/Set</h3>
+        <p><b style="color:var(--cr);">Tom:</b> Férias, Pais, Comunidade</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Foco:</b> Comunidade, UGC, Pais, preparar fim de ano</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Meta:</b> Dobrar base de seguidores TikTok</p>
+      </div>
+      <div class="card" style="border-color:rgba(255,128,112,0.3);">
+        <h3 style="color:#FF8070;">Q4 — Out/Nov/Dez</h3>
+        <p><b style="color:var(--cr);">Tom:</b> Pré-Natal, BF, Natal</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Foco:</b> Máxima venda, logística impecável</p>
+        <p style="margin-top:0.5rem;"><b style="color:var(--cr);">Meta:</b> Maior faturamento do ano</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--bg2);border-top:1px solid rgba(200,88,46,0.12);padding:3rem;text-align:center;">
+  <div style="font-family:'Fraunces',serif;font-style:italic;font-weight:900;font-size:2rem;color:var(--em2);margin-bottom:0.4rem;">fottu.br · 2026</div>
+  <div style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mu);">Calendário Editorial Completo · Estratégia de Conteúdo</div>
+  <div style="font-family:'Fraunces',serif;font-style:italic;color:rgba(228,220,212,0.2);margin-top:0.8rem;font-size:0.95rem;">Consistência constrói o que a viralização não sustenta.</div>
+</footer>
+
+</main>
+
+<script>
+const pf = document.getElementById('prog-fill');
+let progressTicking = false;
+
+function updateProgress() {
+  const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const progress = Math.min(1, Math.max(0, window.scrollY / max));
+  if (pf) pf.style.transform = `scaleX(${progress})`;
+  progressTicking = false;
+}
+
+function requestProgressUpdate() {
+  if (progressTicking) return;
+  progressTicking = true;
+  requestAnimationFrame(updateProgress);
+}
+
+window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+window.addEventListener('resize', requestProgressUpdate, { passive: true });
+requestProgressUpdate();
+
+// Sidebar retratil + item ativo
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebarItems = Array.from(document.querySelectorAll('.sb-item'));
+const observedSections = Array.from(document.querySelectorAll('main section[id]'));
+
+function setSidebarCollapsed(collapsed) {
+  document.body.classList.toggle('sidebar-collapsed', collapsed);
+  if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+
+if (window.matchMedia('(max-width: 980px)').matches) {
+  setSidebarCollapsed(true);
+}
+
+sidebarToggle?.addEventListener('click', () => {
+  const collapsed = document.body.classList.contains('sidebar-collapsed');
+  setSidebarCollapsed(!collapsed);
+});
+
+sidebarOverlay?.addEventListener('click', () => setSidebarCollapsed(true));
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 980) {
+    setSidebarCollapsed(true);
+  } else {
+    setSidebarCollapsed(false);
+  }
+}, { passive: true });
+
+sidebarItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 980) setSidebarCollapsed(true);
+  });
+});
+
+let activeSectionId = 'cover';
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    let nextId = activeSectionId;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) nextId = entry.target.id;
+    });
+
+    if (!nextId || nextId === activeSectionId) return;
+    activeSectionId = nextId;
+
+    sidebarItems.forEach((item) => item.classList.remove('active'));
+    const activeItem = document.querySelector(`.sb-item[href="#${activeSectionId}"]`);
+    if (activeItem) activeItem.classList.add('active');
+  }, {
+    rootMargin: '-24% 0px -58% 0px',
+    threshold: [0, 0.15, 0.6]
+  });
+
+  observedSections.forEach((section) => observer.observe(section));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "fottu-openai-real-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "start:social": "set PORT=3004&& set LANDING_PAGE=social_media_workspace.html&& node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "multer": "^2.1.1",
+    "openai": "^6.6.0",
+    "serverless-http": "^4.0.0"
+  }
+}

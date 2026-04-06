@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fottu.br | Social Media Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/social_media_workspace.css">
+</head>
+<body>
+<div class="studio-app">
+  <header class="topbar">
+    <div class="brand-block">
+      <div class="brand-mark">f.br</div>
+      <div class="brand-copy">
+        <div class="eyebrow">Social Media Workspace</div>
+        <h1 class="brand-title">Central operacional para conteudo, campanha e rotina editorial.</h1>
+        <p class="brand-subtitle">Planejamento, criacao, biblioteca de rascunhos e calendario semanal no mesmo painel.</p>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="ghost-btn" id="editBriefingBtn" type="button">Editar briefing</button>
+      <button class="soft-btn" id="copyWeekBtn" type="button">Copiar semana</button>
+      <button class="primary-btn" id="newTaskBtn" type="button">Nova entrega guiada</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar stack">
+      <section class="card card-pad summary-card">
+        <div class="eyebrow">Resumo de operacao</div>
+        <h2 class="summary-title">Briefing da marca e do mes</h2>
+        <p class="summary-copy">Tudo aqui alimenta as sugestoes, os rascunhos e o planner. Quanto melhor o briefing, mais intuitivo fica para o social media.</p>
+        <div class="chip-grid" id="briefingChips"></div>
+        <div class="guide-list" id="briefingHighlights"></div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="eyebrow">Guia operacional</div>
+        <h2 class="summary-title">Regras de uso do sistema</h2>
+        <div class="guide-list">
+          <article class="guide-item">
+            <h3>Tom da marca</h3>
+            <p>Caloroso, afetivo, premium e proximo. Evite linguagem agressiva ou barata.</p>
+          </article>
+          <article class="guide-item">
+            <h3>Como usar melhor</h3>
+            <p>Comece por uma acao pronta, refine no chat, salve o melhor rascunho e agende no planner.</p>
+          </article>
+          <article class="guide-item">
+            <h3>Referencias</h3>
+            <p>Anexe imagem, audio ou texto quando quiser que o Llama 4 analise referencias, concorrentes ou ideias visuais.</p>
+          </article>
+        </div>
+      </section>
+    </aside>
+
+    <section class="content stack">
+      <section class="card card-pad">
+        <div class="eyebrow">Painel rapido</div>
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Visao da semana e carga de producao</h2>
+            <p class="mini-copy">Pensado para a rotina real de um social media contratado.</p>
+          </div>
+        </div>
+        <div class="stat-grid" id="statGrid"></div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Acoes prontas</div>
+            <h2 class="section-title">Fluxos guiados para evitar prompt solto</h2>
+          </div>
+          <p class="mini-copy">Cada acao ja orienta a IA para devolver algo utilizavel na operacao.</p>
+        </div>
+        <div class="quick-grid" id="quickActionGrid"></div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Content studio</div>
+            <h2 class="section-title">Monte o pedido antes de gerar</h2>
+          </div>
+          <p class="mini-copy" id="templateHelper">Escolha uma acao pronta para forcar uma resposta organizada.</p>
+        </div>
+
+        <form id="studioForm" class="form-shell">
+          <div class="form-grid">
+            <div class="field">
+              <label for="templateSelect">Tipo de entrega</label>
+              <select id="templateSelect" name="template"></select>
+            </div>
+            <div class="field">
+              <label for="platformSelect">Canal principal</label>
+              <select id="platformSelect" name="platform">
+                <option value="Instagram">Instagram</option>
+                <option value="TikTok">TikTok</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Instagram + WhatsApp">Instagram + WhatsApp</option>
+                <option value="Instagram + TikTok">Instagram + TikTok</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="objectiveSelect">Objetivo da entrega</label>
+              <select id="objectiveSelect" name="objective">
+                <option value="Atrair novos seguidores">Atrair novos seguidores</option>
+                <option value="Gerar conversas no WhatsApp">Gerar conversas no WhatsApp</option>
+                <option value="Converter para pedido">Converter para pedido</option>
+                <option value="Reforcar autoridade da marca">Reforcar autoridade da marca</option>
+                <option value="Criar relacionamento e lembranca">Criar relacionamento e lembranca</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="funnelSelect">Etapa do funil</label>
+              <select id="funnelSelect" name="funnel">
+                <option value="Topo de funil">Topo de funil</option>
+                <option value="Meio de funil">Meio de funil</option>
+                <option value="Fundo de funil">Fundo de funil</option>
+                <option value="Relacionamento">Relacionamento</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="productInput">Produto ou tema foco</label>
+              <input id="productInput" name="product" type="text" placeholder="Ex.: imas personalizados, kits, lembrancas afetivas">
+            </div>
+            <div class="field">
+              <label for="campaignInput">Campanha ou sazonalidade</label>
+              <input id="campaignInput" name="campaign" type="text" placeholder="Ex.: Dia das Maes, campanha de prova social">
+            </div>
+            <div class="field">
+              <label for="dateInput">Prazo ou data de publicacao</label>
+              <input id="dateInput" name="dueDate" type="date">
+            </div>
+            <div class="field">
+              <label for="ctaInput">CTA desejado</label>
+              <input id="ctaInput" name="cta" type="text" placeholder="Ex.: chame no WhatsApp, salve este post, me chama para montar o pedido">
+            </div>
+            <div class="field full">
+              <label for="notesInput">Contexto extra</label>
+              <textarea id="notesInput" name="notes" placeholder="Ex.: manter tom premium, puxar prova social, evitar desconto e reforcar memoria afetiva."></textarea>
+            </div>
+            <div class="field full" id="customPromptField" hidden>
+              <label for="customPromptInput">Prompt livre complementar</label>
+              <textarea id="customPromptInput" name="customPrompt" placeholder="Use este campo quando quiser complementar a tarefa com algo muito especifico."></textarea>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <label class="toggle">
+              <input id="browserSearchToggle" type="checkbox">
+              Usar pesquisa web quando a entrega depender de tendencia, data atual ou repertorio recente
+            </label>
+          </div>
+
+          <div class="field full">
+            <label>Referencias e anexos</label>
+            <div class="attachment-row">
+              <button class="ghost-btn" id="attachBtn" type="button">Anexar referencia</button>
+              <button class="soft-btn" id="clearAttachmentsBtn" type="button">Limpar anexos</button>
+              <span class="hint">Imagem ajuda a IA a analisar criativos, feed e referencias visuais.</span>
+            </div>
+            <div class="attachment-list" id="attachmentList"></div>
+          </div>
+
+          <div class="toggle-row">
+            <button class="primary-btn" type="submit" id="generateBtn">Gerar entrega estruturada</button>
+            <span class="hint">A resposta ja sai pronta para copiar, salvar e agendar.</span>
+          </div>
+        </form>
+      </section>
+
+      <section class="card workspace-panel">
+        <div class="card-pad">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Workspace com IA</div>
+              <h2 class="section-title">Historico de trabalho e refinamentos</h2>
+            </div>
+            <button class="ghost-btn" id="clearHistoryBtn" type="button">Limpar historico</button>
+          </div>
+        </div>
+
+        <div class="messages" id="studioMessages"></div>
+
+        <div class="composer">
+          <label class="field">
+            <span class="composer-label">Chat livre para refinamentos</span>
+            <textarea id="freePromptInput" placeholder="Ex.: transforme a ultima resposta em carrossel. Ou: ajuste a legenda para algo mais delicado e comercial."></textarea>
+          </label>
+          <footer>
+            <div class="hint">Use o chat livre para melhorar, resumir, adaptar para outro canal ou analisar um anexo.</div>
+            <div class="toggle-row">
+              <button class="ghost-btn" id="freeAttachBtn" type="button">Anexar</button>
+              <button class="primary-btn" id="sendFreePromptBtn" type="button">Enviar</button>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+      <section class="planner-grid">
+        <section class="card card-pad">
+          <div class="library-toolbar">
+            <div>
+              <div class="eyebrow">Biblioteca de conteudos</div>
+              <h2 class="section-title">Rascunhos salvos e pipeline</h2>
+            </div>
+            <input id="draftSearchInput" type="search" placeholder="Buscar rascunho" class="toolbar-search">
+          </div>
+          <div class="filter-pills" id="draftFilterPills"></div>
+          <div class="draft-list" id="draftList"></div>
+        </section>
+
+        <section class="card card-pad">
+          <div class="planner-toolbar">
+            <div>
+              <div class="eyebrow">Planner editorial</div>
+              <h2 class="section-title">Semana de publicacao</h2>
+            </div>
+            <div class="toggle-row">
+              <button class="ghost-btn" id="prevWeekBtn" type="button">Semana anterior</button>
+              <button class="ghost-btn" id="nextWeekBtn" type="button">Proxima semana</button>
+            </div>
+          </div>
+          <div class="chip-grid" id="weekSummaryChips"></div>
+          <div class="week-grid" id="weekGrid"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="briefingModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">Onboarding do social media</div>
+        <h2 class="section-title">Briefing base da operacao</h2>
+        <p class="mini-copy">Preencha este formulario para deixar o sistema pronto para a pessoa que voce contratar.</p>
+      </div>
+      <button class="ghost-btn" id="closeBriefingBtn" type="button">Fechar</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="notice">
+        <strong>Dica:</strong> objetivo do mes, produto foco, campanha, publico, CTA e limites da marca sao o minimo para a IA devolver algo realmente profissional.
+      </div>
+
+      <form id="briefingForm" class="form-shell">
+        <div class="form-grid">
+          <div class="field">
+            <label for="goalMonthInput">Objetivo principal do mes</label>
+            <input id="goalMonthInput" name="goalMonth" type="text" placeholder="Ex.: aumentar pedidos via WhatsApp e reforcar prova social">
+          </div>
+          <div class="field">
+            <label for="productFocusInput">Produtos ou linhas foco</label>
+            <input id="productFocusInput" name="productFocus" type="text" placeholder="Ex.: imas personalizados, kits de presente, datas especiais">
+          </div>
+          <div class="field">
+            <label for="campaignsInput">Campanhas ativas</label>
+            <input id="campaignsInput" name="campaigns" type="text" placeholder="Ex.: memoria afetiva, Dia das Maes, prova social">
+          </div>
+          <div class="field">
+            <label for="datesInput">Datas importantes</label>
+            <input id="datesInput" name="keyDates" type="text" placeholder="Ex.: 05/05 aquecimento, 12/05 pico, 20/05 depoimentos">
+          </div>
+          <div class="field">
+            <label for="channelsInput">Canais usados</label>
+            <input id="channelsInput" name="channels" type="text" placeholder="Ex.: Instagram, WhatsApp Business, TikTok">
+          </div>
+          <div class="field">
+            <label for="frequencyInput">Frequencia de postagem</label>
+            <input id="frequencyInput" name="frequency" type="text" placeholder="Ex.: 4 posts por semana + stories diarios">
+          </div>
+          <div class="field">
+            <label for="audienceInput">Publico principal</label>
+            <input id="audienceInput" name="audience" type="text" placeholder="Ex.: mulheres que compram presentes afetivos para familia, pets e datas especiais">
+          </div>
+          <div class="field">
+            <label for="offerInput">Oferta ou foco comercial</label>
+            <input id="offerInput" name="offerFocus" type="text" placeholder="Ex.: kits premium, ticket medio maior, embalagem especial">
+          </div>
+          <div class="field full">
+            <label for="pillarsInput">Pilares de conteudo</label>
+            <textarea id="pillarsInput" name="pillars" placeholder="Ex.: memoria afetiva, bastidores, prova social, presentes personalizados, atendimento premium"></textarea>
+          </div>
+          <div class="field full">
+            <label for="ctaBankInput">CTAs preferidos</label>
+            <textarea id="ctaBankInput" name="ctaBank" placeholder="Ex.: chame no WhatsApp, salve para ver depois, envie para quem ama seu pet, me chama para montar o pedido"></textarea>
+          </div>
+          <div class="field full">
+            <label for="restrictionsInput">O que a marca deve evitar</label>
+            <textarea id="restrictionsInput" name="restrictions" placeholder="Ex.: evitar linguagem agressiva, liquida, humor debochado, cara de produto barato e marketplace generico"></textarea>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <button class="primary-btn" type="submit">Salvar briefing</button>
+          <span class="hint">Voce pode atualizar isso depois a qualquer momento.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="status-toast" id="toastStack"></div>
+<input class="sr-only" id="studioAttachmentInput" type="file" multiple>
+<script src="/social_media_workspace.js" type="module"></script>
+</body>
+</html>
