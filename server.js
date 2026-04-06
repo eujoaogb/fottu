@@ -2,16 +2,13 @@ import 'dotenv/config';
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
 import OpenAI from 'openai';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3001;
 const landingPage = process.env.LANDING_PAGE || 'index.html';
 const isNetlifyRuntime = Boolean(process.env.NETLIFY);
+const projectRoot = process.cwd();
 const chatApiKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY;
 const chatBaseURL =
   process.env.GROQ_BASE_URL ||
@@ -52,11 +49,14 @@ if (!chatApiKey) {
 }
 
 app.use(express.json({ limit: '2mb' }));
-app.use(express.static(__dirname, { index: false }));
 
-app.get('/fottu_conteudo_completo.html', (_req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'fottu_conteudo_completo.html'));
-});
+if (!isNetlifyRuntime) {
+  app.use(express.static(projectRoot, { index: false }));
+
+  app.get('/fottu_conteudo_completo.html', (_req, res) => {
+    res.sendFile(path.join(projectRoot, 'fottu_conteudo_completo.html'));
+  });
+}
 
 const FIELD_CATALOG = [
   {
@@ -849,18 +849,20 @@ app.post(['/api/chat', '/chat'], upload.array('attachments', MAX_ATTACHMENTS), a
   }
 });
 
-app.get('/', (_req, res) => {
-  res.sendFile(path.join(__dirname, landingPage));
-});
+if (!isNetlifyRuntime) {
+  app.get('/', (_req, res) => {
+    res.sendFile(path.join(projectRoot, landingPage));
+  });
 
-app.get('/{*splat}', (_req, res) => {
-  res.sendFile(path.join(__dirname, landingPage));
-});
+  app.get('/{*splat}', (_req, res) => {
+    res.sendFile(path.join(projectRoot, landingPage));
+  });
+}
 
 function isDirectRun() {
   const entryFile = process.argv[1];
   if (!entryFile) return false;
-  return import.meta.url === pathToFileURL(entryFile).href;
+  return path.basename(entryFile).toLowerCase() === 'server.js';
 }
 
 if (isDirectRun()) {
